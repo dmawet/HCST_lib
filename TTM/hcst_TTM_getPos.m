@@ -1,4 +1,4 @@
-function resPos = hcst_TTM_getPos(bench)
+function resPos = hcst_TTM_getPos(B)
 %hcst_TTM_getPos Function to get the position of the TTM (in mrad)
 %   
 %   - This function uses the PI MATLAB driver
@@ -21,6 +21,6 @@ function resPos = hcst_TTM_getPos(bench)
 %
 
 %% get the position of each axis
-resPos = bench.TTM.stage.PIdevice.qPOS(strjoin(bench.TTM.stage.axes(1:2)))';
+resPos = B.bench.TTM.stage.PIdevice.qPOS(strjoin(B.bench.TTM.stage.axes(1:2)))';
 
 end

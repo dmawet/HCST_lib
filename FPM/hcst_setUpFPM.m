@@ -1,4 +1,4 @@
-function bench = hcst_setUpFPM(bench)
+function hcst_setUpFPM(B)
 %hcst_setUpFPM Function to prepare the FPM for control
 %   
 %   - This function should be called before calling any other FPM functions
@@ -23,7 +23,6 @@ function bench = hcst_setUpFPM(bench)
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
-
 
 %% Add the directory with all our libraries to the Python search path
 HCST_lib_PATH = '/home/hcst/HCST_lib/FPM';
@@ -52,7 +51,7 @@ focIsReady = axFoc.isReady();
 if ~horIsReady
     horIsReady = axHor.home(true);    %Use blocking (true) to ensure home before move
     if horIsReady
-        axHor.moveAbs(bench.FPM.User_H0,true)    %blocking to ensure pos reached
+        axHor.moveAbs(B.bench.FPM.User_H0,true)    %blocking to ensure pos reached
     else
         warning("Horizontal axis reported not ready after homing");
     end
@@ -60,7 +59,7 @@ end
 if ~verIsReady
     verIsReady = axVer.home(true);    %Use blocking (true) to ensure home before move
     if verIsReady
-        axVer.moveAbs(bench.FPM.User_V0,true)    %blocking to ensure pos reached
+        axVer.moveAbs(B.bench.FPM.User_V0,true)    %blocking to ensure pos reached
     else
         warning("Vertical axis reported not ready after homing");
     end
@@ -68,20 +67,20 @@ end
 if ~focIsReady
     focIsReady = axFoc.home(true);    %Use blocking (true) to ensure home before move
     if focIsReady
-        axFoc.moveAbs(bench.FPM.User_F0,true)    %blocking to ensure pos reached
+        axFoc.moveAbs(B.bench.FPM.User_F0,true)    %blocking to ensure pos reached
     else
         warning("Focus axis reported not ready after homing");
     end
 end
 
 if (axHor.reqPosSet() ~= -9999) && (axVer.reqPosSet() ~= -9999) && (axFoc.reqPosSet() ~= -9999)
-    bench.FPM.CONNECTED = true;
+    B.bench.FPM.CONNECTED = true;
 end
 
 %% Populate struct
-bench.FPM.axV = axVer;
-bench.FPM.axH = axHor;
-bench.FPM.axF = axFoc;
+B.bench.FPM.axV = axVer;
+B.bench.FPM.axH = axHor;
+B.bench.FPM.axF = axFoc;
 
 end
 

@@ -1,4 +1,4 @@
-function bench = hcst_setUpAndor(bench,wait2stabalize)
+function hcst_setUpAndor(B,wait2stabalize)
 %bench = hcst_setUpAndor(bench)
 %Set up the HCST Andor Neo Camera
 %   - This function should be called before calling any other Andor functions
@@ -28,11 +28,11 @@ assert(1 == exist('wait2stabalize','var'), ...
     'hcst_setUpAndor takes two inputs')
 
 % Default integration time (ms)
-default_tint = bench.andor.default_tint;
+default_tint = B.bench.andor.default_tint;
 
 % Default pixel encoding mode
 % 0 for 12-bit and 2 for 16-bit
-default_pixelEncodingIndex = bench.andor.default_pixelEncodingIndex;
+default_pixelEncodingIndex = B.bench.andor.default_pixelEncodingIndex;
 
 warning('off','MATLAB:loadlibrary:TypeNotFound')
 
@@ -52,7 +52,7 @@ andor_handlePtr = libpointer('int32Ptr',0);
 err = calllib('lib', 'AT_Open', 0, andor_handlePtr);
 x = get(andor_handlePtr);
 andor_handle = x.Value;
-bench.andor.andor_handle = andor_handle;
+B.bench.andor.andor_handle = andor_handle;
 
 if(err~=0)
     error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_Open']);
@@ -61,7 +61,7 @@ end
 %% Set the pixel encoding to the default setting
 
 try
-    bench = hcst_andor_setPixelEncodingIndex(bench,default_pixelEncodingIndex);
+    hcst_andor_setPixelEncodingIndex(B,default_pixelEncodingIndex);
 catch
     disp('Camera may be off.');
     return;
@@ -69,38 +69,38 @@ end
 
 %% Set the exposure time to the default setting
 
-bench = hcst_andor_setExposureTime(bench,default_tint);
+hcst_andor_setExposureTime(B,default_tint);
 
 %% Get the image formatting parameters (height, width, stride)
 
-bench = hcst_andor_getImageFormatting(bench);
+hcst_andor_getImageFormatting(B);
 
 %% Turn off fan
 
-bench = hcst_andor_toggleFan(bench,'off');
+hcst_andor_toggleFan(B,'off');
 
 %%
 
 
 % Initialize to FullFrame size
-bench.andor.AOIWidth0 = bench.andor.AOIWidth;
-bench.andor.AOIHeight0 = bench.andor.AOIHeight;
-bench.andor.centrow0 = bench.andor.AOIHeight0/2+1;
-bench.andor.centcol0 = bench.andor.AOIWidth0/2+1;
-bench.andor.centrow = bench.andor.centrow0;
-bench.andor.centcol = bench.andor.centcol0;
+B.bench.andor.AOIWidth0 = B.bench.andor.AOIWidth;
+B.bench.andor.AOIHeight0 = B.bench.andor.AOIHeight;
+B.bench.andor.centrow0 = B.bench.andor.AOIHeight0/2+1;
+B.bench.andor.centcol0 = B.bench.andor.AOIWidth0/2+1;
+B.bench.andor.centrow = B.bench.andor.centrow0;
+B.bench.andor.centcol = B.bench.andor.centcol0;
 
 disp('Andor Neo Camera Initialized:');
-disp(['     tint = ',num2str(hcst_andor_getExposureTime(bench))]);
-disp(['     pixel encoding index = ',num2str(hcst_andor_getPixelEncodingIndex(bench))]);
-disp(['     image size (bytes) = ',num2str(hcst_andor_getImageSizeBytes(bench))]);
-disp(['     AOIHeight = ',num2str(bench.andor.AOIHeight)]);
-disp(['     AOIWidth  = ',num2str(bench.andor.AOIWidth)]);
-disp(['     AOIStride = ',num2str(bench.andor.AOIStride)]);
+disp(['     tint = ',num2str(hcst_andor_getExposureTime(B))]);
+disp(['     pixel encoding index = ',num2str(hcst_andor_getPixelEncodingIndex(B))]);
+disp(['     image size (bytes) = ',num2str(hcst_andor_getImageSizeBytes(B))]);
+disp(['     AOIHeight = ',num2str(B.bench.andor.AOIHeight)]);
+disp(['     AOIWidth  = ',num2str(B.bench.andor.AOIWidth)]);
+disp(['     AOIStride = ',num2str(B.bench.andor.AOIStride)]);
 
 
-bench = hcst_andor_setSensorCooling(bench,true,wait2stabalize);
+hcst_andor_setSensorCooling(B,true,wait2stabalize);
 
-bench.andor.CONNECTED = true;
+B.bench.andor.CONNECTED = true;
 
 end

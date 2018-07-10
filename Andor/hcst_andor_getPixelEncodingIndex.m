@@ -1,4 +1,4 @@
-function pei = hcst_andor_getPixelEncodingIndex(bench)
+function pei = hcst_andor_getPixelEncodingIndex(B)
 %pei = hcst_andor_getPixelEncodingIndex(bench)
 %Queries the pixel encoding index of the Andor Neo camera
 %
@@ -20,7 +20,7 @@ function pei = hcst_andor_getPixelEncodingIndex(bench)
 %               3: 'Mono32'
 
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     pixelEncodingFeaturePtr = libpointer('voidPtr',int32(['PixelEncoding',0]));
     pixelEncodingQueryPtr = libpointer('voidPtr',int32(10));% Initialized to an unrealistic value to ensure the pixel encoding index changed correctly
@@ -34,10 +34,10 @@ function pei = hcst_andor_getPixelEncodingIndex(bench)
     end
 
     % Check that the bench struct has the correct value
-    if(bench.andor.pixelEncodingIndex~=pei)
+    if(B.bench.andor.pixelEncodingIndex~=pei)
         disp('HCST_lib WARNING: the pixel encoding index was incorrect in the ''bench'' struct.');
         disp('Setting to the correct value.');
-        bench.andor.pixelEncodingIndex = pei;
+        B.bench.andor.pixelEncodingIndex = pei;
     end
     
     

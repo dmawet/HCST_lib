@@ -1,4 +1,4 @@
-function bench = hcst_andor_getImageFormatting(bench)
+function hcst_andor_getImageFormatting(B)
 %[AOIHeight,AOIWidth,AOIStride] = hcst_andor_getImageFormatting(bench)
 %Queries the the Andor Neo camera to return the AOIHeight, AOIWidth, and
 %AOIStride of the image returned from the buffer
@@ -18,7 +18,7 @@ function bench = hcst_andor_getImageFormatting(bench)
 %       'AOIStride' - Width including zero padding
 
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     % //Retrieve the dimensions of the image
     % AT_GetInt(Hndl, L"AOIStride", &Stride);
@@ -34,7 +34,7 @@ function bench = hcst_andor_getImageFormatting(bench)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetInt']);
     end
     tmp = get(heightPtr2);
-    bench.andor.AOIHeight = tmp.Value;
+    B.bench.andor.AOIHeight = tmp.Value;
 
     % Equivalent to AT_GetInt(Hndl, L"AOIWidth", &Width);
     widthPtr1 = libpointer('voidPtr',int32(['AOIWidth',0]));
@@ -46,7 +46,7 @@ function bench = hcst_andor_getImageFormatting(bench)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetInt']);
     end
     tmp = get(widthPtr2);
-    bench.andor.AOIWidth = tmp.Value;
+    B.bench.andor.AOIWidth = tmp.Value;
 
     % Equivalent to AT_GetInt(Hndl, L"AOIStride", &Stride);
     stridePtr1 = libpointer('voidPtr',int32(['AOIStride',0]));
@@ -57,7 +57,7 @@ function bench = hcst_andor_getImageFormatting(bench)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetInt']);
     end
     tmp = get(stridePtr2);
-    bench.andor.AOIStride = tmp.Value;
+    B.bench.andor.AOIStride = tmp.Value;
 
 end
 

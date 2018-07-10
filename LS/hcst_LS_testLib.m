@@ -1,4 +1,4 @@
-function hcst_LS_testLib(bench)
+function hcst_LS_testLib(B)
 %hcst_LS_testLib Function to test the LS commands
 %
 %   CAUTION: This function WILL move the LS. However, it will return it to
@@ -23,21 +23,21 @@ function hcst_LS_testLib(bench)
 %% Execute the functions/commands, one-by-one
 
 % Query current position and store/display value
-curPos  = hcst_LS_getPos(bench);
+curPos  = hcst_LS_getPos(B);
 dispPos = sprintf('%09.6f ', curPos);
 fprintf('Current positions: %s\n', dispPos)
 
 % Home vertical axis only
-hcst_LS_home(bench, [true, false])
+hcst_LS_home(B, [true, false])
 fprintf('Vertical axis homed\n')
 
 % Move all axes by +.1 from current position (taking into accoung V homed)
 newPos = curPos + .1; newPos(1) = .1;  %Handle V axis separetly since homed
-newPos = hcst_LS_move(bench, newPos);
+newPos = hcst_LS_move(B, newPos);
 dispPos = sprintf('%09.6f ', newPos);
 fprintf('Axes moved to: %s\n', dispPos)
 
 % Return axes to original position
-newPos = hcst_LS_move(bench, curPos);
+newPos = hcst_LS_move(B, curPos);
 dispPos = sprintf('%09.6f ', newPos);
 fprintf('Final axis positions: %s\n', dispPos)

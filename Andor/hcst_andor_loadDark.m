@@ -1,4 +1,4 @@
-function dark = hcst_andor_loadDark(bench,flnm)
+function dark = hcst_andor_loadDark(B,flnm)
 %dark = hcst_andor_loadDark(bench,flnm)
 %Loads a dark frame for the Andor Neo camera. 
 %
@@ -13,19 +13,19 @@ function dark = hcst_andor_loadDark(bench,flnm)
 
     dark = fitsread(flnm);
     [rows,cols] = size(dark);
-    isNotFullFrame = or(bench.andor.AOIHeight~= rows,...
-                     bench.andor.AOIWidth ~= cols);
+    isNotFullFrame = or(B.bench.andor.AOIHeight~= rows,...
+                     B.bench.andor.AOIWidth ~= cols);
 	if(isNotFullFrame)
 
-        if(bench.andor.AOIHeight~=bench.andor.AOIWidth)
+        if(B.bench.andor.AOIHeight~=bench.andor.AOIWidth)
             error('HCST currently only supports square, even sub-windows.')
-        elseif(mod(bench.andor.AOIHeight,2)~=0)
+        elseif(mod(B.bench.andor.AOIHeight,2)~=0)
             error('HCST currently only supports even sized sub-windows.');
         end
            
-        centcol = bench.andor.centcol;
-        centrow = bench.andor.centrow;
-        cropsize = bench.andor.AOIHeight;
+        centcol = B.bench.andor.centcol;
+        centrow = B.bench.andor.centrow;
+        cropsize = B.bench.andor.AOIHeight;
 
         croprows = centrow-cropsize/2+1:centrow+cropsize/2;
         cropcols = centcol-cropsize/2+1:centcol+cropsize/2;

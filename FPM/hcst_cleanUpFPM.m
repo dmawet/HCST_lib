@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpFPM(bench)
+function hcst_cleanUpFPM(B)
 %hcst_cleanUpFPM Function to disconnect and cleanup the FPM 
 %   
 %   - This function uses the Conex.py class
@@ -23,33 +23,33 @@ function bench = hcst_cleanUpFPM(bench)
 
 %% Close the connections and populate the result accordingly
 
-bench.FPM.axV.close();
-if ~bench.FPM.axV.ser.isOpen
+B.bench.FPM.axV.close();
+if ~B.bench.FPM.axV.ser.isOpen
     %Axis closed successfully
     % delete python serial object
-    py.delattr(bench.FPM.axV, 'ser')
+    py.delattr(B.bench.FPM.axV, 'ser')
     % remove the instance of axis from bench
-    bench.FPM = rmfield(bench.FPM, 'axV');
+    B.bench.FPM = rmfield(B.bench.FPM, 'axV');
 end
 
-bench.FPM.axH.close();
-if ~bench.FPM.axH.ser.isOpen
+B.bench.FPM.axH.close();
+if ~B.bench.FPM.axH.ser.isOpen
     %Axis closed successfully
     % delete python serial object
-    py.delattr(bench.FPM.axH, 'ser')
+    py.delattr(B.bench.FPM.axH, 'ser')
     % remove the instance of axis from bench
-    bench.FPM = rmfield(bench.FPM, 'axH');
+    B.bench.FPM = rmfield(B.bench.FPM, 'axH');
 end
     
-bench.FPM.axF.close();
-if ~bench.FPM.axF.ser.isOpen
+B.bench.FPM.axF.close();
+if ~B.bench.FPM.axF.ser.isOpen
     %Axis closed successfully
     % delete python serial object
-    py.delattr(bench.FPM.axF, 'ser')
+    py.delattr(B.bench.FPM.axF, 'ser')
     % remove the instance of axis from bench
-    bench.FPM = rmfield(bench.FPM, 'axF');
+    B.bench.FPM = rmfield(B.bench.FPM, 'axF');
 end
 
-bench.FPM.CONNECTED = false;
+B.bench.FPM.CONNECTED = false;
 
 end

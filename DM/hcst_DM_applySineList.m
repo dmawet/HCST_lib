@@ -1,4 +1,4 @@
-function [bench,cmds] = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs )
+function cmds = hcst_DM_applySineList( B, spatFreq_rs, spatFreq_qs, PTVs, phzs )
 %bench = hcst_DM_applySine( bench )
 
     if(any(isnan(spatFreq_rs)));error('Nan sent to DM');end
@@ -6,9 +6,9 @@ function [bench,cmds] = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, 
 	if(any(isnan(PTVs)));error('Nan sent to DM');end
     if(any(isnan(phzs)));error('Nan sent to DM');end
 
-    flatvec = bench.DM.flatvec;
-    NactAcross = bench.DM.NactAcross;
-    NactAcrossBeam = bench.DM.NactAcrossBeam;
+    flatvec = B.bench.DM.flatvec;
+    NactAcross = B.bench.DM.NactAcross;
+    NactAcrossBeam = B.bench.DM.NactAcrossBeam;
     
     xs = (1:NactAcross)-(NactAcross+1)/2;
     [XS,YS] = meshgrid(xs);
@@ -31,7 +31,7 @@ function [bench,cmds] = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, 
         ripples = ripples + ripple;
     
     end
-	data = hcst_DM_2Dto1D(bench,ripples);
+	data = hcst_DM_2Dto1D(B,ripples);
 
 	cmds = data+flatvec;
     
@@ -39,7 +39,7 @@ function [bench,cmds] = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, 
     if(~isreal(cmds));error('Complex num sent to DM');end
     if(~isnumeric(cmds));error('non-number sent to DM');end
     
-    err_code = BMCSendData(bench.DM.dm, cmds);
+    err_code = BMCSendData(B.bench.DM.dm, cmds);
     if(err_code~=0)
         eString = BMCGetErrorString(err_code);
         error(eString);

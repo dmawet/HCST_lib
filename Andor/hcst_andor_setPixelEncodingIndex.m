@@ -1,4 +1,4 @@
-function bench = hcst_andor_setPixelEncodingIndex(bench,pixEncodingIndex)
+function hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
 %bench = hcst_andor_setPixelEncodingIndex(bench,pixEncodingIndex)
 %Changes the pixel encoding index of the Andor Neo camera
 %
@@ -20,7 +20,7 @@ function bench = hcst_andor_setPixelEncodingIndex(bench,pixEncodingIndex)
 %               2: 'Mono16'
 %               3: 'Mono32'
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     pixelEncodingFeaturePtr = libpointer('voidPtr',int32(['PixelEncoding',0]));
     
@@ -33,12 +33,12 @@ function bench = hcst_andor_setPixelEncodingIndex(bench,pixEncodingIndex)
     end 
     
     % Update the bench struct
-	bench.andor.pixelEncodingIndex = int32(pixEncodingIndex);
+	B.bench.andor.pixelEncodingIndex = int32(pixEncodingIndex);
     
     % Query the new pixel encoding index
-    new_pei = hcst_andor_getPixelEncodingIndex(bench);
+    new_pei = hcst_andor_getPixelEncodingIndex(B);
     
-	bench.andor.pixelEncodingIndex = new_pei;
-    bench.andor.imSizeBytes = hcst_andor_getImageSizeBytes(bench);
+	B.bench.andor.pixelEncodingIndex = new_pei;
+    B.bench.andor.imSizeBytes = hcst_andor_getImageSizeBytes(B);
 end
 

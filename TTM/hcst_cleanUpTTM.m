@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpTTM(bench)
+function hcst_cleanUpTTM(B)
 %hcst_cleanUpTTM Function to disconnect and cleanup the TTM 
 %   
 %   - This function uses the PI MATLAB driver
@@ -30,12 +30,12 @@ function bench = hcst_cleanUpTTM(bench)
 %
 
 %% Close the connections and populate the bench struct accordingly
-bench.TTM.stage.PIdevice.CloseConnection;
-bench.TTM.stage.Controller.Destroy;
-if ~bench.TTM.stage.PIdevice.IsConnected
+B.bench.TTM.stage.PIdevice.CloseConnection;
+B.bench.TTM.stage.Controller.Destroy;
+if ~B.bench.TTM.stage.PIdevice.IsConnected
     % Remove the sub-struct only if successfully closed
-    bench.TTM = rmfield(bench.TTM, 'stage');
-    bench.TTM.CONNECTED = false;
+    B.bench.TTM = rmfield(B.bench.TTM, 'stage');
+    B.bench.TTM.CONNECTED = false;
 end
 
 end

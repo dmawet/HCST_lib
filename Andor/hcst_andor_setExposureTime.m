@@ -1,4 +1,4 @@
-function bench = hcst_andor_setExposureTime(bench,tint)
+function hcst_andor_setExposureTime(B,tint)
 %bench = hcst_andor_setExposureTime(bench,pixEncodingIndex)
 %Changes the exposure time of the Andor Neo camera
 %
@@ -13,7 +13,7 @@ function bench = hcst_andor_setExposureTime(bench,tint)
 %
 %       'tint' - The exposure time in seconds
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     % Equivalent to AT_SetFloat(Handle, L”ExposureTime”, 0.01);
     expTimeFeaturePtr = libpointer('voidPtr',[int32('ExposureTime'),0]);
@@ -24,8 +24,8 @@ function bench = hcst_andor_setExposureTime(bench,tint)
     end
     
     % Update the 'bench' struct to contain actual exposure time
-    new_tint = hcst_andor_getExposureTime(bench);
-    bench.andor.tint = new_tint;
+    new_tint = hcst_andor_getExposureTime(B);
+    B.bench.andor.tint = new_tint;
     
     
 end

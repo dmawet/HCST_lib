@@ -1,4 +1,4 @@
-function bench = hcst_DM_zeroDM( bench )
+function hcst_DM_zeroDM( B )
 %bench = hcst_DM_zeroDM( bench )
 %Sets BMC kilo DM voltages to zero.
 %
@@ -7,7 +7,7 @@ function bench = hcst_DM_zeroDM( bench )
 
 
 
-    err_code = BMCSendData(bench.DM.dm, zeros(1,bench.DM.cmdLength));
+    err_code = BMCSendData(B.bench.DM.dm, zeros(1,B.bench.DM.cmdLength));
     if(err_code~=0)
         eString = BMCGetErrorString(err_code);
         error(eString);

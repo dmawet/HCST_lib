@@ -1,4 +1,4 @@
-function imSizeBytes = hcst_andor_getImageSizeBytes(bench)
+function imSizeBytes = hcst_andor_getImageSizeBytes(B)
 %imSizeBytes = hcst_andor_getImageSizeBytes(bench)
 %Queries the current image size in bytes the Andor Neo camera
 %
@@ -13,7 +13,7 @@ function imSizeBytes = hcst_andor_getImageSizeBytes(bench)
 %   Outputs
 %       'imSizeBytes' - Image size in bytes
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     imSizeBytesFeaturePtr = libpointer('voidPtr',int32(['ImageSizeBytes',0]));
     imSizeBytesPtr = libpointer('int64Ptr',int64(0));

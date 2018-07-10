@@ -1,4 +1,4 @@
-function hcst_FPM_home(bench, homeFlg)
+function hcst_FPM_home(B, homeFlg)
 %hcst_FPM_home Function to home the given axes of the FPM
 %   
 %   - This function uses the Conex.py class
@@ -37,12 +37,12 @@ end
 % use homeFlg == true (vs. just homeFlg) to implicitly check that a valid
 % logical value was given.
 if homeFlg(1) == true
-    bench.FPM.axV.home(true);
+    B.bench.FPM.axV.home(true);
 end
 if homeFlg(2) == true
-    bench.FPM.axH.home(true);
+    B.bench.FPM.axH.home(true);
 end
 if homeFlg(3) == true
-    bench.FPM.axF.home(true);
+    B.bench.FPM.axF.home(true);
 end
 end

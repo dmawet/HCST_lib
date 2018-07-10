@@ -1,4 +1,4 @@
-function vec = hcst_DM_2Dto1D(bench,map)
+function vec = hcst_DM_2Dto1D(B,map)
 %vec = hcst_DM_2Dto1D(Vmap, DMparams)
 %Converts 2D array to 1D vector of actuator pokes 
 % 
@@ -26,7 +26,7 @@ RS = sqrt(XS.^2 + YS.^2);
 % figure(1); imagesc(mat); axis xy equal tight;
 
 
-vec = zeros(1,bench.DM.cmdLength);
+vec = zeros(1,B.bench.DM.cmdLength);
 vec(1:Nact) = map(RS<NactAcross/2+0.5);
 
 end

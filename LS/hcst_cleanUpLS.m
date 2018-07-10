@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpLS(bench)
+function hcst_cleanUpLS(B)
 %hcst_cleanUpLS Function to disconnect and cleanup the LS
 %   
 %   - Uses the MATLAB Zaber_Toolbox provided by Zaber Technologies
@@ -23,33 +23,33 @@ function bench = hcst_cleanUpLS(bench)
 
 %% Close the connections and populate the result accordingly
 
-fclose(bench.LS.axV.Protocol.Port);
-if strcmp(bench.LS.axV.Protocol.Port.Status, 'closed')
+fclose(B.bench.LS.axV.Protocol.Port);
+if strcmp(B.bench.LS.axV.Protocol.Port.Status, 'closed')
     %Axis closed successfully
     % delete serial object
-    delete(bench.LS.axV.Protocol.Port)
+    delete(B.bench.LS.axV.Protocol.Port)
     % remove the instance of axis from bench
-    bench.LS = rmfield(bench.LS, 'axV');
+    B.bench.LS = rmfield(B.bench.LS, 'axV');
 end
 
 % Close the second port if it's handle still exists
 %   This is in case the two axes are not daisy chained
-if bench.LS.axH.Protocol.Port.isvalid
+if B.bench.LS.axH.Protocol.Port.isvalid
     %Axis was not closed/deleted already
-    fclose(bench.LS.axH.Protocol.Port);
-    if strcmp(bench.LS.axH.Protocol.Port.Status, 'closed')
+    fclose(B.bench.LS.axH.Protocol.Port);
+    if strcmp(B.bench.LS.axH.Protocol.Port.Status, 'closed')
         %Axis closed successfully
         % delete serial object
-        delete(bench.LS.axH.Protocol.Port)
+        delete(B.bench.LS.axH.Protocol.Port)
         % remove the instance of axis from bench
-        bench.LS = rmfield(bench.LS, 'axH');
+        B.bench.LS = rmfield(B.bench.LS, 'axH');
     end
 else
     % Axis is already closed/deleted
     % remove the instance of axis from bench
-    bench.LS = rmfield(bench.LS, 'axH');
+    B.bench.LS = rmfield(B.bench.LS, 'axH');
 end
 
-bench.LS.CONNECTED = false;
+B.bench.LS.CONNECTED = false;
 
 end

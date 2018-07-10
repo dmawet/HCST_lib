@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpDM(bench)
+function hcst_cleanUpDM(B)
 %bench = hcst_cleanUpDM(bench)
 %Closes connection with the HCST BMC DM and cleans up
 %   - This function should be called when finished running the BMC DM
@@ -19,7 +19,7 @@ function bench = hcst_cleanUpDM(bench)
 
 % Zero the DM
 try 
-    bench = hcst_DM_zeroDM( bench );
+    hcst_DM_zeroDM( B );
 catch
     disp('Could not zero the DM.');
 end
@@ -29,13 +29,13 @@ end
 % end
 
 % Close the driver
-err_code = BMCCloseDM(bench.DM.dm);
+err_code = BMCCloseDM(B.bench.DM.dm);
 if(err_code~=0)
     eString = BMCGetErrorString(err_code);
     error(eString);
 end
 
-bench.DM.connected = 0;
+B.bench.DM.CONNECTED = 0;
 
 disp('BMC DM disconnected. Clean up complete.');
 

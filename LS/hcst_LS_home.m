@@ -1,4 +1,4 @@
-function hcst_LS_home(bench, homeFlg)
+function hcst_LS_home(B, homeFlg)
 %hcst_LS_home Function to home the given axes of the LS
 %   
 %   - Uses the MATLAB Zaber_Toolbox provided by Zaber Technologies
@@ -35,19 +35,19 @@ end
 % logical value was given.
 if homeFlg(1) == true
     try
-        bench.LS.axV.home();
+        B.bench.LS.axV.home();
     catch exception
         % Close port if a MATLAB error occurs, otherwise it remains locked
-        fclose(bench.LS.axV.Protocol.Port);
+        fclose(B.bench.LS.axV.Protocol.Port);
         rethrow(exception);
     end
 end
 if homeFlg(2) == true
     try
-        bench.LS.axH.home();
+        B.bench.LS.axH.home();
     catch exception
         % Close port if a MATLAB error occurs, otherwise it remains locked
-        fclose(bench.LS.axH.Protocol.Port);
+        fclose(B.bench.LS.axH.Protocol.Port);
         rethrow(exception);
     end
 end

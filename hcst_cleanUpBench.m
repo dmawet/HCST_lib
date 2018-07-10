@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpBench(bench)
+function hcst_cleanUpBench(B)
 %hcst_cleanUpBench Function to close all control objects
 %   
 %   - This function closes the connection to the following bench elements:
@@ -31,8 +31,8 @@ sucFlg = true;      %Flag to mark successful completion
 %% Call the hardware cleanUp functions
 
 % FPM
-bench = hcst_cleanUpFPM(bench);
-if any(isfield(bench.FPM, {'axV', 'axH', 'axF'}))
+hcst_cleanUpFPM(B);
+if any(isfield(B.bench.FPM, {'axV', 'axH', 'axF'}))
     fprintf('FPM did not close correctly\n')
     % Mark unsuccessful completion
     sucFlg = false;
@@ -41,8 +41,8 @@ else
 end
 
 % LS
-bench = hcst_cleanUpLS(bench);
-if any(isfield(bench.LS, {'axV', 'axH'}))
+hcst_cleanUpLS(B);
+if any(isfield(B.bench.LS, {'axV', 'axH'}))
     fprintf('LS did not close correctly\n')
     % Mark unsuccessful completion
     sucFlg = false;
@@ -51,8 +51,8 @@ else
 end
 
 % TTM
-bench = hcst_cleanUpTTM(bench);
-if isfield(bench.TTM, 'stage')
+hcst_cleanUpTTM(B);
+if isfield(B.bench.TTM, 'stage')
     fprintf('TTM did not close correctly\n')
     % Mark unsuccessful completion
     sucFlg = false;
@@ -61,7 +61,7 @@ else
 end
 
 % Andor 
-bench = hcst_cleanUpAndor(bench);
+hcst_cleanUpAndor(B);
 
 %% Final Print
 if sucFlg

@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpAndor(bench)
+function hcst_cleanUpAndor(B)
 %bench = hcst_cleanUpAndor(bench)
 %Closes connection with the Andor Neo and cleans up
 %   - This function should be called when finished funning the Andor Neo
@@ -23,11 +23,11 @@ function bench = hcst_cleanUpAndor(bench)
 %
 
 try
-    bench = hcst_andor_setSensorCooling(bench,false,false);
+    hcst_andor_setSensorCooling(B,false,false);
 catch
     disp('Cooler still on.');
 end
-err = calllib('lib', 'AT_Close', bench.andor.andor_handle);
+err = calllib('lib', 'AT_Close', B.bench.andor.andor_handle);
 
 if(err~=0)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_Close']);
@@ -43,6 +43,6 @@ unloadlibrary lib;
 
 disp('Andor Neo Camera disconnected. Clean up complete.');
 
-bench.andor.CONNNECTED = false;
+B.bench.andor.CONNNECTED = false;
 
 end

@@ -1,4 +1,4 @@
-function bench = hcst_andor_toggleFan(bench,option)
+function hcst_andor_toggleFan(B,option)
 %bench = hcst_andor_toggleFan(bench)
 %Turns the fan off/low/on in the Andor Neo camera
 %
@@ -15,7 +15,7 @@ function bench = hcst_andor_toggleFan(bench,option)
 %               'on': Turns fan on      (index 2)
 
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     FeaturePtr = libpointer('voidPtr',int32(['FanSpeed',0]));
     
@@ -37,6 +37,6 @@ function bench = hcst_andor_toggleFan(bench,option)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetEnumIndex']);
     end 
     
-    bench.andor.fan = index;
+    B.bench.andor.fan = index;
 end
 

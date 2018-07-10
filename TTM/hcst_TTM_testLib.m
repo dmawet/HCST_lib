@@ -1,4 +1,4 @@
-function hcst_TTM_testLib(bench)
+function hcst_TTM_testLib(B)
 %hcst_TTM_testLib Function to test the TTM commands
 %
 %   CAUTION: This function WILL move the TTM. However, it will return it to
@@ -23,17 +23,17 @@ function hcst_TTM_testLib(bench)
 %% Execute the functions/commands, one-by-one
 
 % Query current position and store/display value
-curPos  = hcst_TTM_getPos(bench);
+curPos  = hcst_TTM_getPos(B);
 dispPos = sprintf('%09.6f ', curPos);
 fprintf('Current positions: %s\n', dispPos)
 
 % Move all axes by +.1 from current position
 newPos = curPos + .1;
-newPos = hcst_TTM_move(bench, newPos);
+newPos = hcst_TTM_move(B, newPos);
 dispPos = sprintf('%09.6f ', newPos);
 fprintf('Axes moved to: %s\n', dispPos)
 
 % Return axes to original position
-newPos = hcst_TTM_move(bench, curPos);
+newPos = hcst_TTM_move(B, curPos);
 dispPos = sprintf('%09.6f ', newPos);
 fprintf('Final axis positions: %s\n', dispPos)

@@ -1,4 +1,4 @@
-function bench = hcst_setUpLS(bench)
+function hcst_setUpLS(B)
 %hcst_setUpLS Function to prepare the LS for control
 %   
 %   - This function should be called before calling any other LS functions
@@ -88,11 +88,11 @@ try
 %% Home the axes if they have not been homed
     if ~verIsReady
         axVer.home
-        axVer.moveAbs(axVer.Units.positiontonative(bench.LS.User_V0))
+        axVer.moveAbs(axVer.Units.positiontonative(B.bench.LS.User_V0))
     end
     if ~horIsReady
         axHor.home
-        axHor.moveAbs(axHor.Units.positiontonative(bench.LS.User_H0))
+        axHor.moveAbs(axHor.Units.positiontonative(B.bench.LS.User_H0))
     end
     
 catch exception
@@ -102,12 +102,12 @@ catch exception
 end
 
 if ~isempty(axHor.getposition()) && ~isempty(axVer.getposition())
-    bench.LS.CONNECTED = true;
+    B.bench.LS.CONNECTED = true;
 end
 
 %% Populate struct
-bench.LS.axV = axVer;
-bench.LS.axH = axHor;
+B.bench.LS.axV = axVer;
+B.bench.LS.axH = axHor;
 
 
 end

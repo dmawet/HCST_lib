@@ -1,4 +1,4 @@
-function bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
+function hcst_andor_setSensorCooling(B,cooleron,wait4stability)
 %bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
 %Turns on/off the cooling of the Andor Neo camera. 
 %
@@ -12,14 +12,14 @@ function bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
 %       'wait4stability' - logical - Wait for the temp to stabilize
 
 
-    andor_handle = bench.andor.andor_handle;
+    andor_handle = B.bench.andor.andor_handle;
 
     if(cooleron)
         disp('Turning on sensor cooling...');
-        bench.andor.sensorCooling = true;
+        B.bench.andor.sensorCooling = true;
     else
         disp('Turning off sensor cooling...');
-        bench.andor.sensorCooling = false;
+        B.bench.andor.sensorCooling = false;
     end
 
     
@@ -31,7 +31,7 @@ function bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetBool']);
     end
 
-    disp(['     Current sensor temp:',num2str(hcst_andor_getSensorTemp(bench))]);
+    disp(['     Current sensor temp:',num2str(hcst_andor_getSensorTemp(B))]);
 
 
     % Get temperature control count (number of options)

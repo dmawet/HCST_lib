@@ -1,4 +1,4 @@
-function bench = hcst_config()
+function B = hcst_config()
 %hcst_config Function to instantiate core variables for bench
 %   
 %   - This function should be called before any other hcst_ functions
@@ -110,6 +110,8 @@ bench.TTM.CONNECTED = false;
 
 %% DM sub-struct
 
+bench.DM.CONNECTED = false;
+
 % Note where the beam is with respect to the DM (need a function to
 % determine this later...)
 bench.DM.NactAcross = 34;
@@ -140,4 +142,6 @@ bench.andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 
 bench.andor.pixelPerLamOverD = 6;
 bench.andor.numPixperCycle = 5.86;
+
+B = Bench(bench);
 end

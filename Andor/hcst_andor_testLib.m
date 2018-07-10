@@ -1,4 +1,4 @@
-function hcst_andor_testLib(bench)
+function hcst_andor_testLib(B)
 %hcst_Andor_testLib(bench)
 %Function to test the Andor commands
 %
@@ -22,7 +22,7 @@ function hcst_andor_testLib(bench)
 %% Execute the functions/commands, one-by-one
 
 
-im = hcst_andor_getImage(bench);
+im = hcst_andor_getImage(B);
 
 
 figure;

@@ -1,4 +1,4 @@
-function im = hcst_andor_getImage_old(bench)
+function im = hcst_andor_getImage_old(B)
 %im = hcst_andor_getImage(bench)
 %Returns image from the the Andor Neo camera
 %
@@ -15,14 +15,14 @@ function im = hcst_andor_getImage_old(bench)
 %   Outputs
 %       'im' - The image
 
-    andor_handle = bench.andor.andor_handle;
-    BufferSize = bench.andor.imSizeBytes;
-    AOIHeight = bench.andor.AOIHeight;
-    AOIWidth  = bench.andor.AOIWidth;
-    AOIStride = bench.andor.AOIStride;
+    andor_handle = B.bench.andor.andor_handle;
+    BufferSize = B.bench.andor.imSizeBytes;
+    AOIHeight = B.bench.andor.AOIHeight;
+    AOIWidth  = B.bench.andor.AOIWidth;
+    AOIStride = B.bench.andor.AOIStride;
 
-    if(hcst_andor_getPixelEncodingIndex(bench)~=2)
-        error(['HCST_lib Andor lib ERROR: hcst_andor_getImage requires 16-bit mode.']);
+    if(hcst_andor_getPixelEncodingIndex(B)~=2)
+        error('HCST_lib Andor lib ERROR: hcst_andor_getImage requires 16-bit mode.');
     end
     
     % Equivalent to AT_QueueBuffer(Handle, UserBuffer, BufferSize)

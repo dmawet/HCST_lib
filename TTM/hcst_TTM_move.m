@@ -1,4 +1,4 @@
-function resPos = hcst_TTM_move(bench,pos)
+function resPos = hcst_TTM_move(B,pos)
 %hcst_TTM_move Function to move the TTM to an absolute position (in mrad)
 %   
 %   - This function uses the PI MATLAB driver
@@ -39,8 +39,8 @@ end
 % Use blocking to ensure move is complete before continuing script
 % Do not move axes for which pos is nan
 
-axes = bench.TTM.stage.axes;    %Copy axes to use shorter name for clarity
-axMod = bench.TTM.stage.axMod;  %Copy vector of activated axes for clarity
+axes = B.bench.TTM.stage.axes;    %Copy axes to use shorter name for clarity
+axMod = B.bench.TTM.stage.axMod;  %Copy vector of activated axes for clarity
 
 % Check if either axis should move and if that axis was activated
 if any(~isnan(pos) & axMod(1:2))
@@ -51,15 +51,15 @@ if any(~isnan(pos) & axMod(1:2))
     pos2Move = pos(~isnan(pos) & axMod(1:2));
     
     % Perform the move
-    bench.TTM.stage.PIdevice.MOV(ax2Move, pos2Move);
+    B.bench.TTM.stage.PIdevice.MOV(ax2Move, pos2Move);
     
     %wait for motion to stop
-    while any(bench.TTM.stage.PIdevice.IsMoving(ax2Move))
+    while any(B.bench.TTM.stage.PIdevice.IsMoving(ax2Move))
         pause(0.001);   %very short pause to prevent uneccessary wait time
     end
 end
 
 % Query positions after move
-resPos = bench.TTM.stage.PIdevice.qPOS(strjoin(axes(1:2)))';
+resPos = B.bench.TTM.stage.PIdevice.qPOS(strjoin(axes(1:2)))';
 
 end
