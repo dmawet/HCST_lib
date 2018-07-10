@@ -1,5 +1,5 @@
 function temp = hcst_andor_getSensorTemp(B)
-%temp = hcst_andor_getSensorTemp(bench)
+%temp = hcst_andor_getSensorTemp(B)
 %Queries the temperature of the Andor Neo camera sensor
 %
 %   - Returns the current sensor temp
@@ -7,11 +7,11 @@ function temp = hcst_andor_getSensorTemp(B)
 %   
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
-%       'temp' - The temperature in
+%       'temp' - The temperature in degrees Celsius
 
     andor_handle = B.bench.andor.andor_handle;
 

@@ -1,5 +1,5 @@
-function hcst_setUpAndor(B,wait2stabalize)
-%bench = hcst_setUpAndor(bench)
+function hcst_setUpAndor(B,wait2stabilize)
+%hcst_setUpAndor(B, wait2stabilize)
 %Set up the HCST Andor Neo Camera
 %   - This function should be called before calling any other Andor functions
 %   - It uses the atcore.h and libatcore.so 'c' libraries
@@ -7,17 +7,16 @@ function hcst_setUpAndor(B,wait2stabalize)
 %   - It sets the exposure time to the default
 %
 %
-%   Arguments/Outputs:
-%   bench = hcst_setUpAndor(bench)
+%   Inputs:
 %       Initializes the Andor Neo libraries
 %       Updates the andor sub-struct which contains pertient information
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_setUpAndor(bench)
-%           Updates 'bench', the andor sub-struct
+%       hcst_setUpAndor(B)
+%           Updates 'B.bench' and the andor sub-struct
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
@@ -99,7 +98,7 @@ disp(['     AOIWidth  = ',num2str(B.bench.andor.AOIWidth)]);
 disp(['     AOIStride = ',num2str(B.bench.andor.AOIStride)]);
 
 
-hcst_andor_setSensorCooling(B,true,wait2stabalize);
+hcst_andor_setSensorCooling(B,true,wait2stabilize);
 
 B.bench.andor.CONNECTED = true;
 

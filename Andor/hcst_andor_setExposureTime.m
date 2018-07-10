@@ -1,15 +1,15 @@
 function hcst_andor_setExposureTime(B,tint)
-%bench = hcst_andor_setExposureTime(bench,pixEncodingIndex)
+%bench = hcst_andor_setExposureTime(B,tint)
 %Changes the exposure time of the Andor Neo camera
 %
 %   - Sets the exposure time to tint
-%   - Updates the 'bench' struct using using
+%   - Updates the 'B.bench' struct using using
 %       the hcst_andor_getExposureTime function.
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %       'tint' - The exposure time in seconds
 

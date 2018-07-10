@@ -16,7 +16,7 @@ B = hcst_config();
 % bench = hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
-hcst_setUpAndor(B);
+hcst_setUpAndor(B, true);
 
 %% Call Andor test function
 

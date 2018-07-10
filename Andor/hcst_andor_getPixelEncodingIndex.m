@@ -1,5 +1,5 @@
 function pei = hcst_andor_getPixelEncodingIndex(B)
-%pei = hcst_andor_getPixelEncodingIndex(bench)
+%pei = hcst_andor_getPixelEncodingIndex(B)
 %Queries the pixel encoding index of the Andor Neo camera
 %
 %   - Returns the current pixel encoding index
@@ -8,8 +8,8 @@ function pei = hcst_andor_getPixelEncodingIndex(B)
 %   
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'pei' - The pixel encoding index 

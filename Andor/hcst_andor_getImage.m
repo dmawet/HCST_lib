@@ -1,5 +1,5 @@
 function im = hcst_andor_getImage(B)
-%im = hcst_andor_getImage(bench)
+%im = hcst_andor_getImage(B)
 %Returns image from the the Andor Neo camera
 %
 %   - Returns an image from the Andor Neo camera 
@@ -9,7 +9,7 @@ function im = hcst_andor_getImage(B)
 %   
 %
 %   Inputs:   
-%       'bench' - struct - contains all pertient bench information and
+%       'B.bench' - struct - contains all pertient bench information and
 %           instances. It is created by the hcst_config() function.
 %
 %   Outputs
@@ -45,6 +45,7 @@ function im = hcst_andor_getImage(B)
 
     err = calllib('lib', 'AT_SetInt', andor_handle, FrameCountFeaturePtr, int64(numCoadds));
     if(err~=0)
+        disp('Failed to set FrameCount!')
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetInt']);
     end
 
@@ -61,7 +62,7 @@ function im = hcst_andor_getImage(B)
     end
     
     % -------------------------------------------------------------------%
-    im = zeros(bench.andor.AOIHeight,bench.andor.AOIWidth);
+    im = zeros(B.bench.andor.AOIHeight,B.bench.andor.AOIWidth);
     for coadd = 1:numCoadds
     
         % Equivalent to AT_WaitBuffer(Handle, &Buffer, &BufferSize, AT_INFINITE);

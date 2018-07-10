@@ -1,5 +1,5 @@
 function im = hcst_andor_getImage_old(B)
-%im = hcst_andor_getImage(bench)
+%im = hcst_andor_getImage(B)
 %Returns image from the the Andor Neo camera
 %
 %   - Returns an image from the Andor Neo camera 
@@ -9,8 +9,8 @@ function im = hcst_andor_getImage_old(B)
 %   
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'im' - The image

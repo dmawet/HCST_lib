@@ -1,6 +1,20 @@
 function hcst_andor_fitswrite(B,im,flnm,show)
-%hcst_andor_fitswrite(bench,im,flnm)
-%   Detailed explanation goes here
+%hcst_andor_fitswrite(B,im,flnm)
+%Writes an image to a FITS file.
+%
+%   Inputs:   
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
+%
+%       'im' is an array containing the image
+%
+%       'flnm' is a string continaing the destination filename
+%
+%       'show' is a logical. If 'show' is set, the created FITS file will
+%           opened in DS9.
+%
+%   Outputs:
+%       None
     
     disp(['Writing image file...', flnm]);
 

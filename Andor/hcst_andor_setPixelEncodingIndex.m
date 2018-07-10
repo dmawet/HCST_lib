@@ -1,17 +1,17 @@
 function hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
-%bench = hcst_andor_setPixelEncodingIndex(bench,pixEncodingIndex)
+%hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
 %Changes the pixel encoding index of the Andor Neo camera
 %
 %   - Sets the pixel encoding index to pixEncodingIndex
-%   - Updates the bench.andor.pixelEncodingIndex variable using
+%   - Updates the B.bench.andor.pixelEncodingIndex variable using
 %           hcst_andor_getPixelEncodingIndex function.
-%   - Updates the bench.andor.imSizeBytes variable using
+%   - Updates the B.bench.andor.imSizeBytes variable using
 %           hcst_andor_getImageSizeBytes function.
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %       'pixEncodingIndex' - The pixel encoding index 
 %           Options (see Andor SDK Docs for detailed info):
