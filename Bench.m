@@ -11,6 +11,13 @@ classdef Bench < handle
             %BENCH Construct an instance of this class
             B.bench = bench;
         end
+        
+        function isConnected(B)
+            fields = fieldnames(B.bench);
+            for idx = 1:numel(fields)
+                fprintf("%s \t %s\n", string(fields{idx}), string(B.bench.(fields{idx}).CONNECTED))
+            end
+        end
     end
 end
 
