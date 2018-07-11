@@ -14,15 +14,14 @@ function hcst_cleanUpTTM(B)
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_cleanUpTTM(bench) closes connections to the PI Controller
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_cleanUpTTM(B) closes connections to the PI Controller
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_cleanUpTTM(bench)
-%           Closes connections and clears instances from bench. Returns an
-%           updated version of bench without the closed ports.
+%       hcst_cleanUpTTM(B)
+%           Closes connections and clears instances from bench.
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_setUpTTM,

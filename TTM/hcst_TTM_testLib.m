@@ -6,13 +6,13 @@ function hcst_TTM_testLib(B)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_TTM_testLib(bench) test the various TTM commands 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_TTM_testLib(B) test the various TTM commands 
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_TTM_testLib(bench)
+%       hcst_TTM_testLib(B)
 %           Runs through the available MATLAB TTM commands
 %
 %
