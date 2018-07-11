@@ -1,6 +1,5 @@
 function hcst_setUpAndor(B,wait2stabilize)
-%hcst_setUpAndor(B, wait2stabilize)
-%Set up the HCST Andor Neo Camera
+%hcst_setUpAndor Set up the HCST Andor Neo Camera
 %   - This function should be called before calling any other Andor functions
 %   - It uses the atcore.h and libatcore.so 'c' libraries
 %   - It sets the camera mode to 'Mono16' (16 bit)

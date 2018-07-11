@@ -1,6 +1,5 @@
 function im = hcst_andor_getImage(B)
-%im = hcst_andor_getImage(B)
-%Returns image from the the Andor Neo camera
+%hcst_andor_getImage Returns image from the the Andor Neo camera
 %
 %   - Returns an image from the Andor Neo camera 
 %   - Assumed hcst_config() and setUpAndor has already been run.

@@ -1,6 +1,5 @@
 function hcst_cleanUpAndor(B)
-%hcst_cleanUpAndor(B)
-%Closes connection with the Andor Neo and cleans up
+%hcst_cleanUpAndor Closes connection with the Andor Neo and cleans up
 %   - This function should be called when finished funning the Andor Neo
 %      functions
 %   - It uses the atcore.h and libatcore.so 'c' libraries

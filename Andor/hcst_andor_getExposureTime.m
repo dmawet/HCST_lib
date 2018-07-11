@@ -1,6 +1,5 @@
 function tint = hcst_andor_getExposureTime(B)
-%tint = hcst_andor_getExposureTime(B)
-%Queries the exposure time setting of the Andor Neo camera
+%hcst_andor_getExposureTime Queries the exposure time setting of the Andor Neo camera
 %
 %   - Returns the current exposure time
 %   - Uses the atcore.h and libatcore.so 'c' libraries

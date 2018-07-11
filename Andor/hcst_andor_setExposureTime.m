@@ -1,6 +1,5 @@
 function hcst_andor_setExposureTime(B,tint)
-%bench = hcst_andor_setExposureTime(B,tint)
-%Changes the exposure time of the Andor Neo camera
+%hcst_andor_setExposureTime Changes the exposure time of the Andor Neo camera
 %
 %   - Sets the exposure time to tint
 %   - Updates the 'B.bench' struct using using

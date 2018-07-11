@@ -1,6 +1,5 @@
 function temp = hcst_andor_getSensorTemp(B)
-%temp = hcst_andor_getSensorTemp(B)
-%Queries the temperature of the Andor Neo camera sensor
+%hcst_andor_getSensorTemp Queries the temperature of the Andor Neo camera sensor
 %
 %   - Returns the current sensor temp
 %   - Uses the atcore.h and libatcore.so 'c' libraries

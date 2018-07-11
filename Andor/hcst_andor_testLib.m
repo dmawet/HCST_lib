@@ -1,6 +1,5 @@
 function hcst_andor_testLib(B)
-%hcst_Andor_testLib(B)
-%Function to test the Andor commands
+%hcst_Andor_testLib Function to test the Andor commands
 %
 %   
 %   Inputs:

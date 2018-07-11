@@ -1,6 +1,5 @@
 function hcst_andor_fitswrite(B,im,flnm,show)
-%hcst_andor_fitswrite(B,im,flnm)
-%Writes an image to a FITS file.
+%hcst_andor_fitswrite Writes an image to a FITS file.
 %
 %   Inputs:   
 %       'B.bench' is the struct containing all pertient bench information

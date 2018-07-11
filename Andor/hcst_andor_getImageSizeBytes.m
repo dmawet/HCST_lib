@@ -1,6 +1,5 @@
 function imSizeBytes = hcst_andor_getImageSizeBytes(B)
-%imSizeBytes = hcst_andor_getImageSizeBytes(B)
-%Queries the current image size in bytes the Andor Neo camera
+%hcst_andor_getImageSizeBytes Queries the current image size in bytes the Andor Neo camera
 %
 %   - Returns the current image size in bytes
 %   - Uses the atcore.h and libatcore.so 'c' libraries

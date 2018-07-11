@@ -1,7 +1,5 @@
 function hcst_andor_setSubwindow(B,centerrow,centercol,framesize)
-%hcst_andor_setSubwindow(B,centerrow,centercol,framesize)
-%Changes the subwindow of the Andor Neo camera. Assumes the subwindow is a
-%square with an even number of pixels. 
+%hcst_andor_setSubwindow Changes the subwindow of the Andor Neo camera. Assumes the subwindow is a square with an even number of pixels. 
 %
 %   - Crops the Andor Neo image to a frame size of 'framesize' centered at
 %       (centerrow,centercol)

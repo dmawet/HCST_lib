@@ -1,6 +1,5 @@
 function dark = hcst_andor_loadDark(B,flnm)
-%dark = hcst_andor_loadDark(bench,flnm)
-%Loads a dark frame for the Andor Neo camera. 
+%hcst_andor_loadDark Loads a dark frame for the Andor Neo camera. 
 %
 %   - Loads a dark frame from 'flnm'.
 %   - Crops the Andor Neo dark frame to a frame size of

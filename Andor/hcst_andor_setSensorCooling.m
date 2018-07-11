@@ -1,6 +1,5 @@
 function hcst_andor_setSensorCooling(B,cooleron,wait4stability)
-%hcst_andor_setSensorCooling(B,cooleron,wait4stability)
-%Turns on/off the cooling of the Andor Neo camera. 
+%hcst_andor_setSensorCooling Turns on/off the cooling of the Andor Neo camera. 
 %
 %   - Updates the 'B.bench' struct 
 %   - Uses the atcore.h and libatcore.so 'c' libraries

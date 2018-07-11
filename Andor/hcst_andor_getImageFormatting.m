@@ -1,7 +1,5 @@
 function hcst_andor_getImageFormatting(B)
-%hcst_andor_getImageFormatting(B)
-%Queries the the Andor Neo camera to return the AOIHeight, AOIWidth, and
-%AOIStride of the image returned from the buffer
+%hcst_andor_getImageFormatting Queries the the Andor Neo camera to return the AOIHeight, AOIWidth, and AOIStride of the image returned from the buffer
 %
 %   - Updates the AOIHeight, AOIWidth, and AOIStride fields in
 %       B.bench.andor with the values of the image returned by the buffer.

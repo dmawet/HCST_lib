@@ -1,6 +1,5 @@
 function hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
-%hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
-%Changes the pixel encoding index of the Andor Neo camera
+%hcst_andor_setPixelEncodingIndex Changes the pixel encoding index of the Andor Neo camera
 %
 %   - Sets the pixel encoding index to pixEncodingIndex
 %   - Updates the B.bench.andor.pixelEncodingIndex variable using

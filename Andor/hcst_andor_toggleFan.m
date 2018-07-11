@@ -1,6 +1,5 @@
 function hcst_andor_toggleFan(B,option)
-%hcst_andor_toggleFan(B, option)
-%Turns the fan off/low/on in the Andor Neo camera
+%hcst_andor_toggleFan Turns the fan off/low/on in the Andor Neo camera
 %
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
