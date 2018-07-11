@@ -13,14 +13,14 @@ function hcst_cleanUpBench(B)
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_cleanUpBench(bench)
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_cleanUpBench(B)
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_cleanUpBench(bench)
-%           Returns an updated 'bench' struct
+%       hcst_cleanUpBench(B)
+%           Updates the 'B.bench' struct after closing all control objects.
 %
 %
 %   See also: hcst_config, hcst_setUpBench, hcst_cleanUpFPM

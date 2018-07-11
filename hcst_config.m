@@ -6,20 +6,26 @@ function B = hcst_config()
 %       which operate on elements of the bench
 %   - It creates the following sub-structs on the bench:
 %        1) FPM
+%        2) LS
+%        3) TTM
+%        4) DM
+%        5) Andor
 %   
 %   - TODO (in no particular order):
-%       Add DM, Andor, LS, TTM; Create/read conf file
+%       Create/read conf file
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_config()
-%       'bench' is the struct containing all pertient bench information and
-%           instances of control objects.
+%   B = hcst_config()
+%       'B' is an instance of the Bench class that acts as a wrapper for
+%          the bench struct so that it may be passed by reference.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances of control objects.
 %
 %
 %   Examples:
 %       hcst_config()
-%           Creates and returns the core 'bench' struct 
+%           Creates and returns the core 'B.bench' struct 
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench

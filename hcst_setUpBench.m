@@ -15,14 +15,14 @@ function hcst_setUpBench(B)
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpBench(bench)
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_setUpBench(B)
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_setUpBench(bench)
-%           Returns a fully populated 'bench' struct
+%       hcst_setUpBench(B.bench)
+%           Fully populates and updates the 'B.bench' struct.
 %
 %
 %   See also: hcst_config, hcst_cleanUpBench

@@ -1,16 +1,15 @@
 classdef Bench < handle
-    %BENCH: Handle subclass to hold reference to bench struct
-    %   Detailed explanation goes here
+    %BENCH Handle subclass to hold reference to bench struct
+    %   Implements pass by refernece for bench struct.
     
     properties
         bench
     end
     
     methods
-        function b = Bench(bench)
-            %BENCH: Construct an instance of this class
-            %   Detailed explanation goes here
-            b.bench = bench;
+        function B = Bench(bench)
+            %BENCH Construct an instance of this class
+            B.bench = bench;
         end
     end
 end
