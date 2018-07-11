@@ -4,16 +4,17 @@ function resPos = hcst_FPM_getPos(B)
 %   - This function uses the Conex.py class
 %   
 %
-%   Arguments/Outputs:
-%   resPos = hcst_FPM_getPos(bench) gets the FPM position
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   Inputs:
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
+%
+%   Outputs:
 %       'resPos' is a vector with the position of the axes, in the order:
 %           [Vertical, Horizontal, Focus]
 %
 %
 %   Examples:
-%       hcst_FPM_getPos(bench)
+%       FPM_pos = hcst_FPM_getPos(B)
 %           Returns the position of all three axes (in mm)
 %
 %

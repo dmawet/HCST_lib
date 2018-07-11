@@ -6,9 +6,9 @@ function hcst_FPM_home(B, homeFlg)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_FPM_home(bench, homeFlg) homes the FPM axes specified by 'homeFlg' 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_FPM_home(B, homeFlg) homes the FPM axes specified by 'homeFlg' 
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %       'homeFlg' is a vector of logicals specifying which axes to home
 %           The axes are in the order: [Vertical, Horizontal, Focus]
 %

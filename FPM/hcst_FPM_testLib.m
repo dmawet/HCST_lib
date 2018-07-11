@@ -5,14 +5,14 @@ function hcst_FPM_testLib(B)
 %   it's original position afterwards.
 %   
 %
-%   Arguments/Outputs:
-%   hcst_FPM_testLib(bench) test the various FPM commands 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   Inputs:
+%   hcst_FPM_testLib(B) test the various FPM commands 
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_FPM_testLib(bench)
+%       hcst_FPM_testLib(B)
 %           Runs through the available MATLAB FPM commands
 %
 %

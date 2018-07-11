@@ -8,10 +8,10 @@ function resPos = hcst_FPM_move(B,pos)
 %   
 %
 %   Arguments/Outputs:
-%   resPos = hcst_FPM_move(bench, pos) moves the FPM to the position
+%   resPos = hcst_FPM_move(B, pos) moves the FPM to the position
 %       specified by 'pos'. 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %       'pos' is a 3-element vector with the target positions (in mm)
 %           Values should be in the order:  [Vertical, Horizontal, Focus]
 %           If an element in 'pos' is NaN, the corresponding axis will not
