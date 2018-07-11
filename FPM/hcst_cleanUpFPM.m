@@ -13,8 +13,7 @@ function hcst_cleanUpFPM(B)
 %
 %   Examples:
 %       hcst_cleanUpFPM(B)
-%           Closes serial ports and clears instances from B.bench. Returns
-%               an updated version of bench without the closed ports.
+%           Closes serial ports and clears instances from B.bench.
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_setUpFPM
