@@ -5,15 +5,15 @@ function resPos = hcst_LS_getPos(B)
 %   
 %
 %   Arguments/Outputs:
-%   resPos = hcst_LS_getPos(bench) gets the LS position
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   resPos = hcst_LS_getPos(B) gets the LS position
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %       'resPos' is a vector with the position of the axes, in the order:
 %           [Vertical, Horizontal]
 %
 %
 %   Examples:
-%       hcst_LS_getPos(bench)
+%       hcst_LS_getPos(B)
 %           Returns the position of both axes (in mm)
 %
 %

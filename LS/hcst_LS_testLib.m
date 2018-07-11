@@ -6,13 +6,13 @@ function hcst_LS_testLib(B)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_LS_testLib(bench) test the various LS commands 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_LS_testLib(B) test the various LS commands 
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_LS_testLib(bench)
+%       hcst_LS_testLib(B)
 %           Runs through the available MATLAB LS commands
 %
 %

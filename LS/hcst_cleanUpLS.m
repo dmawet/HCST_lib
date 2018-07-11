@@ -7,15 +7,14 @@ function hcst_cleanUpLS(B)
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_cleanUpLS(bench) closes connections to the Zabers
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_cleanUpLS(B) closes connections to the Zabers
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_cleanUpLS(bench)
-%           Closes serial ports and clears instances from bench. Returns an
-%           updated version of bench without these items.
+%       hcst_cleanUpLS(B)
+%           Closes serial ports and clears instances from B.bench.
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_setUpLS

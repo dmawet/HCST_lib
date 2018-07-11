@@ -10,15 +10,15 @@ function hcst_setUpLS(B)
 %   
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpLS(bench) Instantiates the Zaber control classes.
+%   hcst_setUpLS(B) Instantiates the Zaber control classes.
 %       Updates the LS sub-struct which contains pertient information about
 %       the stages as well as the instances of the Zaber BinaryDevice class
-%       'bench' is the struct containing all pertient bench information and
+%       'B.bench' is the struct containing all pertient bench information and
 %           instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_setUpFPM(bench)
+%       hcst_setUpFPM(B)
 %           Instantiates the Zaber control classes. Then updates 'bench', 
 %           the LS sub-struct, and the requisite classes 
 %

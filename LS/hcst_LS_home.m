@@ -6,18 +6,18 @@ function hcst_LS_home(B, homeFlg)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_LS_home(bench, homeFlg) homes the LS axes specified by 'homeFlg' 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_LS_home(B, homeFlg) homes the LS axes specified by 'homeFlg' 
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %       'homeFlg' is a vector of logicals specifying which axes to home
 %           The axes are in the order: [Vertical, Horizontal]
 %
 %
 %   Examples:
-%       hcst_LS_home(bench, [1 1])
+%       hcst_LS_home(B, [1 1])
 %           Homes both axes
 %
-%       hcst_FPM_home(bench, [0 1])
+%       hcst_FPM_home(B, [0 1])
 %           Homes only the horizontal axis
 %
 %
