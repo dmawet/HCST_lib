@@ -40,7 +40,7 @@ bench = hcst_setUpLS(bench);
 bench = hcst_setUpTTM(bench);
 
 % Andor Neo Camera
-bench = hcst_setUpAndor(bench);
+bench = hcst_setUpAndor(bench, false);
 
 
 end

@@ -43,6 +43,6 @@ unloadlibrary lib;
 
 disp('Andor Neo Camera disconnected. Clean up complete.');
 
-bench.andor.CONNNECTED = false;
+bench.andor.CONNECTED = false;
 
 end
