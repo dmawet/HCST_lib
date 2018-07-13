@@ -7,14 +7,18 @@ function hcst_setUpAndor(B,wait2stabilize)
 %
 %
 %   Inputs:
+%       hcst_setUpAndor(B, wait2stabilize)
 %       Initializes the Andor Neo libraries
 %       Updates the andor sub-struct which contains pertient information
 %       'B.bench' is the struct containing all pertient bench information
 %           and instances. It is created by the hcst_config() function.
+%       'wait2stabilize' is a logical denoting whether to block execution
+%           until after the temperature has stabilized.
+%           - True = block/wait;  False = do not block/wait
 %
 %
 %   Examples:
-%       hcst_setUpAndor(B)
+%       hcst_setUpAndor(B, wait2stab)
 %           Updates 'B.bench' and the andor sub-struct
 %
 %
