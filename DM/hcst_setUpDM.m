@@ -1,16 +1,16 @@
-function bench = hcst_setUpDM(bench)
-%bench = hcst_setUpDM(bench)
+function hcst_setUpDM(bench)
+%hcst_setUpDM(bench)
 %Set up the HCST BMC kilo-DM
 %   - This function should be called before calling any other DM functions
 %   - It uses the BMC libraries in /opt/Boston Micromachines/lib/Matlab/
 %   
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpDM(bench) 
+%   hcst_setUpDM(bench) 
 %       Initializes the BMC DM
-%       Updates the andor sub-struct which contains pertient information 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       Updates the andor sub-struct which contains pertinent information 
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
@@ -26,8 +26,6 @@ function bench = hcst_setUpDM(bench)
     % ATTENTION: change this string to match the serial number of your hardware
 	serialNumber = '25CW005#040';
     bench.DM.serialNumber = serialNumber;
-   
-    bench.DM.connected = false;
     
     %Get DM struct needed for some functions and some useful settings.
     [err_code, bench.DM.dm] = BMCGetDM();
@@ -63,7 +61,7 @@ function bench = hcst_setUpDM(bench)
         end
     catch 
         disp('Closing current connection...');
-        bench = hcst_cleanUpDM(bench);
+        hcst_cleanUpDM(bench);
         disp('Opening a new one...');
         [err_code, bench.DM.dm] = BMCOpenDM(serialNumber, bench.DM.dm);
         if(err_code~=0)
@@ -93,8 +91,8 @@ function bench = hcst_setUpDM(bench)
     bench.DM.V2bits = bench.DM.dac_scale/bench.DM.MAX_V;
     bench.DM.cmdLength = bench.DM.dm.size; % Length of command arrays to send
     
-    [~, bench.DM.flatvec] = hcst_DM_flattenDM_BMCmap( bench, false);
+    bench.DM.flatvec = hcst_DM_flattenDM_BMCmap(bench, false);
 
-    bench.DM.connected = true;
+    bench.DM.CONNECTED = true;
 end
 

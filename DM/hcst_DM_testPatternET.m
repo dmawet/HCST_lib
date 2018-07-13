@@ -1,5 +1,5 @@
-function [bench,cmds] = hcst_DM_testPatternET( bench, cmd )
-%[bench,cmds] = hcst_DM_testPatternET( bench, cmd )
+function cmds = hcst_DM_testPatternET( bench, cmd )
+%cmds = hcst_DM_testPatternET( bench, cmd )
 
 
     flatvec = bench.DM.flatvec;

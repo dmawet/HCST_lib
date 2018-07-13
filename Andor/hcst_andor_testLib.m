@@ -1,13 +1,10 @@
 function hcst_andor_testLib(bench)
-%hcst_Andor_testLib(bench)
-%Function to test the Andor commands
+%hcst_Andor_testLib Function to test the Andor commands
 %
 %   
-%
-%   Arguments/Outputs:
-%   hcst_Andor_testLib(bench) test the various Andor commands 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   Inputs:
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:

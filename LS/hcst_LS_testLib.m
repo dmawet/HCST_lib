@@ -7,8 +7,8 @@ function hcst_LS_testLib(bench)
 %
 %   Arguments/Outputs:
 %   hcst_LS_testLib(bench) test the various LS commands 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:

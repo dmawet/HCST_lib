@@ -6,8 +6,8 @@ function resPos = hcst_TTM_getPos(bench)
 %
 %   Arguments/Outputs:
 %   resPos = hcst_FPM_getPos(bench) gets the TTM position (in mrad)
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %       'resPos' is a vector with the position of the axes, in the order:
 %           [Channel 1(A), Channel 2(B)]
 %

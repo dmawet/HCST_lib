@@ -10,7 +10,7 @@ associated with each device.
 %% Create and populate bench struct
 fprintf("\n___Creating 'bench' struct\n")
 bench = hcst_config();
-bench = hcst_setUpBench(bench);
+hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
 %% Call FPM test function
@@ -36,5 +36,5 @@ fprintf("___Andor commands completed\n\n")
 
 %% Call cleanUp
 fprintf("___Testing cleanUp\n")
-bench = hcst_cleanUpBench(bench);
+hcst_cleanUpBench(bench);
 fprintf("___cleanUp completed\n\n")

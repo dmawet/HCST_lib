@@ -1,6 +1,5 @@
 function im = hcst_andor_removeHorizBanding(im,mask)
-%im = hcst_andor_removeHorizBanding(im)
-% Removes horizontal banding artifact in Andor Neo frames.
+%hcst_andor_removeHorizBanding Removes horizontal banding artifact in Andor Neo frames.
 
     [~,cols,dims] = size(im);% Get size of the input image/cube
     

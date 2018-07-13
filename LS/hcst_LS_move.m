@@ -8,8 +8,8 @@ function resPos = hcst_LS_move(bench,pos)
 %   Arguments/Outputs:
 %   resPos = hcst_LS_move(bench, pos) moves the LS to the position
 %       specified by 'pos'. 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %       'pos' is a 2-element vector with the target positions (in mm)
 %           Values should be in the order:  [Vertical, Horizontal]
 %           If an element in 'pos' is NaN, the corresponding axis will not

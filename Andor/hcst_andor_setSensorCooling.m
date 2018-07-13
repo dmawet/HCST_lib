@@ -1,13 +1,12 @@
-function bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
-%bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
-%Turns on/off the cooling of the Andor Neo camera. 
+function hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
+%hcst_andor_setSensorCooling Turns on/off the cooling of the Andor Neo camera. 
 %
 %   - Updates the 'bench' struct 
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %       'cooleron' - logical - true = on, false = off
 %       'wait4stability' - logical - Wait for the temp to stabilize
 
@@ -122,7 +121,7 @@ function bench = hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
             tmp = get(queryPtr);
             status = tmp.Value;
             status = char(status);
-            %disp(['     ',status,'... temp=',num2str(hcst_andor_getSensorTemp(bench))]);
+            % disp(['     ',status(1:10),'... temp=',num2str(hcst_andor_getSensorTemp(bench))]);
 
         end
        disp('     Stabilized.');

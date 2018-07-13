@@ -16,13 +16,13 @@ bench = hcst_config();
 % bench = hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
-bench = hcst_setUpAndor(bench);
+hcst_setUpAndor(bench);
 
 %% Call Andor test function
 
 tint = 0.1;
 
-bench = hcst_andor_setExposureTime(bench,tint);
+hcst_andor_setExposureTime(bench,tint);
 cropim = false;
 numImages = 1;
 for imnum = 1:numImages
@@ -55,7 +55,7 @@ end
 
 %% Fire up DM
 
-bench = hcst_setUpDM(bench);
+hcst_setUpDM(bench);
 
 
 %% Poke all actuators 
@@ -67,7 +67,7 @@ pokeValue = 0.3;
 
 % % for k = 527-12:527+12
 for k = 513:537
-    [bench, flatvec] = hcst_DM_flattenDM( bench, true);
+    flatvec = hcst_DM_flattenDM(bench, true);
     im0 = hcst_andor_getImage(bench);
 
     fprintf('Poking actuator %d of %d.\r', k, bench.DM.Nact)
@@ -92,7 +92,7 @@ disp('Poke test complete.');
 
 %% Flatten the DM
 
-[bench, flatvec] = hcst_DM_flattenDM( bench, true);
+flatvec = hcst_DM_flattenDM(bench, true);
 
 imflat = hcst_andor_getImage(bench);
 maxImflat = max(imflat(:));
@@ -103,7 +103,7 @@ axis image;
 colorbar;
 pause(1)
 
-bench = hcst_DM_zeroDM( bench );
+hcst_DM_zeroDM(bench);
 
 imrelaxed = hcst_andor_getImage(bench);
 maxImrelaxed = max(imrelaxed(:));
@@ -118,7 +118,7 @@ pause(1)
 
 
 %%
-bench = hcst_cleanUpDM(bench);
+hcst_cleanUpDM(bench);
 
-bench = hcst_cleanUpAndor(bench);
+hcst_cleanUpAndor(bench);
 

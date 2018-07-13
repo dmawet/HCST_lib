@@ -1,5 +1,5 @@
-function [bench,Z,cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
-%bench = hcst_DM_applyZernike( bench, noll_index, offsetAct, PTV )
+function [Z,cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
+%[Z, cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
 %Applies Zernike polynomial to the DM
 
     flatvec = bench.DM.flatvec;

@@ -1,11 +1,11 @@
-function [bench, data] = hcst_DM_flattenDM( bench, apply )
-%[bench, data] = hcst_DM_flattenDM( bench, apply )
+function data = hcst_DM_flattenDM( bench, apply )
+%data = hcst_DM_flattenDM( bench, apply )
 %Returns array of voltages data that provide a flat DM surface. With apply=true,
 %this function also flattens the DM. 
 % Set apply=true to apply voltages to DM. apply=false returns the
 % volatages.
 %   author: G. Ruane
-%   last modified: May 21,2018
+%   last modified: July 13, 2018
 
 
     data = bench.DM.flatvec;

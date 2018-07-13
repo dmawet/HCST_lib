@@ -1,5 +1,5 @@
-function [bench,cmds] = hcst_DM_applySine( bench, spatFreq_r, spatFreq_q, PTV, phz )
-%bench = hcst_DM_applySine( bench )
+function cmds = hcst_DM_applySine( bench, spatFreq_r, spatFreq_q, PTV, phz )
+%cmds = hcst_DM_applySine( bench, spatFreq_r, spatFreq_q, PTV, phz )
 
     flatvec = bench.DM.flatvec;
     NactAcross = bench.DM.NactAcross;

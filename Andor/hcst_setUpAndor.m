@@ -1,29 +1,31 @@
-function bench = hcst_setUpAndor(bench,wait2stabalize)
-%bench = hcst_setUpAndor(bench)
-%Set up the HCST Andor Neo Camera
+function hcst_setUpAndor(bench,wait2stabilize)
+%hcst_setUpAndor Set up the HCST Andor Neo Camera
 %   - This function should be called before calling any other Andor functions
 %   - It uses the atcore.h and libatcore.so 'c' libraries
 %   - It sets the camera mode to 'Mono16' (16 bit)
 %   - It sets the exposure time to the default
 %
 %
-%   Arguments/Outputs:
-%   bench = hcst_setUpAndor(bench)
+%   Inputs:
+%       hcst_setUpAndor(bench, wait2stabilize)
 %       Initializes the Andor Neo libraries
 %       Updates the andor sub-struct which contains pertient information
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
+%       'wait2stabilize' is a logical denoting whether to block execution
+%           until after the temperature has stabilized.
+%           - True = block/wait;  False = do not block/wait
 %
 %
 %   Examples:
-%       hcst_setUpAndor(bench)
-%           Updates 'bench', the andor sub-struct
+%       hcst_setUpAndor(bench, wait2stab)
+%           Updates 'bench' and the andor sub-struct
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
 
-assert(1 == exist('wait2stabalize','var'), ...
+assert(1 == exist('wait2stabilize','var'), ...
     'MATLAB:narginchk:notEnoughInputs', ...
     'hcst_setUpAndor takes two inputs')
 
@@ -61,7 +63,7 @@ end
 %% Set the pixel encoding to the default setting
 
 try
-    bench = hcst_andor_setPixelEncodingIndex(bench,default_pixelEncodingIndex);
+    hcst_andor_setPixelEncodingIndex(bench,default_pixelEncodingIndex);
 catch
     disp('Camera may be off.');
     return;
@@ -69,15 +71,15 @@ end
 
 %% Set the exposure time to the default setting
 
-bench = hcst_andor_setExposureTime(bench,default_tint);
+hcst_andor_setExposureTime(bench,default_tint);
 
 %% Get the image formatting parameters (height, width, stride)
 
-bench = hcst_andor_getImageFormatting(bench);
+hcst_andor_getImageFormatting(bench);
 
 %% Turn off fan
 
-bench = hcst_andor_toggleFan(bench,'off');
+hcst_andor_toggleFan(bench,'off');
 
 %%
 
@@ -99,7 +101,7 @@ disp(['     AOIWidth  = ',num2str(bench.andor.AOIWidth)]);
 disp(['     AOIStride = ',num2str(bench.andor.AOIStride)]);
 
 
-bench = hcst_andor_setSensorCooling(bench,true,wait2stabalize);
+hcst_andor_setSensorCooling(bench,true,wait2stabilize);
 
 bench.andor.CONNECTED = true;
 

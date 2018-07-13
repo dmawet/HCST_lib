@@ -1,5 +1,5 @@
-function [bench,cmds] = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs )
-%bench = hcst_DM_applySine( bench )
+function cmds = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs )
+%cmds = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs  )
 
     if(any(isnan(spatFreq_rs)));error('Nan sent to DM');end
     if(any(isnan(spatFreq_qs)));error('Nan sent to DM');end

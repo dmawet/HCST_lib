@@ -1,4 +1,4 @@
-function bench = hcst_setUpTTM(bench)
+function hcst_setUpTTM(bench)
 %hcst_setUpTTM Function to prepare the TTM for control
 %   
 %   - This function should be called before calling any other TTM functions
@@ -9,16 +9,16 @@ function bench = hcst_setUpTTM(bench)
 %   
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpTTM(bench) Instantiates the PI control classes.
-%       Updates the TTM sub-struct which contains pertient information 
+%   hcst_setUpTTM(bench) Instantiates the PI control classes.
+%       Updates the TTM sub-struct which contains pertinent information 
 %       about the stage as well as the instance of the PI Controller class. 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
 %       hcst_setUpTTM(bench)
-%           Updates 'bench', the TTM sub-struct, and the requisite classes 
+%           Updates 'bench', the TTM sub-struct, and the requisite classes
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpTTM

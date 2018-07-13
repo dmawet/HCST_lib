@@ -1,4 +1,4 @@
-function bench = hcst_setUpBench(bench)
+function hcst_setUpBench(bench)
 %hcst_setUpBench Function to activate and instantiate control objects
 %   
 %   - This function should be called after hcst_config and before calling 
@@ -15,14 +15,14 @@ function bench = hcst_setUpBench(bench)
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpBench(bench)
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_setUpBench(B)
+%       'B.bench' is the struct containing all pertient bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_setUpBench(bench)
-%           Returns a fully populated 'bench' struct
+%       hcst_setUpBench(B.bench)
+%           Fully populates and updates the 'B.bench' struct.
 %
 %
 %   See also: hcst_config, hcst_cleanUpBench
@@ -31,16 +31,16 @@ function bench = hcst_setUpBench(bench)
 %% Call the hardware setUp functions
 
 % FPM
-bench = hcst_setUpFPM(bench);
+hcst_setUpFPM(bench);
 
 % LS
-bench = hcst_setUpLS(bench);
+hcst_setUpLS(bench);
 
 % TTM
-bench = hcst_setUpTTM(bench);
+hcst_setUpTTM(bench);
 
 % Andor Neo Camera
-bench = hcst_setUpAndor(bench, false);
+hcst_setUpAndor(bench, false);
 
 
 end

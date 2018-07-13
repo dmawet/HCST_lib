@@ -1,12 +1,12 @@
-function [bench, data] = hcst_DM_flattenDM_BMCmap( bench, apply )
-%[bench, data] = hcst_DM_flattenDM( bench, apply )
+function data = hcst_DM_flattenDM_BMCmap( bench, apply )
+%data = hcst_DM_flattenDM_BMCmap( bench, apply )
 %Returns array of voltages data that provide a flat DM surface. With apply=true,
 %this function also flattens the DM. 
 % Set apply=true to apply voltages to DM. apply=false returns the
 % volatages.
 %   Uses voltage map provided by BMC: C25CW005#040_CLOSED_LOOP.mat
 %   author: G. Ruane
-%   last modified: May 21,2018
+%   last modified: July 13, 2018
 
     temp=load('C25CW005#040_CLOSED_LOOP.mat');
     

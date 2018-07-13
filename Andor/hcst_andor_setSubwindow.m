@@ -1,21 +1,19 @@
-function bench = hcst_andor_setSubwindow(bench,centerrow,centercol,framesize)
-%bench = hcst_andor_setSubwindow(bench,centerrow,centercol,framesize)
-%Changes the subwindow of the Andor Neo camera. Assumes the subwindow is a
-%square with an even number of pixels. 
+function hcst_andor_setSubwindow(bench,centerrow,centercol,framesize)
+%hcst_andor_setSubwindow Changes the subwindow of the Andor Neo camera. Assumes the subwindow is a square with an even number of pixels. 
 %
 %   - Crops the Andor Neo image to a frame size of 'framesize' centered at
-%   (centerrow,centercol)
+%       (centerrow,centercol)
 %   - Updates the 'bench' struct 
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %       'centerrow', 'centercol' - The pixel index in the full frame mode
-%       of the pixel where the subwindow will be centered 
-%       'frame', 'centercol' - The pixel index in the full frame mode
-%       of the pixel where the subwindow will be centered 
+%           of the pixel where the subwindow will be centered 
+%       'frame', 'centercol' - The pixel index in the full frame mode of
+%           the pixel where the subwindow will be centered 
 
 
     andor_handle = bench.andor.andor_handle;
@@ -69,7 +67,7 @@ function bench = hcst_andor_setSubwindow(bench,centerrow,centercol,framesize)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetInt']);
     end
     
-	bench = hcst_andor_getImageFormatting(bench);
+	hcst_andor_getImageFormatting(bench);
     bench.andor.imSizeBytes = hcst_andor_getImageSizeBytes(bench);
     
     disp('Andor Neo Camera sub-window changed:');

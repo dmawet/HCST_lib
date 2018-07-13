@@ -1,6 +1,5 @@
 function im = hcst_andor_getImage(bench)
-%im = hcst_andor_getImage(bench)
-%Returns image from the the Andor Neo camera
+%hcst_andor_getImage Returns image from the the Andor Neo camera
 %
 %   - Returns an image from the Andor Neo camera 
 %   - Assumed hcst_config() and setUpAndor has already been run.
@@ -9,7 +8,7 @@ function im = hcst_andor_getImage(bench)
 %   
 %
 %   Inputs:   
-%       'bench' - struct - contains all pertient bench information and
+%       'bench' - object - contains all pertinent bench information and
 %           instances. It is created by the hcst_config() function.
 %
 %   Outputs
@@ -23,7 +22,7 @@ function im = hcst_andor_getImage(bench)
     numCoadds = bench.andor.numCoadds;
 
     if(hcst_andor_getPixelEncodingIndex(bench)~=2)
-        error(['HCST_lib Andor lib ERROR: hcst_andor_getImage requires 16-bit mode.']);
+        error('HCST_lib Andor lib ERROR: hcst_andor_getImage requires 16-bit mode.');
     end
     
     % Equivalent to AT_QueueBuffer(Handle, UserBuffer, BufferSize)
@@ -45,6 +44,7 @@ function im = hcst_andor_getImage(bench)
 
     err = calllib('lib', 'AT_SetInt', andor_handle, FrameCountFeaturePtr, int64(numCoadds));
     if(err~=0)
+        disp('Failed to set FrameCount!')
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetInt']);
     end
 

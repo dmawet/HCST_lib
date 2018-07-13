@@ -1,15 +1,19 @@
 function dark = hcst_andor_loadDark(bench,flnm)
-%dark = hcst_andor_loadDark(bench,flnm)
-%Loads a dark frame for the Andor Neo camera. 
+%hcst_andor_loadDark Loads a dark frame for the Andor Neo camera. 
 %
-%   - Crops the Andor Neo image to a frame size of 'framesize' centered at
-%   (centerrow,centercol)
-
+%   - Loads a dark frame from 'flnm'.
+%   - Crops the Andor Neo dark frame to a frame size of
+%       'bench.andor.AOIWidth' centered at
+%       (bench.andor.centerrow, bench.andor.centercol)
+%
 %   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %       'flnm' - The full path to the file
+%
+%   Outputs:
+%       'dark' - double array - cropped dark frame.
 
     dark = fitsread(flnm);
     [rows,cols] = size(dark);

@@ -1,14 +1,13 @@
 function tint = hcst_andor_getExposureTime(bench)
-%tint = hcst_andor_getExposureTime(bench)
-%Queries the exposure time setting of the Andor Neo camera
+%hcst_andor_getExposureTime Queries the exposure time setting of the Andor Neo camera
 %
 %   - Returns the current exposure time
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %   
 %
-%   Inputs:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   Inputs:
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'tint' - The exposure time in seconds 

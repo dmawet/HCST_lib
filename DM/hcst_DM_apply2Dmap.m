@@ -1,5 +1,5 @@
-function [bench,cmds] = hcst_DM_apply2Dmap( bench, map, scale )
-% [bench,cmds] = hcst_DM_apply2Dmap( bench, cmd )
+function cmds = hcst_DM_apply2Dmap( bench, map, scale )
+% cmds = hcst_DM_apply2Dmap( bench, map, scale )
 
 
     flatvec = bench.DM.flatvec;

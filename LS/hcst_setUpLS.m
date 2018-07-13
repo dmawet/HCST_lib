@@ -1,4 +1,4 @@
-function bench = hcst_setUpLS(bench)
+function hcst_setUpLS(bench)
 %hcst_setUpLS Function to prepare the LS for control
 %   
 %   - This function should be called before calling any other LS functions
@@ -10,10 +10,10 @@ function bench = hcst_setUpLS(bench)
 %   
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpLS(bench) Instantiates the Zaber control classes.
-%       Updates the LS sub-struct which contains pertient information about
+%   hcst_setUpLS(bench) Instantiates the Zaber control classes.
+%       Updates the LS sub-struct which contains pertinent information about
 %       the stages as well as the instances of the Zaber BinaryDevice class
-%       'bench' is the struct containing all pertient bench information and
+%       'bench' is the object containing all pertinent bench information and
 %           instances. It is created by the hcst_config() function.
 %
 %

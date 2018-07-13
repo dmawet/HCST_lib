@@ -1,5 +1,5 @@
 function vec = hcst_DM_2Dto1D(bench,map)
-%vec = hcst_DM_2Dto1D(Vmap, DMparams)
+%vec = hcst_DM_2Dto1D(bench, map)
 %Converts 2D array to 1D vector of actuator pokes 
 % 
 %  NOTE: This function only accounts for DM1 right now. It can easily be

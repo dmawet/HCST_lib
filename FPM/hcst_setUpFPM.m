@@ -1,4 +1,4 @@
-function bench = hcst_setUpFPM(bench)
+function hcst_setUpFPM(bench)
 %hcst_setUpFPM Function to prepare the FPM for control
 %   
 %   - This function should be called before calling any other FPM functions
@@ -9,21 +9,20 @@ function bench = hcst_setUpFPM(bench)
 %   
 %
 %   Arguments/Outputs:
-%   bench = hcst_setUpFPM(bench) Instantiates the Conex control classes.
+%   hcst_setUpFPM(bench) Instantiates the Conex control classes.
 %       Updates the FPM sub-struct which contains pertient information 
 %       about the stages as well as the instances of the Conex.py class. 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
 %       hcst_setUpFPM(bench)
-%           Updates 'bench', the FPM sub-struct, and the requisite classes 
+%           Updates 'bench', the FPM sub-struct, and the requisite classes
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
-
 
 %% Add the directory with all our libraries to the Python search path
 HCST_lib_PATH = '/home/hcst/HCST_lib/FPM';
@@ -54,7 +53,7 @@ if ~horIsReady
     if horIsReady
         axHor.moveAbs(bench.FPM.User_H0,true)    %blocking to ensure pos reached
     else
-        warning("Horizontal axis reported not ready after homing");
+        warning("Horizontal axis reported not ready after moving");
     end
 end
 if ~verIsReady
@@ -62,7 +61,7 @@ if ~verIsReady
     if verIsReady
         axVer.moveAbs(bench.FPM.User_V0,true)    %blocking to ensure pos reached
     else
-        warning("Vertical axis reported not ready after homing");
+        warning("Vertical axis reported not ready after moving");
     end
 end
 if ~focIsReady
@@ -70,10 +69,11 @@ if ~focIsReady
     if focIsReady
         axFoc.moveAbs(bench.FPM.User_F0,true)    %blocking to ensure pos reached
     else
-        warning("Focus axis reported not ready after homing");
+        warning("Focus axis reported not ready after moving");
     end
 end
 
+% reqPosSet() returns -9999 on error, so if there's no error, we're good.
 if (axHor.reqPosSet() ~= -9999) && (axVer.reqPosSet() ~= -9999) && (axFoc.reqPosSet() ~= -9999)
     bench.FPM.CONNECTED = true;
 end

@@ -7,8 +7,8 @@ function hcst_TTM_testLib(bench)
 %
 %   Arguments/Outputs:
 %   hcst_TTM_testLib(bench) test the various TTM commands 
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:

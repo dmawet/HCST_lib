@@ -1,18 +1,16 @@
-function bench = hcst_andor_getImageFormatting(bench)
-%[AOIHeight,AOIWidth,AOIStride] = hcst_andor_getImageFormatting(bench)
-%Queries the the Andor Neo camera to return the AOIHeight, AOIWidth, and
-%AOIStride of the image returned from the buffer
+function hcst_andor_getImageFormatting(bench)
+%hcst_andor_getImageFormatting Queries the the Andor Neo camera to return the AOIHeight, AOIWidth, and AOIStride of the image returned from the buffer
 %
-%   - Returns the AOIHeight, AOIWidth, and AOIStride of the image returned
-%   by the buffer. 
+%   - Updates the AOIHeight, AOIWidth, and AOIStride fields in
+%       bench.andor with the values of the image returned by the buffer.
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %   
 %
 %   Input/Output:   
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
-%   Function updates the following fields in bench.andor
+%   Function updates the following fields in B.bench.andor
 %       'AOIHeight' - The number of bytes in height
 %       'AOIWidth'  - The number of bytes wide
 %       'AOIStride' - Width including zero padding

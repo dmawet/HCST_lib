@@ -16,13 +16,13 @@ bench = hcst_config();
 % bench = hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
-bench = hcst_setUpAndor(bench);
+hcst_setUpAndor(bench, true);
 
 %% Call Andor test function
 
 tint = 0.0001;
-bench.andor.numCoadds = 1;
-bench = hcst_andor_setExposureTime(bench,tint);
+bench.bench.andor.numCoadds = 1;
+hcst_andor_setExposureTime(bench,tint);
 
 tic;
 im = hcst_andor_getImage(bench);
@@ -45,5 +45,5 @@ colorbar;
 
 %%
 
-bench = hcst_cleanUpAndor(bench);
+hcst_cleanUpAndor(bench);
 

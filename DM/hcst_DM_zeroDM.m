@@ -1,9 +1,9 @@
-function bench = hcst_DM_zeroDM( bench )
-%bench = hcst_DM_zeroDM( bench )
+function hcst_DM_zeroDM( bench )
+%cst_DM_zeroDM( bench )
 %Sets BMC kilo DM voltages to zero.
 %
 %   author: G. Ruane
-%   last modified: May 21,2018
+%   last modified: July 13, 2018
 
 
 

@@ -1,6 +1,6 @@
-function [bench,Zsum,cmds] = hcst_DM_applyZernikeList( bench, PTVs, apply )
-%bench = hcst_DM_applyZernike( bench, noll_index, offsetAct, PTV )
-%Applies Zernike polynomial to the DM
+function [Zsum,cmds] = hcst_DM_applyZernikeList( bench, PTVs, apply )
+%[Zsum,cmds] = hcst_DM_applyZernikeList( bench, PTVs, apply )
+%Applies a list of Zernike polynomials to the DM
 
     flatvec = bench.DM.flatvec;
     offsetAct = bench.DM.offsetAct;

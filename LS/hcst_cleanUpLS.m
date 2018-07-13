@@ -1,4 +1,4 @@
-function bench = hcst_cleanUpLS(bench)
+function hcst_cleanUpLS(bench)
 %hcst_cleanUpLS Function to disconnect and cleanup the LS
 %   
 %   - Uses the MATLAB Zaber_Toolbox provided by Zaber Technologies
@@ -7,15 +7,14 @@ function bench = hcst_cleanUpLS(bench)
 %
 %
 %   Arguments/Outputs:
-%   bench = hcst_cleanUpLS(bench) closes connections to the Zabers
-%       'bench' is the struct containing all pertient bench information and
-%           instances. It is created by the hcst_config() function.
+%   hcst_cleanUpLS(bench) closes connections to the Zabers
+%       'bench' is the object containing all pertinent bench information
+%           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
 %       hcst_cleanUpLS(bench)
-%           Closes serial ports and clears instances from bench. Returns an
-%           updated version of bench without these items.
+%           Closes serial ports and clears instances from B.bench.
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_setUpLS

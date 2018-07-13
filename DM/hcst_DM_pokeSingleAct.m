@@ -1,5 +1,5 @@
-function [bench,cmds] = hcst_DM_pokeSingleAct( bench, act_num, cmd )
-%[bench,cmds] = hcst_DM_pokeSingleAct( bench, act_num, cmd )
+function cmds = hcst_DM_pokeSingleAct( bench, act_num, cmd )
+%cmds = hcst_DM_pokeSingleAct( bench, act_num, cmd )
 %Pokes a single DM actuator. act_num is the actuator numbers. cmd is the
 %command to send, superimposed on the flat map. 
 
