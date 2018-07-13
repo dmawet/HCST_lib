@@ -1,4 +1,4 @@
-function im = hcst_andor_getImage(B)
+function im = hcst_andor_getImage(bench)
 %hcst_andor_getImage Returns image from the the Andor Neo camera
 %
 %   - Returns an image from the Andor Neo camera 
@@ -8,20 +8,20 @@ function im = hcst_andor_getImage(B)
 %   
 %
 %   Inputs:   
-%       'B.bench' - struct - contains all pertient bench information and
+%       'bench' - object - contains all pertinent bench information and
 %           instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'im' - double array - The image
 
-    andor_handle = B.bench.andor.andor_handle;
-    BufferSize = B.bench.andor.imSizeBytes;
-    AOIHeight = B.bench.andor.AOIHeight;
-    AOIWidth  = B.bench.andor.AOIWidth;
-    AOIStride = B.bench.andor.AOIStride;
-    numCoadds = B.bench.andor.numCoadds;
+    andor_handle = bench.andor.andor_handle;
+    BufferSize = bench.andor.imSizeBytes;
+    AOIHeight = bench.andor.AOIHeight;
+    AOIWidth  = bench.andor.AOIWidth;
+    AOIStride = bench.andor.AOIStride;
+    numCoadds = bench.andor.numCoadds;
 
-    if(hcst_andor_getPixelEncodingIndex(B)~=2)
+    if(hcst_andor_getPixelEncodingIndex(bench)~=2)
         error('HCST_lib Andor lib ERROR: hcst_andor_getImage requires 16-bit mode.');
     end
     
@@ -61,7 +61,7 @@ function im = hcst_andor_getImage(B)
     end
     
     % -------------------------------------------------------------------%
-    im = zeros(B.bench.andor.AOIHeight,B.bench.andor.AOIWidth);
+    im = zeros(bench.andor.AOIHeight,bench.andor.AOIWidth);
     for coadd = 1:numCoadds
     
         % Equivalent to AT_WaitBuffer(Handle, &Buffer, &BufferSize, AT_INFINITE);

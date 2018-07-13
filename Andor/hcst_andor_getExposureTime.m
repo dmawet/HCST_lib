@@ -1,4 +1,4 @@
-function tint = hcst_andor_getExposureTime(B)
+function tint = hcst_andor_getExposureTime(bench)
 %hcst_andor_getExposureTime Queries the exposure time setting of the Andor Neo camera
 %
 %   - Returns the current exposure time
@@ -6,13 +6,13 @@ function tint = hcst_andor_getExposureTime(B)
 %   
 %
 %   Inputs:
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'tint' - The exposure time in seconds 
 
-    andor_handle = B.bench.andor.andor_handle;
+    andor_handle = bench.andor.andor_handle;
 
     % Equivalent to AT_SetFloat(Handle, L”ExposureTime”, 0.01);
     expTimeFeaturePtr = libpointer('voidPtr',[int32('ExposureTime'),0]);

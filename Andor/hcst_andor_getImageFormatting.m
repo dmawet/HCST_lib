@@ -1,13 +1,13 @@
-function hcst_andor_getImageFormatting(B)
+function hcst_andor_getImageFormatting(bench)
 %hcst_andor_getImageFormatting Queries the the Andor Neo camera to return the AOIHeight, AOIWidth, and AOIStride of the image returned from the buffer
 %
 %   - Updates the AOIHeight, AOIWidth, and AOIStride fields in
-%       B.bench.andor with the values of the image returned by the buffer.
+%       bench.andor with the values of the image returned by the buffer.
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %   
 %
 %   Input/Output:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %   Function updates the following fields in B.bench.andor
@@ -16,7 +16,7 @@ function hcst_andor_getImageFormatting(B)
 %       'AOIStride' - Width including zero padding
 
 
-    andor_handle = B.bench.andor.andor_handle;
+    andor_handle = bench.andor.andor_handle;
 
     % //Retrieve the dimensions of the image
     % AT_GetInt(Hndl, L"AOIStride", &Stride);
@@ -32,7 +32,7 @@ function hcst_andor_getImageFormatting(B)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetInt']);
     end
     tmp = get(heightPtr2);
-    B.bench.andor.AOIHeight = tmp.Value;
+    bench.andor.AOIHeight = tmp.Value;
 
     % Equivalent to AT_GetInt(Hndl, L"AOIWidth", &Width);
     widthPtr1 = libpointer('voidPtr',int32(['AOIWidth',0]));
@@ -44,7 +44,7 @@ function hcst_andor_getImageFormatting(B)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetInt']);
     end
     tmp = get(widthPtr2);
-    B.bench.andor.AOIWidth = tmp.Value;
+    bench.andor.AOIWidth = tmp.Value;
 
     % Equivalent to AT_GetInt(Hndl, L"AOIStride", &Stride);
     stridePtr1 = libpointer('voidPtr',int32(['AOIStride',0]));
@@ -55,7 +55,7 @@ function hcst_andor_getImageFormatting(B)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetInt']);
     end
     tmp = get(stridePtr2);
-    B.bench.andor.AOIStride = tmp.Value;
+    bench.andor.AOIStride = tmp.Value;
 
 end
 

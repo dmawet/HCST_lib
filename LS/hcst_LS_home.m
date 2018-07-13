@@ -1,4 +1,4 @@
-function hcst_LS_home(B, homeFlg)
+function hcst_LS_home(bench, homeFlg)
 %hcst_LS_home Function to home the given axes of the LS
 %   
 %   - Uses the MATLAB Zaber_Toolbox provided by Zaber Technologies
@@ -6,18 +6,18 @@ function hcst_LS_home(B, homeFlg)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_LS_home(B, homeFlg) homes the LS axes specified by 'homeFlg' 
-%       'B.bench' is the struct containing all pertient bench information
+%   hcst_LS_home(bench, homeFlg) homes the LS axes specified by 'homeFlg' 
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %       'homeFlg' is a vector of logicals specifying which axes to home
 %           The axes are in the order: [Vertical, Horizontal]
 %
 %
 %   Examples:
-%       hcst_LS_home(B, [1 1])
+%       hcst_LS_home(bench, [1 1])
 %           Homes both axes
 %
-%       hcst_FPM_home(B, [0 1])
+%       hcst_FPM_home(bench, [0 1])
 %           Homes only the horizontal axis
 %
 %
@@ -35,19 +35,19 @@ end
 % logical value was given.
 if homeFlg(1) == true
     try
-        B.bench.LS.axV.home();
+        bench.LS.axV.home();
     catch exception
         % Close port if a MATLAB error occurs, otherwise it remains locked
-        fclose(B.bench.LS.axV.Protocol.Port);
+        fclose(bench.LS.axV.Protocol.Port);
         rethrow(exception);
     end
 end
 if homeFlg(2) == true
     try
-        B.bench.LS.axH.home();
+        bench.LS.axH.home();
     catch exception
         % Close port if a MATLAB error occurs, otherwise it remains locked
-        fclose(B.bench.LS.axH.Protocol.Port);
+        fclose(bench.LS.axH.Protocol.Port);
         rethrow(exception);
     end
 end

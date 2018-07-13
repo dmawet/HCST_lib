@@ -12,21 +12,21 @@ addpath(genpath('/home/hcst/HCST_lib/'));
 
 %% Create and populate bench struct
 fprintf("\n___Creating 'bench' struct\n")
-B = hcst_config();
+bench = hcst_config();
 % bench = hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
-hcst_setUpAndor(B);
+hcst_setUpAndor(bench);
 
 %% Call Andor test function
 
 tint = 0.1;
 
-hcst_andor_setExposureTime(B,tint);
+hcst_andor_setExposureTime(bench,tint);
 cropim = false;
 numImages = 1;
 for imnum = 1:numImages
-im0 = hcst_andor_getImage(B);
+im0 = hcst_andor_getImage(bench);
 
 
 [rows,cols] = size(im0);
@@ -55,27 +55,27 @@ end
 
 %% Fire up DM
 
-hcst_setUpDM(B);
+hcst_setUpDM(bench);
 
 
 %% Poke all actuators 
 
 
 % Poke one actuator at a time
-data = zeros(1,B.bench.DM.dm.size);
+data = zeros(1,bench.DM.dm.size);
 pokeValue = 0.3;
 
 % % for k = 527-12:527+12
 for k = 513:537
-    flatvec = hcst_DM_flattenDM(B, true);
-    im0 = hcst_andor_getImage(B);
+    flatvec = hcst_DM_flattenDM(bench, true);
+    im0 = hcst_andor_getImage(bench);
 
-    fprintf('Poking actuator %d of %d.\r', k, B.bench.DM.Nact)
+    fprintf('Poking actuator %d of %d.\r', k, bench.DM.Nact)
 	data(k) = pokeValue;
-	BMCSendData(B.bench.DM.dm, data);
+	BMCSendData(bench.DM.dm, data);
 %     lut = 1:dm.size;
     %BMCSendDataCustomMapping(bench.DM.dm, data, bench.DM.lut);
-	im = hcst_andor_getImage(B);
+	im = hcst_andor_getImage(bench);
     
     figure(1);
     imagesc(double(im)/2^16-double(im0)/2^16);
@@ -84,7 +84,7 @@ for k = 513:537
 %     pause(1)
     
 	data(k) = 0;
-	BMCSendData(B.bench.DM.dm, data);
+	BMCSendData(bench.DM.dm, data);
 end
 
 disp('Poke test complete.');
@@ -92,9 +92,9 @@ disp('Poke test complete.');
 
 %% Flatten the DM
 
-flatvec = hcst_DM_flattenDM(B, true);
+flatvec = hcst_DM_flattenDM(bench, true);
 
-imflat = hcst_andor_getImage(B);
+imflat = hcst_andor_getImage(bench);
 maxImflat = max(imflat(:));
 
 figure(1);
@@ -103,9 +103,9 @@ axis image;
 colorbar;
 pause(1)
 
-hcst_DM_zeroDM(B);
+hcst_DM_zeroDM(bench);
 
-imrelaxed = hcst_andor_getImage(B);
+imrelaxed = hcst_andor_getImage(bench);
 maxImrelaxed = max(imrelaxed(:));
 
 maxImflat/maxImrelaxed
@@ -118,7 +118,7 @@ pause(1)
 
 
 %%
-hcst_cleanUpDM(B);
+hcst_cleanUpDM(bench);
 
-hcst_cleanUpAndor(B);
+hcst_cleanUpAndor(bench);
 

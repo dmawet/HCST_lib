@@ -3,19 +3,27 @@ classdef Bench < handle
     %   Implements pass by refernece for bench struct.
     
     properties
-        bench
+        FPM
+        LS
+        TTM
+        DM
+        andor
     end
     
     methods
-        function B = Bench(bench)
+        function Bench = Bench(FPM, LS, TTM, DM, andor)
             %BENCH Construct an instance of this class
-            B.bench = bench;
+            Bench.FPM = FPM;
+            Bench.LS = LS;
+            Bench.TTM = TTM;
+            Bench.DM = DM;
+            Bench.andor = andor;
         end
         
-        function isConnected(B)
-            fields = fieldnames(B.bench);
+        function isConnected(bench)
+            fields = fieldnames(bench);
             for idx = 1:numel(fields)
-                fprintf("%s \t %s\n", string(fields{idx}), string(B.bench.(fields{idx}).CONNECTED))
+                fprintf("%s \t %s\n", string(fields{idx}), string(bench.(fields{idx}).CONNECTED))
             end
         end
     end

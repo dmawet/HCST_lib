@@ -1,10 +1,10 @@
-function hcst_andor_toggleFan(B,option)
+function hcst_andor_toggleFan(bench,option)
 %hcst_andor_toggleFan Turns the fan off/low/on in the Andor Neo camera
 %
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %       'option' - The fan speed index
@@ -14,7 +14,7 @@ function hcst_andor_toggleFan(B,option)
 %               'on': Turns fan on      (index 2)
 
 
-    andor_handle = B.bench.andor.andor_handle;
+    andor_handle = bench.andor.andor_handle;
 
     FeaturePtr = libpointer('voidPtr',int32(['FanSpeed',0]));
     
@@ -35,6 +35,6 @@ function hcst_andor_toggleFan(B,option)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetEnumIndex']);
     end 
     
-    B.bench.andor.fan = index;
+    bench.andor.fan = index;
 end
 

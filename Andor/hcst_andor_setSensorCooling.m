@@ -1,24 +1,24 @@
-function hcst_andor_setSensorCooling(B,cooleron,wait4stability)
+function hcst_andor_setSensorCooling(bench,cooleron,wait4stability)
 %hcst_andor_setSensorCooling Turns on/off the cooling of the Andor Neo camera. 
 %
-%   - Updates the 'B.bench' struct 
+%   - Updates the 'bench' struct 
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %       'cooleron' - logical - true = on, false = off
 %       'wait4stability' - logical - Wait for the temp to stabilize
 
 
-    andor_handle = B.bench.andor.andor_handle;
+    andor_handle = bench.andor.andor_handle;
 
     if(cooleron)
         disp('Turning on sensor cooling...');
-        B.bench.andor.sensorCooling = true;
+        bench.andor.sensorCooling = true;
     else
         disp('Turning off sensor cooling...');
-        B.bench.andor.sensorCooling = false;
+        bench.andor.sensorCooling = false;
     end
 
     
@@ -30,7 +30,7 @@ function hcst_andor_setSensorCooling(B,cooleron,wait4stability)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetBool']);
     end
 
-    disp(['     Current sensor temp:',num2str(hcst_andor_getSensorTemp(B))]);
+    disp(['     Current sensor temp:',num2str(hcst_andor_getSensorTemp(bench))]);
 
 
     % Get temperature control count (number of options)
@@ -121,7 +121,7 @@ function hcst_andor_setSensorCooling(B,cooleron,wait4stability)
             tmp = get(queryPtr);
             status = tmp.Value;
             status = char(status);
-            % disp(['     ',status(1:10),'... temp=',num2str(hcst_andor_getSensorTemp(B))]);
+            % disp(['     ',status(1:10),'... temp=',num2str(hcst_andor_getSensorTemp(bench))]);
 
         end
        disp('     Stabilized.');

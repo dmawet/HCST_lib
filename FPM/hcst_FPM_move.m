@@ -1,4 +1,4 @@
-function resPos = hcst_FPM_move(B,pos)
+function resPos = hcst_FPM_move(bench,pos)
 %hcst_FPM_move Function to move the FPM to an absolute position (in mm)
 %   
 %   - This function uses the Conex.py class
@@ -8,9 +8,9 @@ function resPos = hcst_FPM_move(B,pos)
 %   
 %
 %   Arguments/Outputs:
-%   resPos = hcst_FPM_move(B, pos) moves the FPM to the position
+%   resPos = hcst_FPM_move(bench, pos) moves the FPM to the position
 %       specified by 'pos'. 
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %       'pos' is a 3-element vector with the target positions (in mm)
 %           Values should be in the order:  [Vertical, Horizontal, Focus]
@@ -41,14 +41,14 @@ if ~isvector(pos) || length(pos) ~= 3
     error('Input positions must be a vector of length 3')
 end
 
-if pos(1) > B.bench.FPM.VBOUND
-    pos(1) = B.bench.FPM.VBOUND;
+if pos(1) > bench.FPM.VBOUND
+    pos(1) = bench.FPM.VBOUND;
 end
-if pos(2) > B.bench.FPM.HBOUND
-    pos(2) = B.bench.FPM.HBOUND;
+if pos(2) > bench.FPM.HBOUND
+    pos(2) = bench.FPM.HBOUND;
 end
-if pos(3) > B.bench.FPM.FBOUND
-    pos(3) = B.bench.FPM.FBOUND;
+if pos(3) > bench.FPM.FBOUND
+    pos(3) = bench.FPM.FBOUND;
 end
 
 %% move each axis in order
@@ -56,21 +56,21 @@ end
 % Do not move axes for which pos is nan
 
 if ~isnan(pos(1))
-    resPos(1) = B.bench.FPM.axV.moveAbs(pos(1), true);
+    resPos(1) = bench.FPM.axV.moveAbs(pos(1), true);
 else
-    resPos(1) = B.bench.FPM.axV.reqPosAct();
+    resPos(1) = bench.FPM.axV.reqPosAct();
 end
 
 if ~isnan(pos(2))
-    resPos(2) = B.bench.FPM.axH.moveAbs(pos(2), true);
+    resPos(2) = bench.FPM.axH.moveAbs(pos(2), true);
 else
-    resPos(2) = B.bench.FPM.axH.reqPosAct();
+    resPos(2) = bench.FPM.axH.reqPosAct();
 end
 
 if ~isnan(pos(3))
-    resPos(3) = B.bench.FPM.axF.moveAbs(pos(3), true);
+    resPos(3) = bench.FPM.axF.moveAbs(pos(3), true);
 else
-    resPos(3) = B.bench.FPM.axF.reqPosAct();
+    resPos(3) = bench.FPM.axF.reqPosAct();
 end
 
 end

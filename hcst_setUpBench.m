@@ -1,4 +1,4 @@
-function hcst_setUpBench(B)
+function hcst_setUpBench(bench)
 %hcst_setUpBench Function to activate and instantiate control objects
 %   
 %   - This function should be called after hcst_config and before calling 
@@ -31,16 +31,16 @@ function hcst_setUpBench(B)
 %% Call the hardware setUp functions
 
 % FPM
-hcst_setUpFPM(B);
+hcst_setUpFPM(bench);
 
 % LS
-hcst_setUpLS(B);
+hcst_setUpLS(bench);
 
 % TTM
-hcst_setUpTTM(B);
+hcst_setUpTTM(bench);
 
 % Andor Neo Camera
-hcst_setUpAndor(B);
+hcst_setUpAndor(bench);
 
 
 end

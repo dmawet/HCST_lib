@@ -1,8 +1,8 @@
-function hcst_andor_fitswrite(B,im,flnm,show)
+function hcst_andor_fitswrite(bench,im,flnm,show)
 %hcst_andor_fitswrite Writes an image to a FITS file.
 %
 %   Inputs:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %       'im' is an array containing the image
@@ -17,13 +17,13 @@ function hcst_andor_fitswrite(B,im,flnm,show)
     
     disp(['Writing image file...', flnm]);
 
-    lamOverD = B.bench.andor.pixelPerLamOverD;
-    pei = B.bench.andor.default_pixelEncodingIndex;
-    numCoadds = B.bench.andor.numCoadds;
-    tint = B.bench.andor.tint;
+    lamOverD = bench.andor.pixelPerLamOverD;
+    pei = bench.andor.default_pixelEncodingIndex;
+    numCoadds = bench.andor.numCoadds;
+    tint = bench.andor.tint;
 
-    centcol = B.bench.andor.centcol;
-    centrow = B.bench.andor.centrow;
+    centcol = bench.andor.centcol;
+    centrow = bench.andor.centrow;
     
     [rows,cols,dims] = size(im);
 
@@ -41,8 +41,8 @@ function hcst_andor_fitswrite(B,im,flnm,show)
     fits.writeKey(fptr,'TIME',datestr(now,'HHMMSS'),'Time (hhmmss)');
     fits.writeKey(fptr,'TINT',tint,'Integration time (sec)');
     fits.writeKey(fptr,'COADDS',numCoadds,'Number of coadds');
-    fits.writeKey(fptr,'HEIGHT',B.bench.andor.AOIHeight,'AOI Height');
-    fits.writeKey(fptr,'WIDTH',B.bench.andor.AOIWidth,'AOI Width');
+    fits.writeKey(fptr,'HEIGHT',bench.andor.AOIHeight,'AOI Height');
+    fits.writeKey(fptr,'WIDTH',bench.andor.AOIWidth,'AOI Width');
     fits.writeKey(fptr,'CENTCOL',centcol,'Column of sub-window center');
     fits.writeKey(fptr,'CENTROW',centrow,'Row of sub-window center');
     fits.writeKey(fptr,'LAMOVERD',lamOverD,'lambda_0/D in pixels');

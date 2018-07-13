@@ -1,4 +1,4 @@
-function resPos = hcst_TTM_move(B,pos)
+function resPos = hcst_TTM_move(bench,pos)
 %hcst_TTM_move Function to move the TTM to an absolute position (in mrad)
 %   
 %   - This function uses the PI MATLAB driver
@@ -6,9 +6,9 @@ function resPos = hcst_TTM_move(B,pos)
 %   
 %
 %   Arguments/Outputs:
-%   resPos = hcst_TTM_move(B, pos) moves the TTM to the position
+%   resPos = hcst_TTM_move(bench, pos) moves the TTM to the position
 %       specified by 'pos'. 
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertient bench information
 %           and instances. It is created by the hcst_config() function.
 %       'pos' is a 2-element vector with the target positions (in mrad)
 %           Values should be in the order:  [Channel 1(A), Channel 2(B)]
@@ -19,10 +19,10 @@ function resPos = hcst_TTM_move(B,pos)
 %
 %
 %   Examples:
-%       hcst_TTM_move(B, [4.831 5])
+%       hcst_TTM_move(bench, [4.831 5])
 %           Moves Channel 1(A) to 4.831 and Channel 2(B) to 5
 %
-%       hcst_FPM_move(B, [NaN 5])
+%       hcst_FPM_move(bench, [NaN 5])
 %           Move only Channel 2(B) to 5, leaves Channel 1(A) untouched
 %
 %
@@ -39,8 +39,8 @@ end
 % Use blocking to ensure move is complete before continuing script
 % Do not move axes for which pos is nan
 
-axes = B.bench.TTM.stage.axes;    %Copy axes to use shorter name for clarity
-axMod = B.bench.TTM.stage.axMod;  %Copy vector of activated axes for clarity
+axes = bench.TTM.stage.axes;    %Copy axes to use shorter name for clarity
+axMod = bench.TTM.stage.axMod;  %Copy vector of activated axes for clarity
 
 % Check if either axis should move and if that axis was activated
 if any(~isnan(pos) & axMod(1:2))
@@ -51,15 +51,15 @@ if any(~isnan(pos) & axMod(1:2))
     pos2Move = pos(~isnan(pos) & axMod(1:2));
     
     % Perform the move
-    B.bench.TTM.stage.PIdevice.MOV(ax2Move, pos2Move);
+    bench.TTM.stage.PIdevice.MOV(ax2Move, pos2Move);
     
     %wait for motion to stop
-    while any(B.bench.TTM.stage.PIdevice.IsMoving(ax2Move))
+    while any(bench.TTM.stage.PIdevice.IsMoving(ax2Move))
         pause(0.001);   %very short pause to prevent uneccessary wait time
     end
 end
 
 % Query positions after move
-resPos = B.bench.TTM.stage.PIdevice.qPOS(strjoin(axes(1:2)))';
+resPos = bench.TTM.stage.PIdevice.qPOS(strjoin(axes(1:2)))';
 
 end

@@ -1,4 +1,4 @@
-function im = hcst_andor_getImage_old(B)
+function im = hcst_andor_getImage_old(bench)
 %hcst_andor_getImage Returns image from the the Andor Neo camera
 %
 %   - Returns an image from the Andor Neo camera 
@@ -8,19 +8,19 @@ function im = hcst_andor_getImage_old(B)
 %   
 %
 %   Inputs:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'im' - The image
 
-    andor_handle = B.bench.andor.andor_handle;
-    BufferSize = B.bench.andor.imSizeBytes;
-    AOIHeight = B.bench.andor.AOIHeight;
-    AOIWidth  = B.bench.andor.AOIWidth;
-    AOIStride = B.bench.andor.AOIStride;
+    andor_handle = bench.andor.andor_handle;
+    BufferSize = bench.andor.imSizeBytes;
+    AOIHeight = bench.andor.AOIHeight;
+    AOIWidth  = bench.andor.AOIWidth;
+    AOIStride = bench.andor.AOIStride;
 
-    if(hcst_andor_getPixelEncodingIndex(B)~=2)
+    if(hcst_andor_getPixelEncodingIndex(bench)~=2)
         error('HCST_lib Andor lib ERROR: hcst_andor_getImage requires 16-bit mode.');
     end
     

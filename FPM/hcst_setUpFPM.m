@@ -1,4 +1,4 @@
-function hcst_setUpFPM(B)
+function hcst_setUpFPM(bench)
 %hcst_setUpFPM Function to prepare the FPM for control
 %   
 %   - This function should be called before calling any other FPM functions
@@ -9,16 +9,16 @@ function hcst_setUpFPM(B)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_setUpFPM(B) Instantiates the Conex control classes.
+%   hcst_setUpFPM(bench) Instantiates the Conex control classes.
 %       Updates the FPM sub-struct which contains pertient information 
 %       about the stages as well as the instances of the Conex.py class. 
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_setUpFPM(B)
-%           Updates 'B.bench', the FPM sub-struct, and the requisite classes
+%       hcst_setUpFPM(bench)
+%           Updates 'bench', the FPM sub-struct, and the requisite classes
 %
 %
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
@@ -51,7 +51,7 @@ focIsReady = axFoc.isReady();
 if ~horIsReady
     horIsReady = axHor.home(true);    %Use blocking (true) to ensure home before move
     if horIsReady
-        axHor.moveAbs(B.bench.FPM.User_H0,true)    %blocking to ensure pos reached
+        axHor.moveAbs(bench.FPM.User_H0,true)    %blocking to ensure pos reached
     else
         warning("Horizontal axis reported not ready after moving");
     end
@@ -59,7 +59,7 @@ end
 if ~verIsReady
     verIsReady = axVer.home(true);    %Use blocking (true) to ensure home before move
     if verIsReady
-        axVer.moveAbs(B.bench.FPM.User_V0,true)    %blocking to ensure pos reached
+        axVer.moveAbs(bench.FPM.User_V0,true)    %blocking to ensure pos reached
     else
         warning("Vertical axis reported not ready after moving");
     end
@@ -67,7 +67,7 @@ end
 if ~focIsReady
     focIsReady = axFoc.home(true);    %Use blocking (true) to ensure home before move
     if focIsReady
-        axFoc.moveAbs(B.bench.FPM.User_F0,true)    %blocking to ensure pos reached
+        axFoc.moveAbs(bench.FPM.User_F0,true)    %blocking to ensure pos reached
     else
         warning("Focus axis reported not ready after moving");
     end
@@ -75,13 +75,13 @@ end
 
 % reqPosSet() returns -9999 on error, so if there's no error, we're good.
 if (axHor.reqPosSet() ~= -9999) && (axVer.reqPosSet() ~= -9999) && (axFoc.reqPosSet() ~= -9999)
-    B.bench.FPM.CONNECTED = true;
+    bench.FPM.CONNECTED = true;
 end
 
 %% Populate struct
-B.bench.FPM.axV = axVer;
-B.bench.FPM.axH = axHor;
-B.bench.FPM.axF = axFoc;
+bench.FPM.axV = axVer;
+bench.FPM.axH = axHor;
+bench.FPM.axF = axFoc;
 
 end
 

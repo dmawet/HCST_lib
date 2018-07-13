@@ -1,4 +1,4 @@
-function resPos = hcst_LS_move(B,pos)
+function resPos = hcst_LS_move(bench,pos)
 %hcst_LS_move Function to move the LS to an absolute position (in mm)
 %   
 %   - Uses the MATLAB Zaber_Toolbox provided by Zaber Technologies
@@ -6,9 +6,9 @@ function resPos = hcst_LS_move(B,pos)
 %   
 %
 %   Arguments/Outputs:
-%   resPos = hcst_LS_move(B, pos) moves the LS to the position
+%   resPos = hcst_LS_move(bench, pos) moves the LS to the position
 %       specified by 'pos'. 
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %       'pos' is a 2-element vector with the target positions (in mm)
 %           Values should be in the order:  [Vertical, Horizontal]
@@ -19,10 +19,10 @@ function resPos = hcst_LS_move(B,pos)
 %
 %
 %   Examples:
-%       hcst_LS_move(B, [8.8 45])
+%       hcst_LS_move(bench, [8.8 45])
 %           Moves the vertical axis to 8.8 and the horizontal axis to 45
 %
-%       hcst_LS_move(B, [NaN 45])
+%       hcst_LS_move(bench, [NaN 45])
 %           Move only the horizontal axis (to 45)
 %
 %
@@ -36,11 +36,11 @@ if ~isvector(pos) || length(pos) ~= 2
     error('Input positions must be a vector of length 2')
 end
 
-if pos(1) > B.bench.LS.VBOUND
-    pos(1) = B.bench.LS.VBOUND;
+if pos(1) > bench.LS.VBOUND
+    pos(1) = bench.LS.VBOUND;
 end
-if pos(2) > B.bench.LS.HBOUND
-    pos(2) = B.bench.LS.HBOUND;
+if pos(2) > bench.LS.HBOUND
+    pos(2) = bench.LS.HBOUND;
 end
 
 %% Move each axis in order
@@ -51,10 +51,10 @@ pos = pos/M2MM;
 if ~isnan(pos(1))
     % Perform move and capture device error code
     try
-        err = B.bench.LS.axV.moveabsolute(B.bench.LS.axV.Units.positiontonative(pos(1)));
+        err = bench.LS.axV.moveabsolute(bench.LS.axV.Units.positiontonative(pos(1)));
     catch exception
         % Close port if a MATLAB error occurs, otherwise it remains locked
-        fclose(B.bench.LS.axV.Protocol.Port);
+        fclose(bench.LS.axV.Protocol.Port);
         rethrow(exception);
     end
     % Throw error if a device error occurred
@@ -65,10 +65,10 @@ end
 
 % Query position for output; convert to mm
 try
-    resPos(1) = B.bench.LS.axV.Units.nativetoposition(B.bench.LS.axV.getposition)*M2MM;
+    resPos(1) = bench.LS.axV.Units.nativetoposition(bench.LS.axV.getposition)*M2MM;
 catch exception
     % Close port if a MATLAB error occurs, otherwise it remains locked
-    fclose(B.bench.LS.axV.Protocol.Port);
+    fclose(bench.LS.axV.Protocol.Port);
     rethrow(exception);
 end
 
@@ -76,10 +76,10 @@ end
 if ~isnan(pos(2))
     % Perform move and capture device error code
     try
-        err = B.bench.LS.axH.moveabsolute(B.bench.LS.axH.Units.positiontonative(pos(2)));
+        err = bench.LS.axH.moveabsolute(bench.LS.axH.Units.positiontonative(pos(2)));
     catch exception
         % Close port if a MATLAB error occurs, otherwise it remains locked
-        fclose(B.bench.LS.axH.Protocol.Port);
+        fclose(bench.LS.axH.Protocol.Port);
         rethrow(exception);
     end
     % Throw error if a device error occurred
@@ -90,10 +90,10 @@ end
 
 % Query position for output; convert to mm
 try
-    resPos(2) = B.bench.LS.axH.Units.nativetoposition(B.bench.LS.axH.getposition)*M2MM;
+    resPos(2) = bench.LS.axH.Units.nativetoposition(bench.LS.axH.getposition)*M2MM;
 catch exception
     % Close port if a MATLAB error occurs, otherwise it remains locked
-    fclose(B.bench.LS.axH.Protocol.Port);
+    fclose(bench.LS.axH.Protocol.Port);
     rethrow(exception);
 end
 

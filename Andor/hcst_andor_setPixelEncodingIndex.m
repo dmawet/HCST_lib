@@ -1,15 +1,15 @@
-function hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
+function hcst_andor_setPixelEncodingIndex(bench,pixEncodingIndex)
 %hcst_andor_setPixelEncodingIndex Changes the pixel encoding index of the Andor Neo camera
 %
 %   - Sets the pixel encoding index to pixEncodingIndex
-%   - Updates the B.bench.andor.pixelEncodingIndex variable using
+%   - Updates the bench.andor.pixelEncodingIndex variable using
 %           hcst_andor_getPixelEncodingIndex function.
-%   - Updates the B.bench.andor.imSizeBytes variable using
+%   - Updates the bench.andor.imSizeBytes variable using
 %           hcst_andor_getImageSizeBytes function.
 %   - Uses the atcore.h and libatcore.so 'c' libraries
 %
 %   Inputs:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %       'pixEncodingIndex' - The pixel encoding index 
@@ -19,7 +19,7 @@ function hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
 %               2: 'Mono16'
 %               3: 'Mono32'
 
-    andor_handle = B.bench.andor.andor_handle;
+    andor_handle = bench.andor.andor_handle;
 
     pixelEncodingFeaturePtr = libpointer('voidPtr',int32(['PixelEncoding',0]));
     
@@ -32,12 +32,12 @@ function hcst_andor_setPixelEncodingIndex(B,pixEncodingIndex)
     end 
     
     % Update the bench struct
-	B.bench.andor.pixelEncodingIndex = int32(pixEncodingIndex);
+	bench.andor.pixelEncodingIndex = int32(pixEncodingIndex);
     
     % Query the new pixel encoding index
-    new_pei = hcst_andor_getPixelEncodingIndex(B);
+    new_pei = hcst_andor_getPixelEncodingIndex(bench);
     
-	B.bench.andor.pixelEncodingIndex = new_pei;
-    B.bench.andor.imSizeBytes = hcst_andor_getImageSizeBytes(B);
+	bench.andor.pixelEncodingIndex = new_pei;
+    bench.andor.imSizeBytes = hcst_andor_getImageSizeBytes(bench);
 end
 

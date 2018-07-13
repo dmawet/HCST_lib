@@ -1,8 +1,8 @@
-function cmds = hcst_DM_testPatternET( B, cmd )
-%[bench,cmds] = hcst_DM_testPatternET( bench, cmd )
+function cmds = hcst_DM_testPatternET( bench, cmd )
+%cmds = hcst_DM_testPatternET( bench, cmd )
 
 
-    flatvec = B.bench.DM.flatvec;
+    flatvec = bench.DM.flatvec;
     
     
     im = round(rgb2gray(imread('ETmovieposter.jpg'))/255);
@@ -17,11 +17,11 @@ function cmds = hcst_DM_testPatternET( B, cmd )
     im = padarray(im,[7 7]);
 %     figure;imagesc(im);axis image;colorbar;title('Pattern sent.');
 
-    data = cmd*hcst_DM_2Dto1D(B,fliplr(im));
+    data = cmd*hcst_DM_2Dto1D(bench,fliplr(im));
     
     cmds = data+flatvec;
     
-    err_code = BMCSendData(B.bench.DM.dm, cmds);
+    err_code = BMCSendData(bench.DM.dm, cmds);
     if(err_code~=0)
         eString = BMCGetErrorString(err_code);
         error(eString);

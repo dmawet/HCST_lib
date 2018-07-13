@@ -1,4 +1,4 @@
-function imSizeBytes = hcst_andor_getImageSizeBytes(B)
+function imSizeBytes = hcst_andor_getImageSizeBytes(bench)
 %hcst_andor_getImageSizeBytes Queries the current image size in bytes the Andor Neo camera
 %
 %   - Returns the current image size in bytes
@@ -6,13 +6,13 @@ function imSizeBytes = hcst_andor_getImageSizeBytes(B)
 %   
 %
 %   Inputs:   
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %   Outputs
 %       'imSizeBytes' - Image size in bytes
 
-    andor_handle = B.bench.andor.andor_handle;
+    andor_handle = bench.andor.andor_handle;
 
     imSizeBytesFeaturePtr = libpointer('voidPtr',int32(['ImageSizeBytes',0]));
     imSizeBytesPtr = libpointer('int64Ptr',int64(0));

@@ -1,14 +1,14 @@
-function hcst_andor_testLib(B)
+function hcst_andor_testLib(bench)
 %hcst_Andor_testLib Function to test the Andor commands
 %
 %   
 %   Inputs:
-%       'B.bench' is the struct containing all pertient bench information
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_Andor_testLib(Bench)
+%       hcst_Andor_testLib(bench)
 %           Runs through the available MATLAB Andor commands
 %
 %
@@ -19,7 +19,7 @@ function hcst_andor_testLib(B)
 %% Execute the functions/commands, one-by-one
 
 
-im = hcst_andor_getImage(B);
+im = hcst_andor_getImage(bench);
 
 
 figure;

@@ -1,4 +1,4 @@
-function hcst_setUpLS(B)
+function hcst_setUpLS(bench)
 %hcst_setUpLS Function to prepare the LS for control
 %   
 %   - This function should be called before calling any other LS functions
@@ -10,15 +10,15 @@ function hcst_setUpLS(B)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_setUpLS(B) Instantiates the Zaber control classes.
-%       Updates the LS sub-struct which contains pertient information about
+%   hcst_setUpLS(bench) Instantiates the Zaber control classes.
+%       Updates the LS sub-struct which contains pertinent information about
 %       the stages as well as the instances of the Zaber BinaryDevice class
-%       'B.bench' is the struct containing all pertient bench information and
+%       'bench' is the object containing all pertinent bench information and
 %           instances. It is created by the hcst_config() function.
 %
 %
 %   Examples:
-%       hcst_setUpFPM(B)
+%       hcst_setUpFPM(bench)
 %           Instantiates the Zaber control classes. Then updates 'bench', 
 %           the LS sub-struct, and the requisite classes 
 %
@@ -88,11 +88,11 @@ try
 %% Home the axes if they have not been homed
     if ~verIsReady
         axVer.home
-        axVer.moveAbs(axVer.Units.positiontonative(B.bench.LS.User_V0))
+        axVer.moveAbs(axVer.Units.positiontonative(bench.LS.User_V0))
     end
     if ~horIsReady
         axHor.home
-        axHor.moveAbs(axHor.Units.positiontonative(B.bench.LS.User_H0))
+        axHor.moveAbs(axHor.Units.positiontonative(bench.LS.User_H0))
     end
     
 catch exception
@@ -102,12 +102,12 @@ catch exception
 end
 
 if ~isempty(axHor.getposition()) && ~isempty(axVer.getposition())
-    B.bench.LS.CONNECTED = true;
+    bench.LS.CONNECTED = true;
 end
 
 %% Populate struct
-B.bench.LS.axV = axVer;
-B.bench.LS.axH = axHor;
+bench.LS.axV = axVer;
+bench.LS.axH = axHor;
 
 
 end

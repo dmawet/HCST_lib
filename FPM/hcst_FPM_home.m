@@ -1,4 +1,4 @@
-function hcst_FPM_home(B, homeFlg)
+function hcst_FPM_home(bench, homeFlg)
 %hcst_FPM_home Function to home the given axes of the FPM
 %   
 %   - This function uses the Conex.py class
@@ -6,8 +6,8 @@ function hcst_FPM_home(B, homeFlg)
 %   
 %
 %   Arguments/Outputs:
-%   hcst_FPM_home(B, homeFlg) homes the FPM axes specified by 'homeFlg' 
-%       'B.bench' is the struct containing all pertient bench information
+%   hcst_FPM_home(bench, homeFlg) homes the FPM axes specified by 'homeFlg' 
+%       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %       'homeFlg' is a vector of logicals specifying which axes to home
 %           The axes are in the order: [Vertical, Horizontal, Focus]
@@ -37,12 +37,12 @@ end
 % use homeFlg == true (vs. just homeFlg) to implicitly check that a valid
 % logical value was given.
 if homeFlg(1) == true
-    B.bench.FPM.axV.home(true);
+    bench.FPM.axV.home(true);
 end
 if homeFlg(2) == true
-    B.bench.FPM.axH.home(true);
+    bench.FPM.axH.home(true);
 end
 if homeFlg(3) == true
-    B.bench.FPM.axF.home(true);
+    bench.FPM.axF.home(true);
 end
 end

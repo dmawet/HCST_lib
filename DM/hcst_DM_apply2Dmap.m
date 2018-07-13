@@ -1,11 +1,11 @@
-function cmds = hcst_DM_apply2Dmap( B, map, scale )
-% [bench,cmds] = hcst_DM_apply2Dmap( bench, cmd )
+function cmds = hcst_DM_apply2Dmap( bench, map, scale )
+% cmds = hcst_DM_apply2Dmap( bench, map, scale )
 
 
-    flatvec = B.bench.DM.flatvec;
-    offsetAct = B.bench.DM.offsetAct;
-    NactAcross = B.bench.DM.NactAcross;
-    NactAcrossBeam = B.bench.DM.NactAcrossBeam;
+    flatvec = bench.DM.flatvec;
+    offsetAct = bench.DM.offsetAct;
+    NactAcross = bench.DM.NactAcross;
+    NactAcrossBeam = bench.DM.NactAcrossBeam;
     
     map = imresize(map,[NactAcrossBeam+1,NactAcrossBeam+1]);
     pad0 = (NactAcross - NactAcrossBeam-1)/2;
@@ -27,7 +27,7 @@ function cmds = hcst_DM_apply2Dmap( B, map, scale )
     
     cmds = data+flatvec;
     
-    err_code = BMCSendData(B.bench.DM.dm, cmds);
+    err_code = BMCSendData(bench.DM.dm, cmds);
     if(err_code~=0)
         eString = BMCGetErrorString(err_code);
         error(eString);

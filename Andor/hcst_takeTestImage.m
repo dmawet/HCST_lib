@@ -12,20 +12,20 @@ addpath(genpath('/home/hcst/HCST_lib/'));
 
 %% Create and populate bench struct
 fprintf("\n___Creating 'bench' struct\n")
-B = hcst_config();
+bench = hcst_config();
 % bench = hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
-hcst_setUpAndor(B, true);
+hcst_setUpAndor(bench, true);
 
 %% Call Andor test function
 
 tint = 0.0001;
-B.bench.andor.numCoadds = 1;
-hcst_andor_setExposureTime(B,tint);
+bench.bench.andor.numCoadds = 1;
+hcst_andor_setExposureTime(bench,tint);
 
 tic;
-im = hcst_andor_getImage(B);
+im = hcst_andor_getImage(bench);
 toc;
 
 
@@ -45,5 +45,5 @@ colorbar;
 
 %%
 
-hcst_cleanUpAndor(B);
+hcst_cleanUpAndor(bench);
 

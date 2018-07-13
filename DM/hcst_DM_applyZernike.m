@@ -1,12 +1,12 @@
-function [Z,cmds] = hcst_DM_applyZernike( B, noll_index, PTV, apply )
-%bench = hcst_DM_applyZernike( bench, noll_index, offsetAct, PTV )
+function [Z,cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
+%[Z, cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
 %Applies Zernike polynomial to the DM
 
-    flatvec = B.bench.DM.flatvec;
-    offsetAct = B.bench.DM.offsetAct;
+    flatvec = bench.DM.flatvec;
+    offsetAct = bench.DM.offsetAct;
     
-    NactAcross = B.bench.DM.NactAcross;
-    NactAcrossBeam = B.bench.DM.NactAcrossBeam;
+    NactAcross = bench.DM.NactAcross;
+    NactAcrossBeam = bench.DM.NactAcrossBeam;
     % 459 is the central actuator
     xs = (1:NactAcross)-(NactAcross+1)/2;
     [XS,YS] = meshgrid(xs);
@@ -19,12 +19,12 @@ function [Z,cmds] = hcst_DM_applyZernike( B, noll_index, PTV, apply )
     Z = abs(PTV)*Z;
     Z(isnan(Z)) = 0;
     
-    data = hcst_DM_2Dto1D(B,Z);
+    data = hcst_DM_2Dto1D(bench,Z);
     
     cmds = data+flatvec;
     
     if(apply)
-        err_code = BMCSendData(B.bench.DM.dm, cmds);
+        err_code = BMCSendData(bench.DM.dm, cmds);
         if(err_code~=0)
             eString = BMCGetErrorString(err_code);
             error(eString);
