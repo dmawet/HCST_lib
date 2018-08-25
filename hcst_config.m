@@ -35,7 +35,14 @@ function bench = hcst_config()
 
 %% Add the path to our libraries
 
-addpath(genpath('/home/hcst/HCST_lib'));
+% addpath(genpath('/home/hcst/HCST_lib/'));
+addpath('/home/hcst/HCST_lib/Andor/');
+addpath('/home/hcst/HCST_lib/DM/');
+addpath('/home/hcst/HCST_lib/DM/utils/');
+addpath('/home/hcst/HCST_lib/FPM/');
+addpath(genpath('/home/hcst/HCST_lib/LS/'));
+addpath(genpath('/home/hcst/HCST_lib/TTM/'));
+
 
 %% Create the FPM substruct
 
@@ -58,8 +65,12 @@ FPM.FBOUND = 27;
 % FPM.VORTEX_H0 = 7.304999;
 % FPM.VORTEX_F0 = 5.000099;
 % Updated by G. Ruane 2018jun01
-FPM.VORTEX_V0 = 1.833;
-FPM.VORTEX_H0 = 5.684;
+% FPM.VORTEX_V0 = 1.833;
+% FPM.VORTEX_H0 = 5.684;
+% FPM.VORTEX_F0 = 3.955;
+% Updated by G. Ruane 2018aug22
+FPM.VORTEX_V0 = 1.914;
+FPM.VORTEX_H0 = 5.705;
 FPM.VORTEX_F0 = 3.955;
 
 % Axes positions for the center of the Zernike mask 
@@ -87,8 +98,11 @@ LS.HBOUND = 50.8;
 % LS.CENTER_V0 = 8.8;
 % LS.CENTER_H0 = 45;
 % Updated by G. Ruane 2018may29
-LS.CENTER_V0 = 8.48;
-LS.CENTER_H0  = 45.89;
+% LS.CENTER_V0 = 8.48;
+% LS.CENTER_H0  = 45.89;
+% Updated by G. Ruane 2018aug22
+bench.LS.CENTER_V0 = 8.15;
+bench.LS.CENTER_H0 = 45.87;
 
 LS.CONNECTED = false;
 
@@ -144,11 +158,29 @@ andor.numCoadds = 1;
 % int32(3): 'Mono32'
 andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 
+% current (row,col) of the PSF center 
+andor.FocusCol = 1260;
+andor.FocusRow = 989;
 
 %% Calibrations
 
-andor.pixelPerLamOverD = 6;
-andor.numPixperCycle = 5.86;
+andor.pixelPerLamOverD = 5.75;
+andor.numPixperCycle = 5.75;
 
-bench = Bench(FPM, LS, TTM, DM, andor);
+
+%% Back up info 
+
+% Directory to save back up bench structs
+benchBackUpDir = '/home/hcst/HCST_data/benchstructs/';
+if(~exist(benchBackUpDir, 'dir'))
+    mkdir(benchBackUpDir);
+end
+
+info.benchBackUpDir = benchBackUpDir;
+
+%% Create bench object
+
+bench = Bench(FPM, LS, TTM, DM, andor, info );
+
+
 end

@@ -51,4 +51,7 @@ end
 
 bench.LS.CONNECTED = false;
 
+% Save backup bench object
+hcst_backUpBench(bench)
+
 end

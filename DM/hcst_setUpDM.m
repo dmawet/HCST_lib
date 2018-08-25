@@ -110,6 +110,8 @@ function hcst_setUpDM(bench)
     end
     
 
-
+    % Save backup bench object
+    hcst_backUpBench(bench)
+    
 end
 

@@ -109,6 +109,7 @@ end
 bench.LS.axV = axVer;
 bench.LS.axH = axHor;
 
-
+% Save backup bench object
+hcst_backUpBench(bench)
 end
 

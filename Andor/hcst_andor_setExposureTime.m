@@ -26,6 +26,6 @@ function hcst_andor_setExposureTime(bench,tint)
     new_tint = hcst_andor_getExposureTime(bench);
     bench.andor.tint = new_tint;
     
-    
+    disp(['Andor Neo tint set to ',num2str(new_tint),' sec']);
 end
 

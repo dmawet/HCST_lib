@@ -10,7 +10,7 @@ function hcst_andor_getImageFormatting(bench)
 %       'bench' is the object containing all pertinent bench information
 %           and instances. It is created by the hcst_config() function.
 %
-%   Function updates the following fields in B.bench.andor
+%   Function updates the following fields in bench.andor
 %       'AOIHeight' - The number of bytes in height
 %       'AOIWidth'  - The number of bytes wide
 %       'AOIStride' - Width including zero padding

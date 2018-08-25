@@ -39,4 +39,7 @@ bench.DM.CONNECTED = 0;
 
 disp('BMC DM disconnected. Clean up complete.');
 
+% Save backup bench object
+hcst_backUpBench(bench)
+
 end

@@ -16,12 +16,12 @@ bench = hcst_config();
 % bench = hcst_setUpBench(bench);
 fprintf("___'bench' struct created successfully\n\n")
 
-hcst_setUpAndor(bench, true);
+hcst_setUpAndor(bench, false);
 
 %% Call Andor test function
 
+% Set the exposure time
 tint = 0.0001;
-bench.bench.andor.numCoadds = 1;
 hcst_andor_setExposureTime(bench,tint);
 
 tic;
@@ -30,16 +30,9 @@ toc;
 
 
 %%
-[rows,cols] = size(im);
-centx = 1294;
-centy = 1559; 
-cropsize = 512;
-
-croprows = centy-cropsize/2+1:centy+cropsize/2;
-cropcols = centx-cropsize/2+1:centx+cropsize/2;
 
 figure;
-imagesc(double(im(croprows,cropcols))/2^16);
+imagesc(double(im)/2^16);
 axis image; 
 colorbar;
 

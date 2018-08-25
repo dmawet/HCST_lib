@@ -14,14 +14,14 @@ function temp = hcst_andor_getSensorTemp(bench)
 
     andor_handle = bench.andor.andor_handle;
 
-    % Equivalent to AT_SetFloat(Handle, L”ExposureTime”, 0.01);
-    FeaturePtr = libpointer('voidPtr',[int32('SensorTemperature'),0]);
-    QueryPtr = libpointer('doublePtr',0);
-    err = calllib('lib', 'AT_GetFloat', andor_handle, FeaturePtr, QueryPtr);
+
+    featurePtr = libpointer('voidPtr',[int32('SensorTemperature'),0]);
+    queryPtr = libpointer('doublePtr',0);
+    err = calllib('lib', 'AT_GetFloat', andor_handle, featurePtr, queryPtr);
     if(err~=0)
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_GetFloat']);
     end
-    Query = get(QueryPtr);
+    Query = get(queryPtr);
     temp = Query.Value;
     
     

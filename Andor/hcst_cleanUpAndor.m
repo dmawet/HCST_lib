@@ -14,12 +14,35 @@ function hcst_cleanUpAndor(bench)
 %
 %
 %   Examples:
-%       hcst_setUpAndor(bench)
+%       hcst_cleanUpAndor(bench)
 %           Updates 'bench', disconnects the andor
-%
-%
-%   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
-%
+
+
+% -------------------------------------------------------------------%
+
+if(isfield(bench.andor,'acquiring'))
+    if(bench.andor.acquiring)
+        % Equivalent to AT_Command(Handle, L"AcquisitionStop");
+        acqStopStrPtr = libpointer('voidPtr',int32(['AcquisitionStop',0]));
+
+        err = calllib('lib', 'AT_Command', bench.andor.andor_handle, acqStopStrPtr);
+        if(err~=0)
+            disp('Failed to stop acquisition!');
+            error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_Command']);
+        end
+    end
+end
+
+% -------------------------------------------------------------------%
+
+% Equivalent to AT_Flush(Handle);
+err = calllib('lib', 'AT_Flush', bench.andor.andor_handle);
+if(err~=0)
+    disp('Failed to flush buffer!');
+    error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_Flush']);
+end
+
+% -------------------------------------------------------------------%
 
 try
     hcst_andor_setSensorCooling(bench,false,false);
@@ -43,5 +66,8 @@ unloadlibrary lib;
 disp('Andor Neo Camera disconnected. Clean up complete.');
 
 bench.andor.CONNECTED = false;
+
+% Save backup bench object
+hcst_backUpBench(bench)
 
 end

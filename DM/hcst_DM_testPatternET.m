@@ -17,7 +17,7 @@ function cmds = hcst_DM_testPatternET( bench, cmd )
     im = padarray(im,[7 7]);
 %     figure;imagesc(im);axis image;colorbar;title('Pattern sent.');
 
-    data = cmd*hcst_DM_2Dto1D(bench,fliplr(im));
+    data = cmd*hcst_DM_2Dto1D(bench,rot90(im));
     
     cmds = data+flatvec;
     

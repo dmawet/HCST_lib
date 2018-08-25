@@ -25,6 +25,9 @@ function hcst_setUpAndor(bench,wait2stabilize)
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
 
+
+disp('Setting up Andor Neo ...');
+
 assert(1 == exist('wait2stabilize','var'), ...
     'MATLAB:narginchk:notEnoughInputs', ...
     'hcst_setUpAndor takes two inputs')
@@ -81,16 +84,28 @@ hcst_andor_getImageFormatting(bench);
 
 hcst_andor_toggleFan(bench,'off');
 
-%%
+%% Turn on sensor cooler
 
+hcst_andor_setSensorCooling(bench,true,wait2stabilize);
+
+
+%%
 
 % Initialize to FullFrame size
 bench.andor.AOIWidth0 = bench.andor.AOIWidth;
 bench.andor.AOIHeight0 = bench.andor.AOIHeight;
 bench.andor.centrow0 = bench.andor.AOIHeight0/2+1;
 bench.andor.centcol0 = bench.andor.AOIWidth0/2+1;
+
+% Initialize the frame center
 bench.andor.centrow = bench.andor.centrow0;
 bench.andor.centcol = bench.andor.centcol0;
+
+bench.andor.acquiring = false; % Not currently acquiring frames
+bench.andor.continuous = false;% Not currently in continuous mode 
+
+% By default, send warning if signal is above the Kern limit
+bench.andor.warnKernLimit = true;
 
 disp('Andor Neo Camera Initialized:');
 disp(['     tint = ',num2str(hcst_andor_getExposureTime(bench))]);
@@ -101,8 +116,9 @@ disp(['     AOIWidth  = ',num2str(bench.andor.AOIWidth)]);
 disp(['     AOIStride = ',num2str(bench.andor.AOIStride)]);
 
 
-hcst_andor_setSensorCooling(bench,true,wait2stabilize);
-
 bench.andor.CONNECTED = true;
+
+% Save backup bench object
+hcst_backUpBench(bench)
 
 end

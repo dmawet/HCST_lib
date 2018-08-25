@@ -83,5 +83,8 @@ bench.FPM.axV = axVer;
 bench.FPM.axH = axHor;
 bench.FPM.axF = axFoc;
 
+% Save backup bench object
+hcst_backUpBench(bench)
+
 end
 

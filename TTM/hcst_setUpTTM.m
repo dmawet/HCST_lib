@@ -153,5 +153,8 @@ bench.TTM.stage.axes = availableaxes;
 bench.TTM.stage.axCtl = axCtl;
 bench.TTM.stage.axMod = axMod;
 
+% Save backup bench object
+hcst_backUpBench(bench)
+
 end
 

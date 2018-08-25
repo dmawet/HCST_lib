@@ -37,4 +37,7 @@ if ~bench.TTM.stage.PIdevice.IsConnected
     bench.TTM.CONNECTED = false;
 end
 
+% Save backup bench object
+hcst_backUpBench(bench)
+
 end

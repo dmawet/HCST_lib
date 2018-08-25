@@ -1,4 +1,4 @@
-function hcst_andor_fitswrite(bench,im,flnm,show)
+function hcst_andor_fitswrite(bench, im, flnm, show)
 %hcst_andor_fitswrite Writes an image to a FITS file.
 %
 %   Inputs:   
@@ -40,7 +40,7 @@ function hcst_andor_fitswrite(bench,im,flnm,show)
     fits.writeKey(fptr,'DATE',datestr(now,'yyyymmdd'),'Date (yyyymmdd)');
     fits.writeKey(fptr,'TIME',datestr(now,'HHMMSS'),'Time (hhmmss)');
     fits.writeKey(fptr,'TINT',tint,'Integration time (sec)');
-    fits.writeKey(fptr,'COADDS',numCoadds,'Number of coadds');
+    fits.writeKey(fptr,'COADDS',numCoadds,'Number of coadds per frame');
     fits.writeKey(fptr,'HEIGHT',bench.andor.AOIHeight,'AOI Height');
     fits.writeKey(fptr,'WIDTH',bench.andor.AOIWidth,'AOI Width');
     fits.writeKey(fptr,'CENTCOL',centcol,'Column of sub-window center');
@@ -48,7 +48,7 @@ function hcst_andor_fitswrite(bench,im,flnm,show)
     fits.writeKey(fptr,'LAMOVERD',lamOverD,'lambda_0/D in pixels');
     fits.writeKey(fptr,'PIXENCOD',pei,'pixel encoding index');
     fits.closeFile(fptr);
-    fitsdisp(flnm,'mode','full');
+    %fitsdisp(flnm,'mode','full');
 
     if(show)
         system(['ds9 ',flnm,' &']);

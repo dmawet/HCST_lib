@@ -16,7 +16,7 @@ function hcst_andor_toggleFan(bench,option)
 
     andor_handle = bench.andor.andor_handle;
 
-    FeaturePtr = libpointer('voidPtr',int32(['FanSpeed',0]));
+    featurePtr = libpointer('voidPtr',int32(['FanSpeed',0]));
     
     switch option
         case 'off'
@@ -28,7 +28,7 @@ function hcst_andor_toggleFan(bench,option)
     end
 
     % Set bitdepth with AT_SetEnumIndex(AT_H Hndl, AT_WC* Feature, int Index)
-    err = calllib('lib', 'AT_SetEnumIndex', andor_handle, FeaturePtr, ...
+    err = calllib('lib', 'AT_SetEnumIndex', andor_handle, featurePtr, ...
                                       int32(index));
     if(err~=0)
         disp('Failed to change pixelEncodingIndex!');
