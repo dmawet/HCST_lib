@@ -3,14 +3,16 @@ function [Z,cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
 %Applies Zernike polynomial to the DM
 
     flatvec = bench.DM.flatvec;
-    offsetAct = bench.DM.offsetAct;
-    
+%     offsetAct = bench.DM.offsetAct;
+
     NactAcross = bench.DM.NactAcross;
     NactAcrossBeam = bench.DM.NactAcrossBeam;
     % 459 is the central actuator
-    xs = (1:NactAcross)-(NactAcross+1)/2;
-    [XS,YS] = meshgrid(xs);
-    [THETA,RHO] = cart2pol(XS-offsetAct(1),YS-offsetAct(2));
+    [XS,YS] = meshgrid((1:NactAcross)-bench.DM.xc,(1:NactAcross)-bench.DM.yc);
+
+%     xs = (1:NactAcross)-(NactAcross+1)/2;
+%     [XS,YS] = meshgrid(xs);
+    [THETA,RHO] = cart2pol(XS,YS);
 
     [ Z, n, m ] = generateZernike( noll_index, NactAcrossBeam/2+1, RHO, THETA  );
     Z = sign(PTV)*Z;

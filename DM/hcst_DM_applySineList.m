@@ -1,4 +1,4 @@
-function cmds = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs )
+function [fullcmds1D,diffCmds2D] =  hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs )
 %cmds = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, phzs  )
 
     if(any(isnan(spatFreq_rs)));error('Nan sent to DM');end
@@ -31,9 +31,13 @@ function cmds = hcst_DM_applySineList( bench, spatFreq_rs, spatFreq_qs, PTVs, ph
         ripples = ripples + ripple;
     
     end
+    diffCmds2D = ripples;% Output 2D commands added to current map
+    
 	data = hcst_DM_2Dto1D(bench,ripples);
 
 	cmds = data+flatvec;
+    
+    fullcmds1D = cmds;% Output 1D commands sent to DM
     
     if(any(isnan(cmds)));error('Nan sent to DM');end
     if(~isreal(cmds));error('Complex num sent to DM');end

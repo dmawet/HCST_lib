@@ -51,12 +51,22 @@ function im = hcst_andor_getImage(bench)
     im = zeros(bench.andor.AOIHeight,bench.andor.AOIWidth);
     
     for coadd = 1:numCoadds
-    
-        % Queue the buffer
-        err = calllib('lib', 'AT_QueueBuffer', bench.andor.andor_handle, userBufferPtr, int32(BufferSize));
-        if(err~=0)
-            disp('Failed to queue the buffer!');
-            error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_QueueBuffer']);
+        try
+            % Queue the buffer
+            err = calllib('lib', 'AT_QueueBuffer', bench.andor.andor_handle, userBufferPtr, int32(BufferSize));
+            if(err~=0)
+                disp('Failed to queue the buffer!');
+                error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_QueueBuffer']);
+            end
+        catch
+            hcst_andor_createBufferPtrs(bench)
+            % Create a new buffer and try again
+            err = calllib('lib', 'AT_QueueBuffer', bench.andor.andor_handle, userBufferPtr, int32(BufferSize));
+            if(err~=0)
+                disp('Failed to queue the buffer!');
+                error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_QueueBuffer']);
+            end
+            
         end
 
         err = calllib('lib', 'AT_WaitBuffer', bench.andor.andor_handle, bufferPtr, bufferSizePtr, uint32(1e6) );

@@ -1,4 +1,4 @@
-function cmds = hcst_DM_applySine( bench, spatFreq_r, spatFreq_q, PTV, phz )
+function [cmds,ripple] = hcst_DM_applySine( bench, spatFreq_r, spatFreq_q, PTV, phz )
 %cmds = hcst_DM_applySine( bench, spatFreq_r, spatFreq_q, PTV, phz )
 
     flatvec = bench.DM.flatvec;

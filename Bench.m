@@ -8,25 +8,27 @@ classdef Bench < handle
         TTM
         DM
         andor
+        FW
         info
     end
     
     methods
         
-        function Bench = Bench(FPM, LS, TTM, DM, andor, info)
+        function Bench = Bench(FPM, LS, TTM, DM, andor, FW, info)
             %BENCH Construct an instance of this class
             Bench.FPM = FPM;
             Bench.LS = LS;
             Bench.TTM = TTM;
             Bench.DM = DM;
             Bench.andor = andor;
+            Bench.FW = FW;
             Bench.info = info;
         end
         
         function isConnected(bench)
             fields = fieldnames(bench);
             for idx = 1:numel(fields)
-                if(any(strcmp({'FPM','LS','TTM','DM','andor'},fields{idx})))
+                if(any(strcmp({'FPM','LS','TTM','DM','andor','FW'},fields{idx})))
                     fprintf("%s \t %s\n", string(fields{idx}), string(bench.(fields{idx}).CONNECTED))
                 end
             end

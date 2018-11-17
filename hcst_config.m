@@ -10,9 +10,8 @@ function bench = hcst_config()
 %        3) TTM
 %        4) DM
 %        5) andor
+%        6) FW
 %   
-%   - TODO (in no particular order):
-%       Create/read conf file
 %
 %
 %   Arguments/Outputs:
@@ -25,11 +24,8 @@ function bench = hcst_config()
 %
 %
 %   Examples:
-%       hcst_config()
+%       bench = hcst_config()
 %           Creates and returns the core 'bench' struct 
-%
-%
-%   See also: hcst_setUpBench, hcst_cleanUpBench
 %
 
 
@@ -40,6 +36,7 @@ addpath('/home/hcst/HCST_lib/Andor/');
 addpath('/home/hcst/HCST_lib/DM/');
 addpath('/home/hcst/HCST_lib/DM/utils/');
 addpath('/home/hcst/HCST_lib/FPM/');
+addpath('/home/hcst/HCST_lib/FW/');
 addpath(genpath('/home/hcst/HCST_lib/LS/'));
 addpath(genpath('/home/hcst/HCST_lib/TTM/'));
 
@@ -56,9 +53,9 @@ FPM.User_H0 = 7.304999;
 FPM.User_F0 = 5.000099;
 
 % Upper bounds for the motion in each axis
-FPM.VBOUND = 27;
+FPM.VBOUND = 26.5;
 FPM.HBOUND = 8;   %DO NOT CHANGE UNLESS YOU'RE SURE THERE ARE NO COLLISIONS
-FPM.FBOUND = 27;
+FPM.FBOUND = 26.5;
 
 % Axes positions for the center of the Vortex
 % FPM.VORTEX_V0 = 1.5;
@@ -69,9 +66,20 @@ FPM.FBOUND = 27;
 % FPM.VORTEX_H0 = 5.684;
 % FPM.VORTEX_F0 = 3.955;
 % Updated by G. Ruane 2018aug22
-FPM.VORTEX_V0 = 1.914;
-FPM.VORTEX_H0 = 5.705;
-FPM.VORTEX_F0 = 3.955;
+% FPM.VORTEX_V0 = 1.914;
+% FPM.VORTEX_H0 = 5.705;
+% FPM.VORTEX_F0 = 3.955;
+% Updated by G. Ruane 2018oct26 (after removing analyzer)
+% FPM.VORTEX_V0 = 1.8960;
+% FPM.VORTEX_H0 = 5.7050;
+% FPM.VORTEX_F0 = 3.9550;
+% Updated by G. Ruane 2018nov9 after putting in polarizers 
+FPM.VORTEX_V0 = 1.8683;
+FPM.VORTEX_H0 = 5.7457;
+FPM.VORTEX_F0 = 3.9550;
+
+
+FPM.vortexCharge = 8;
 
 % Axes positions for the center of the Zernike mask 
 FPM.ZERNIKE_V0 = 1.5;
@@ -101,8 +109,11 @@ LS.HBOUND = 50.8;
 % LS.CENTER_V0 = 8.48;
 % LS.CENTER_H0  = 45.89;
 % Updated by G. Ruane 2018aug22
-bench.LS.CENTER_V0 = 8.15;
-bench.LS.CENTER_H0 = 45.87;
+% bench.LS.CENTER_V0 = 8.15;
+% bench.LS.CENTER_H0 = 45.87;
+% Updated by G. Ruane 2018nov09
+LS.CENTER_V0 = 8.0600;
+LS.CENTER_H0 = 45.9600;
 
 LS.CONNECTED = false;
 
@@ -138,9 +149,10 @@ DM.CONNECTED = false;
 DM.NactAcross = 34;
 DM.NactAcrossBeam = 25;
 DM.centerActBeam = 526;
-DM.offsetAct = [2 -3];% number of actuators between the 
-                      % beam center and the center of the DM [x,y]
-                      % center actuator is assumed to be #459
+
+DM.angDM = 181;
+DM.xc = 15;   % x-center of DM in actuator widths
+DM.yc = 18;   % y-center of DM in actuator widths
 %% Create Andor Neo sub-struct
 
 andor.CONNECTED = false;
@@ -159,13 +171,23 @@ andor.numCoadds = 1;
 andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 
 % current (row,col) of the PSF center 
-andor.FocusCol = 1260;
-andor.FocusRow = 989;
+% andor.FocusCol = 1260;
+% andor.FocusRow = 989;
+andor.FocusCol = 1685;
+andor.FocusRow = 692;
+
+%% Filter wheel 
+
+FW.CONNECTED = false;
+FW.defaultPos = 1;
 
 %% Calibrations
 
-andor.pixelPerLamOverD = 5.75;
-andor.numPixperCycle = 5.75;
+% andor.pixelPerLamOverD = 5.75;
+% andor.numPixperCycle = 5.75;
+
+andor.pixelPerLamOverD = 5.75/780*740;
+andor.numPixperCycle = 5.75/780*740;
 
 
 %% Back up info 
@@ -178,9 +200,11 @@ end
 
 info.benchBackUpDir = benchBackUpDir;
 
+info.path2darks = '/home/hcst/HCST_data/darks/2018Nov09/';
+
 %% Create bench object
 
-bench = Bench(FPM, LS, TTM, DM, andor, info );
+bench = Bench(FPM, LS, TTM, DM, andor, FW, info );
 
 
 end

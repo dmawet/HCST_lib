@@ -93,21 +93,23 @@ function hcst_setUpDM(bench)
     
     bench.DM.flatvec = hcst_DM_flattenDM_BMCmap(bench, false);
 
-    % Hack to check if DM is connected:
-    if ~bench.andor.CONNECTED
-        hcst_setUpAndor(bench, false)
-    else
-        hcst_DM_zeroDM(bench)
-        ref_im = hcst_andor_getImage(bench);
-        hcst_DM_testPatternET(bench, 10);
-        im = hcst_andor_getImage(bench);
-        if max(max(ref_im - im)) > 1e4
-            bench.DM.CONNECTED = true;
-        else
-            bench.DM.CONNECTED = false;
-            error('Test pattern on DM failed to significantly change image. Either DM driver is not connected or image is off camera.')
-        end
-    end
+    bench.DM.CONNECTED = true;
+
+%     % Hack to check if DM is connected:
+%     if ~bench.andor.CONNECTED
+%         hcst_setUpAndor(bench, false)
+%     else
+%         hcst_DM_zeroDM(bench)
+%         ref_im = hcst_andor_getImage(bench);
+%         hcst_DM_testPatternET(bench, 10);
+%         im = hcst_andor_getImage(bench);
+%         if max(max(ref_im - im)) > 1e4
+%             bench.DM.CONNECTED = true;
+%         else
+%             bench.DM.CONNECTED = false;
+%             error('Test pattern on DM failed to significantly change image. Either DM driver is not connected or image is off camera.')
+%         end
+%     end
     
 
     % Save backup bench object
