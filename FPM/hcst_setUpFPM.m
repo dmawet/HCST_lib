@@ -24,6 +24,8 @@ function hcst_setUpFPM(bench)
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
 
+disp('Setting up FPM stages...');
+
 %% Add the directory with all our libraries to the Python search path
 HCST_lib_PATH = '/home/hcst/HCST_lib/FPM';
 if count(py.sys.path, HCST_lib_PATH) == 0

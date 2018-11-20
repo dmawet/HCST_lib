@@ -21,7 +21,7 @@ hcst_setUpAndor(bench, false);
 %% Call Andor test function
 
 % Set the exposure time
-tint = 0.0001;
+tint = 10;
 hcst_andor_setExposureTime(bench,tint);
 
 tic;
@@ -35,6 +35,10 @@ figure;
 imagesc(double(im)/2^16);
 axis image; 
 colorbar;
+
+
+
+return;
 
 %%
 

@@ -105,7 +105,7 @@ bench.andor.acquiring = false; % Not currently acquiring frames
 bench.andor.continuous = false;% Not currently in continuous mode 
 
 % By default, send warning if signal is above the Kern limit
-bench.andor.warnKernLimit = true;
+bench.andor.warnKernLimit = false;
 
 disp('Andor Neo Camera Initialized:');
 disp(['     tint = ',num2str(hcst_andor_getExposureTime(bench))]);

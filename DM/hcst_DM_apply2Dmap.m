@@ -3,10 +3,16 @@ function cmds = hcst_DM_apply2Dmap( bench, map, scale )
 
 
     flatvec = bench.DM.flatvec;
-
+    
     data = scale*hcst_DM_2Dto1D(bench,map);
     
     cmds = data+flatvec;
+    
+    
+    cmds(isnan(cmds)) = 0;
+    if(nnz(cmds<=-1)>0)
+        error('Cmds are less than -1');
+    end
     
     err_code = BMCSendData(bench.DM.dm, cmds);
     if(err_code~=0)

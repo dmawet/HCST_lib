@@ -16,6 +16,8 @@ function hcst_cleanUpFW(bench)
 %           Updates 'bench', disconnects the FW
 
 
+hcst_FW_setPos(bench,bench.FW.defaultPos);
+
 bench.FW.pyObj.close();
 
 

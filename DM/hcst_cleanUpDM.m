@@ -35,7 +35,7 @@ if(err_code~=0)
     error(eString);
 end
 
-bench.DM.CONNECTED = 0;
+bench.DM.CONNECTED = false;
 
 disp('BMC DM disconnected. Clean up complete.');
 

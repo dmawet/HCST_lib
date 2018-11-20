@@ -74,9 +74,13 @@ FPM.FBOUND = 26.5;
 % FPM.VORTEX_H0 = 5.7050;
 % FPM.VORTEX_F0 = 3.9550;
 % Updated by G. Ruane 2018nov9 after putting in polarizers 
-FPM.VORTEX_V0 = 1.8683;
-FPM.VORTEX_H0 = 5.7457;
-FPM.VORTEX_F0 = 3.9550;
+% FPM.VORTEX_V0 = 1.8683;
+% FPM.VORTEX_H0 = 5.7457;
+% FPM.VORTEX_F0 = 3.9550;
+% Updated by G. Ruane 2018nov19
+FPM.VORTEX_V0 = 1.855;
+FPM.VORTEX_H0 = 5.745;
+FPM.VORTEX_F0 = 6;
 
 
 FPM.vortexCharge = 8;
@@ -173,8 +177,8 @@ andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 % current (row,col) of the PSF center 
 % andor.FocusCol = 1260;
 % andor.FocusRow = 989;
-andor.FocusCol = 1685;
-andor.FocusRow = 692;
+andor.FocusCol = 1659;
+andor.FocusRow = 694;
 
 %% Filter wheel 
 
@@ -186,8 +190,10 @@ FW.defaultPos = 1;
 % andor.pixelPerLamOverD = 5.75;
 % andor.numPixperCycle = 5.75;
 
-andor.pixelPerLamOverD = 5.75/780*740;
-andor.numPixperCycle = 5.75/780*740;
+info.lambda0 = 775e-9;
+
+andor.pixelPerLamOverD = 5.75/780e-9*info.lambda0;
+andor.numPixperCycle = 5.75/780e-9*info.lambda0;
 
 
 %% Back up info 
@@ -200,7 +206,7 @@ end
 
 info.benchBackUpDir = benchBackUpDir;
 
-info.path2darks = '/home/hcst/HCST_data/darks/2018Nov09/';
+info.path2darks = '/home/hcst/HCST_data/darks/2018Nov19/';
 
 %% Create bench object
 

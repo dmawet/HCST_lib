@@ -18,15 +18,25 @@ function resPos = hcst_FW_setPos(bench,pos)
 %       hcst_FPM_move(bench, 1)
 %           Moves the FW to position 1
 %
+
+    curPos = hcst_FW_getPos(bench);
     
-    if(and(~isnan(pos), pos>=1 || pos<=6))
-        bench.FW.pyObj.command(['pos=',num2str(round(pos))]);
-        disp(['Filter wheel moved to position ',num2str(pos)]);
+    if(curPos ~= pos)
+    
+        if(and(~isnan(pos), pos>=1 || pos<=6))
+            bench.FW.pyObj.command(['pos=',num2str(round(pos))]);
+            disp(['Filter wheel moved to position ',num2str(pos)]);
+        else
+            error('Invalid filter wheel position.');
+        end
+
+        %query('pos?')
+        resPos = hcst_FW_getPos(bench);
+    
     else
-        error('Invalid filter wheel position.');
+        resPos = curPos;
+        disp(['Filter wheel at position ',num2str(pos)]);
     end
     
-    %query('pos?')
-    resPos = hcst_FW_getPos(bench);
-    
+
 end
