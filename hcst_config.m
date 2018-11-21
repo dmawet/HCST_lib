@@ -196,17 +196,19 @@ andor.pixelPerLamOverD = 5.75/780e-9*info.lambda0;
 andor.numPixperCycle = 5.75/780e-9*info.lambda0;
 
 
-%% Back up info 
+%% Back up and data storage info 
+
+info.HCST_DATA_DIR = '/media/hcst/edc9d85f-b1f5-4499-97aa-197291d84a05/HCST_data/';
 
 % Directory to save back up bench structs
-benchBackUpDir = '/home/hcst/HCST_data/benchstructs/';
+benchBackUpDir = [info.HCST_DATA_DIR,'benchstructs/'];
 if(~exist(benchBackUpDir, 'dir'))
     mkdir(benchBackUpDir);
 end
 
 info.benchBackUpDir = benchBackUpDir;
 
-info.path2darks = '/home/hcst/HCST_data/darks/2018Nov19/';
+info.path2darks = [info.HCST_DATA_DIR,'darks/2018Nov19/'];
 
 %% Create bench object
 
