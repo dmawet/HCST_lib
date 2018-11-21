@@ -26,7 +26,7 @@ function hcst_setUpAndor(bench,wait2stabilize)
 %
 
 
-disp('Setting up Andor Neo ...');
+disp('*** Setting up Andor Neo ... ***');
 
 assert(1 == exist('wait2stabilize','var'), ...
     'MATLAB:narginchk:notEnoughInputs', ...
@@ -107,14 +107,14 @@ bench.andor.continuous = false;% Not currently in continuous mode
 % By default, send warning if signal is above the Kern limit
 bench.andor.warnKernLimit = false;
 
-disp('Andor Neo Camera Initialized:');
+disp('Andor Neo Camera Parameters:');
 disp(['     tint = ',num2str(hcst_andor_getExposureTime(bench))]);
 disp(['     pixel encoding index = ',num2str(hcst_andor_getPixelEncodingIndex(bench))]);
 disp(['     image size (bytes) = ',num2str(hcst_andor_getImageSizeBytes(bench))]);
 disp(['     AOIHeight = ',num2str(bench.andor.AOIHeight)]);
 disp(['     AOIWidth  = ',num2str(bench.andor.AOIWidth)]);
 disp(['     AOIStride = ',num2str(bench.andor.AOIStride)]);
-
+disp('*** Andor Neo Camera Initialized. ***');
 
 bench.andor.CONNECTED = true;
 

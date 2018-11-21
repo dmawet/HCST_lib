@@ -63,7 +63,7 @@ end
 
 unloadlibrary lib;
 
-disp('Andor Neo Camera disconnected. Clean up complete.');
+disp('*** Andor Neo Camera disconnected. ***');
 
 bench.andor.CONNECTED = false;
 

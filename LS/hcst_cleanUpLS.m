@@ -51,6 +51,8 @@ end
 
 bench.LS.CONNECTED = false;
 
+disp('*** Lyot stop stages disconnected. ***');
+
 % Save backup bench object
 hcst_backUpBench(bench)
 

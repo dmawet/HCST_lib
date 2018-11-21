@@ -48,6 +48,8 @@ if ~bench.FPM.axF.ser.isOpen
     bench.FPM = rmfield(bench.FPM, 'axF');
 end
 
+disp('*** FPM stages disconnected. ***');
+
 bench.FPM.CONNECTED = false;
 
 % Save backup bench object

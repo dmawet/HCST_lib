@@ -11,7 +11,7 @@ function hcst_setUpFW(bench)
 %           instances. It is created by the hcst_config() function.
 %
 %
-    disp('Setting up filter wheel ...')
+    disp('*** Setting up filter wheel ... ***')
     % set the python path
     HCST_lib_PATH = '/home/hcst/HCST_lib/FW';
     if count(py.sys.path, HCST_lib_PATH) == 0
@@ -25,7 +25,7 @@ function hcst_setUpFW(bench)
     % Confirm the FW is connected
     if(bench.FW.pyObj.isOpen)
         bench.FW.CONNECTED = true;
-        disp('FW connected successfully.')
+        disp('*** FW initialized. ***')
     end
         
     hcst_FW_setPos(bench,bench.FW.defaultPos);

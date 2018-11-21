@@ -26,6 +26,8 @@ function hcst_setUpLS(bench)
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpLS
 %
 
+disp('*** Setting up Lyot stop stages... ***');
+
 %% Axes Serial Numbers
 % Change these values if the serial numbers on the axes are changed
 HOR_AXIS_SN = 47799;    % Horizontal axis
@@ -104,6 +106,9 @@ end
 if ~isempty(axHor.getposition()) && ~isempty(axVer.getposition())
     bench.LS.CONNECTED = true;
 end
+
+disp('*** Lyot stop stages initialized. ***');
+
 
 %% Populate struct
 bench.LS.axV = axVer;

@@ -23,7 +23,7 @@ bench.FW.pyObj.close();
 
 if(~bench.FW.pyObj.isOpen)
     bench.FW.CONNECTED = false;
-    disp('Filter wheel disconnected. Clean up complete.');
+    disp('*** Filter wheel disconnected. ***');
 else
     disp('Filter wheel failed to disconnect.');
 end

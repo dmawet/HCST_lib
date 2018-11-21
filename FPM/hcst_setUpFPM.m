@@ -24,7 +24,7 @@ function hcst_setUpFPM(bench)
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
 
-disp('Setting up FPM stages...');
+disp('*** Setting up FPM stages... ***');
 
 %% Add the directory with all our libraries to the Python search path
 HCST_lib_PATH = '/home/hcst/HCST_lib/FPM';
@@ -79,6 +79,8 @@ end
 if (axHor.reqPosSet() ~= -9999) && (axVer.reqPosSet() ~= -9999) && (axFoc.reqPosSet() ~= -9999)
     bench.FPM.CONNECTED = true;
 end
+
+disp('*** FPM stages initialized. ***');
 
 %% Populate struct
 bench.FPM.axV = axVer;

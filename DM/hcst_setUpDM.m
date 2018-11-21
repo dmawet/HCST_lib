@@ -21,6 +21,8 @@ function hcst_setUpDM(bench)
 %   See also: hcst_setUpBench, hcst_cleanUpBench, hcst_cleanUpFPM
 %
 
+    disp('*** Setting up BMC kilo-DM. ***');
+
     addpath('/opt/Boston Micromachines/lib/Matlab');
 
     % ATTENTION: change this string to match the serial number of your hardware
@@ -111,6 +113,7 @@ function hcst_setUpDM(bench)
 %         end
 %     end
     
+    disp('*** BMC kilo-DM initialized. ***');
 
     % Save backup bench object
     hcst_backUpBench(bench)
