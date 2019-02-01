@@ -78,17 +78,25 @@ FPM.FBOUND = 26.5;
 % FPM.VORTEX_H0 = 5.7457;
 % FPM.VORTEX_F0 = 3.9550;
 % Updated by G. Ruane 2018nov19
-FPM.VORTEX_V0 = 1.855;
-FPM.VORTEX_H0 = 5.745;
-FPM.VORTEX_F0 = 6;
+% FPM.VORTEX_V0 = 1.855;
+% FPM.VORTEX_H0 = 5.745;
+% FPM.VORTEX_F0 = 6;
+% Updated by J. Llop 2018Dec03/2019Jan08
+% FPM.VORTEX_V0 = 2.4230;
+% FPM.VORTEX_H0 = 5.6585;
+% FPM.VORTEX_F0 = 1.5315;
+% Updated by J. Llop 2019Jan10 after changing pinhole
+FPM.VORTEX_V0 = 2.4460;
+FPM.VORTEX_H0 = 5.7715;
+FPM.VORTEX_F0 = 1.6465;
 
 
 FPM.vortexCharge = 8;
 
 % Axes positions for the center of the Zernike mask 
-FPM.ZERNIKE_V0 = 1.5;
-FPM.ZERNIKE_H0 = 7.304999;
-FPM.ZERNIKE_F0 = 5.000099;
+FPM.ZERNIKE_F0 = 2.2;
+FPM.ZERNIKE_V0 = 23.409;
+FPM.ZERNIKE_H0 = 5.17;
 
 FPM.CONNECTED = false;
 
@@ -116,8 +124,11 @@ LS.HBOUND = 50.8;
 % bench.LS.CENTER_V0 = 8.15;
 % bench.LS.CENTER_H0 = 45.87;
 % Updated by G. Ruane 2018nov09
-LS.CENTER_V0 = 8.0600;
-LS.CENTER_H0 = 45.9600;
+% LS.CENTER_V0 = 8.0600;
+% LS.CENTER_H0 = 45.9600;
+% Updated by J. Llop 2018Dec03
+LS.CENTER_V0 = 7.0800;
+LS.CENTER_H0 = 22.5100;
 
 LS.CONNECTED = false;
 
@@ -177,8 +188,8 @@ andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 % current (row,col) of the PSF center 
 % andor.FocusCol = 1260;
 % andor.FocusRow = 989;
-andor.FocusCol = 1659;
-andor.FocusRow = 694;
+andor.FocusCol = 1644;
+andor.FocusRow = 757;
 
 %% Filter wheel 
 
@@ -208,7 +219,7 @@ end
 
 info.benchBackUpDir = benchBackUpDir;
 
-info.path2darks = [info.HCST_DATA_DIR,'darks/2018Nov19/'];
+info.path2darks = [info.HCST_DATA_DIR,'darks/2019Jan09/'];
 
 %% Create bench object
 

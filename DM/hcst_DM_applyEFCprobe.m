@@ -1,4 +1,4 @@
-function [diffCmds2D,fullcmds1D] = hcst_DM_applyEFCprobe( bench, ProbeArea, psi, PTV, apply )
+function [diffCmds2D,fullcmds1D] = hcst_DM_applyEFCprobe( bench, DM, ProbeArea, psi, PTV, apply, DHshape )
 %[cmds2D,cmds1D] = hcst_DM_applyEFCprobe( bench, ProbeArea, psi, PTV, apply )
 % Applies or returns Give'on style DM probes for EFC
 
@@ -25,10 +25,16 @@ function [diffCmds2D,fullcmds1D] = hcst_DM_applyEFCprobe( bench, ProbeArea, psi,
 
     %magn = lambda*sqrt(2*pi)*sqrt(InormDes);   % surface height (meters) to get desired intensity
 
-    diffCmds2D = PTV*sinc(mx*XS).*sinc(my*YS).* ...
-        cos(2*pi*wx/D*XS + psi).*cos(2*pi*wy/D*YS);
-%     diffCmds2D = diffCmds2D/max(diffCmds2D(:))*PTV;
-    %diffCmds2D = diffCmds2D - min(diffCmds2D(:));
+    
+    if not(isempty(strfind(DHshape,'top'))) || not(isempty(strfind(DHshape,'bottom')))
+        diffCmds2D = PTV*sinc(mx*XS).*sinc(my*YS).* ...
+        cos(2*pi*wy/D*YS + psi);
+    else
+        diffCmds2D = PTV*sinc(mx*XS).*sinc(my*YS).* ...
+            cos(2*pi*wx/D*XS + psi).*cos(2*pi*wy/D*YS);
+    end
+    %
+    diffCmds2D = falco_fit_dm_surf(DM.dm1,diffCmds2D);
     
     data = hcst_DM_2Dto1D(bench,diffCmds2D');
     
