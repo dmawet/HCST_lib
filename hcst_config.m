@@ -86,9 +86,9 @@ FPM.FBOUND = 26.5;
 % FPM.VORTEX_H0 = 5.6585;
 % FPM.VORTEX_F0 = 1.5315;
 % Updated by J. Llop 2019Jan10 after changing pinhole
-FPM.VORTEX_V0 = 2.4460;
-FPM.VORTEX_H0 = 5.7715;
-FPM.VORTEX_F0 = 1.6465;
+FPM.VORTEX_V0 = 1.8022;
+FPM.VORTEX_H0 = 6.1485;
+FPM.VORTEX_F0 = 2.2565;
 
 
 FPM.vortexCharge = 8;
@@ -127,8 +127,8 @@ LS.HBOUND = 50.8;
 % LS.CENTER_V0 = 8.0600;
 % LS.CENTER_H0 = 45.9600;
 % Updated by J. Llop 2018Dec03
-LS.CENTER_V0 = 7.0800;
-LS.CENTER_H0 = 22.5100;
+LS.CENTER_V0 = 13.7500;
+LS.CENTER_H0 = 22.1000;
 
 LS.CONNECTED = false;
 
@@ -188,8 +188,8 @@ andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 % current (row,col) of the PSF center 
 % andor.FocusCol = 1260;
 % andor.FocusRow = 989;
-andor.FocusCol = 1644;
-andor.FocusRow = 757;
+andor.FocusCol = 1738;
+andor.FocusRow = 714;
 
 %% Filter wheel 
 
@@ -203,8 +203,10 @@ FW.defaultPos = 1;
 
 info.lambda0 = 775e-9;
 
-andor.pixelPerLamOverD = 5.75/780e-9*info.lambda0;
-andor.numPixperCycle = 5.75/780e-9*info.lambda0;
+% andor.pixelPerLamOverD = 5.75/780e-9*info.lambda0;
+% andor.numPixperCycle = 5.75/780e-9*info.lambda0;
+andor.pixelPerLamOverD = 6.8/775e-9*info.lambda0;
+andor.numPixperCycle = 6.8/775e-9*info.lambda0;
 
 
 %% Back up and data storage info 

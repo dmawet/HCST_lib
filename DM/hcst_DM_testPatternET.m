@@ -11,13 +11,17 @@ function cmds = hcst_DM_testPatternET( bench, cmd )
     im = im(croprows,cropcols);
     im = bwareaopen(im, 500);
 
-    % im = imresize(im,[26 26]);
-    % im = padarray(im,[4 4]);
-    im = imresize(im,[20 20]);
-    im = padarray(im,[7 7]);
-    im = circshift(im,[2 3]);
+    %im = imresize(im,[26 26]);
+    %im = padarray(im,[4 4]);
     
-% figure;imagesc(im2);axis image;colorbar;title('Pattern sent.');
+    im = imresize(im,[22 22]);
+    im = padarray(im,[6 6]);
+    
+	%im = imresize(im,[24 24]);
+	%im = padarray(im,[7 7]);
+	%im = circshift(im,[2 3]);
+    
+    figure;imagesc(im);axis image;colorbar;title('Pattern sent.');
 
     data = cmd*hcst_DM_2Dto1D(bench,rot90(im));
     

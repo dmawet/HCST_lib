@@ -1,6 +1,6 @@
 function hcst_setUpDM(bench)
 %hcst_setUpDM(bench)
-%Set up the HCST BMC kilo-DM
+%Set up the HCST BMC kilo-DM. Initialized to manufacturer flat. 
 %   - This function should be called before calling any other DM functions
 %   - It uses the BMC libraries in /opt/Boston Micromachines/lib/Matlab/
 %   
@@ -93,7 +93,7 @@ function hcst_setUpDM(bench)
     bench.DM.V2bits = bench.DM.dac_scale/bench.DM.MAX_V;
     bench.DM.cmdLength = bench.DM.dm.size; % Length of command arrays to send
     
-    bench.DM.flatvec = hcst_DM_flattenDM_BMCmap(bench, false);
+    bench.DM.flatvec = hcst_DM_flattenDM_BMCmap(bench, true);
 
     bench.DM.CONNECTED = true;
 

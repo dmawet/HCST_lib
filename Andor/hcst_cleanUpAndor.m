@@ -17,6 +17,10 @@ function hcst_cleanUpAndor(bench)
 %       hcst_cleanUpAndor(bench)
 %           Updates 'bench', disconnects the andor
 
+% -------------------------------------------------------------------%
+
+% Make sure fan is off 
+hcst_andor_toggleFan(bench,'off')
 
 % -------------------------------------------------------------------%
 

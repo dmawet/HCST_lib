@@ -1,6 +1,7 @@
 function [Zsum,cmds] = hcst_DM_applyZernikeList( bench, PTVs, apply )
 %[Zsum,cmds] = hcst_DM_applyZernikeList( bench, PTVs, apply )
-%Applies a list of Zernike polynomials to the DM
+%Applies a list of Zernike polynomials to the DM.
+% PTV vector looks like [cmd_Z4, cmd_Z5, ... ]
 
     flatvec = bench.DM.flatvec;
     %offsetAct = bench.DM.offsetAct;
@@ -20,12 +21,12 @@ function [Zsum,cmds] = hcst_DM_applyZernikeList( bench, PTVs, apply )
     for noll_index = 4:(length(PTVs)+3)
         PTV = PTVs(ii);
         [ Z, n, m ] = generateZernike( noll_index, NactAcrossBeam/2+1, RHO, THETA  );
-        Z = sign(PTV)*Z;
-        Z = Z - min(Z(:));
-        Z = Z/max(Z(:));
-        Z = abs(PTV)*Z;
+%         Z = sign(PTV)*Z;
+%         Z = Z - min(Z(:));
+%         Z = Z/max(Z(:));
+%         Z = abs(PTV)*Z;
         Z(isnan(Z)) = 0;
-        Zsum = Zsum + Z;
+        Zsum = Zsum + PTV*Z;
         ii = ii + 1;
     end
     

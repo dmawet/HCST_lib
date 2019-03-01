@@ -15,13 +15,13 @@ function [Z,cmds] = hcst_DM_applyZernike( bench, noll_index, PTV, apply )
     [THETA,RHO] = cart2pol(XS,YS);
 
     [ Z, n, m ] = generateZernike( noll_index, NactAcrossBeam/2+1, RHO, THETA  );
-    Z = sign(PTV)*Z;
-    Z = Z - min(Z(:));
-    Z = Z/max(Z(:));
-    Z = abs(PTV)*Z;
-    Z(isnan(Z)) = 0;
+%     Z = sign(PTV)*Z;
+%     Z = Z - min(Z(:));
+%     Z = Z/max(Z(:));
+%     Z = abs(PTV)*Z;
+	Z(isnan(Z)) = 0;
     
-    data = hcst_DM_2Dto1D(bench,Z);
+    data = PTV*hcst_DM_2Dto1D(bench,Z);
     
     cmds = data+flatvec;
     
