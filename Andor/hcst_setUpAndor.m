@@ -83,7 +83,7 @@ hcst_andor_getImageFormatting(bench);
 %% Turn off fan
 
 % hcst_andor_toggleFan(bench,'off');
-hcst_andor_toggleFan(bench,'on'); %JLlop: Feb 24 while the cooler pump is being repaired
+hcst_andor_toggleFan(bench,'off'); %JLlop: Feb 24 while the cooler pump is being repaired
 
 %% Turn on sensor cooler
 

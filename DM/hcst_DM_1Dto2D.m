@@ -21,14 +21,16 @@ xs = (1:NactAcross)-(NactAcross+1)/2;
 RS = sqrt(XS.^2 + YS.^2);
 
 map = zeros(NactAcross);
-mapaux = map;
 map(RS<NactAcross/2+0.5) = 1;
+mapaux = map;
 
-for II=1:Nact
+actnum = 1;
+for II=1:NactAcross^2
     if mapaux(II)==1
-        map(II) = vec(II);
+        map(II) = vec(actnum);
+        actnum = actnum + 1;
     end
 end
-map = map';
+% map = map';
 
 end

@@ -11,9 +11,8 @@ function bench = hcst_config()
 %        4) DM
 %        5) andor
 %        6) FW
+%        7) NKT
 %   
-%
-%
 %   Arguments/Outputs:
 %   bench = hcst_config()
 %       'bench' is an instance of the Bench class that is a drop-in
@@ -21,12 +20,6 @@ function bench = hcst_config()
 %           It contains all pertinent bench information and instances of
 %           control objects.
 %          
-%
-%
-%   Examples:
-%       bench = hcst_config()
-%           Creates and returns the core 'bench' struct 
-%
 
 
 %% Add the path to our libraries
@@ -37,6 +30,7 @@ addpath('/home/hcst/HCST_lib/DM/');
 addpath('/home/hcst/HCST_lib/DM/utils/');
 addpath('/home/hcst/HCST_lib/FPM/');
 addpath('/home/hcst/HCST_lib/FW/');
+addpath('/home/hcst/HCST_lib/NKT/');
 addpath(genpath('/home/hcst/HCST_lib/LS/'));
 addpath(genpath('/home/hcst/HCST_lib/TTM/'));
 
@@ -86,17 +80,20 @@ FPM.FBOUND = 26.5;
 % FPM.VORTEX_H0 = 5.6585;
 % FPM.VORTEX_F0 = 1.5315;
 % Updated by J. Llop 2019Jan10 after changing pinhole
-FPM.VORTEX_V0 = 1.8022;
-FPM.VORTEX_H0 = 6.1485;
-FPM.VORTEX_F0 = 2.2565;
+FPM.VORTEX_V0 = 1.2990;
+FPM.VORTEX_H0 = 6.1766;
+FPM.VORTEX_F0 = 2.5515;
 
 
-FPM.vortexCharge = 8;
+FPM.vortexCharge = -8;
 
 % Axes positions for the center of the Zernike mask 
-FPM.ZERNIKE_F0 = 2.2;
-FPM.ZERNIKE_V0 = 23.409;
-FPM.ZERNIKE_H0 = 5.17;
+% FPM.ZERNIKE_F0 = 2.2;
+% FPM.ZERNIKE_V0 = 23.409;
+% FPM.ZERNIKE_H0 = 5.17;
+FPM.ZERNIKE_F0 = 1.8555;
+FPM.ZERNIKE_V0 = 22.1015;
+FPM.ZERNIKE_H0 = 3.3725;
 
 FPM.CONNECTED = false;
 
@@ -127,8 +124,8 @@ LS.HBOUND = 50.8;
 % LS.CENTER_V0 = 8.0600;
 % LS.CENTER_H0 = 45.9600;
 % Updated by J. Llop 2018Dec03
-LS.CENTER_V0 = 13.7500;
-LS.CENTER_H0 = 22.1000;
+LS.CENTER_V0 = 10.1500;
+LS.CENTER_H0 = 23.4000;
 
 LS.CONNECTED = false;
 
@@ -161,13 +158,18 @@ DM.CONNECTED = false;
 
 % Note where the beam is with respect to the DM (need a function to
 % determine this later...)
-DM.NactAcross = 34;
-DM.NactAcrossBeam = 25;
-DM.centerActBeam = 526;
+% DM.NactAcross = 34;
+DM.NactAcrossBeam = 30;
+% DM.centerActBeam = 526;
+% 
+% DM.angDM = 181;
+% DM.xc = 15;   % x-center of DM in actuator widths
+% DM.yc = 18;   % y-center of DM in actuator widths
 
-DM.angDM = 181;
-DM.xc = 15;   % x-center of DM in actuator widths
-DM.yc = 18;   % y-center of DM in actuator widths
+% After removing first plate
+DM.angDM = 0;
+DM.xc = 17.5;   % x-center of DM in actuator widths
+DM.yc = 17.5;   % y-center of DM in actuator widths
 %% Create Andor Neo sub-struct
 
 andor.CONNECTED = false;
@@ -176,6 +178,7 @@ andor.CONNECTED = false;
 andor.default_tint = 0.001;
 andor.numCoadds = 1;
 
+andor.warnKernLimit=true;
 
 % Default pixel encoding index 
 % Options:
@@ -188,13 +191,20 @@ andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 % current (row,col) of the PSF center 
 % andor.FocusCol = 1260;
 % andor.FocusRow = 989;
-andor.FocusCol = 1738;
-andor.FocusRow = 714;
+andor.FocusCol = 1991;
+andor.FocusRow = 686;
 
 %% Filter wheel 
 
 FW.CONNECTED = false;
 FW.defaultPos = 1;
+
+%% NKT 
+
+NKT.CONNECTED = false;
+NKT.numTries = 10;
+NKT.delay = 1;
+info.NKT_lib_PATH = '/home/hcst/HCST_lib/NKT/';
 
 %% Calibrations
 
@@ -203,10 +213,10 @@ FW.defaultPos = 1;
 
 info.lambda0 = 775e-9;
 
-% andor.pixelPerLamOverD = 5.75/780e-9*info.lambda0;
-% andor.numPixperCycle = 5.75/780e-9*info.lambda0;
-andor.pixelPerLamOverD = 6.8/775e-9*info.lambda0;
-andor.numPixperCycle = 6.8/775e-9*info.lambda0;
+andor.pixelPerLamOverD = 4.7/780e-9*info.lambda0;
+andor.numPixperCycle = 4.7/780e-9*info.lambda0;
+% andor.pixelPerLamOverD = 6.8/775e-9*info.lambda0;
+% andor.numPixperCycle = 6.8/775e-9*info.lambda0;
 
 
 %% Back up and data storage info 
@@ -221,11 +231,12 @@ end
 
 info.benchBackUpDir = benchBackUpDir;
 
-info.path2darks = [info.HCST_DATA_DIR,'darks/2019Jan09/'];
+info.path2darks = [info.HCST_DATA_DIR,'darks/2019Mar22/'];
+info.path2darksND = [info.HCST_DATA_DIR,'darksND/2019Mar22/'];
 
 %% Create bench object
 
-bench = Bench(FPM, LS, TTM, DM, andor, FW, info );
+bench = Bench(FPM, LS, TTM, DM, andor, FW, NKT, info );
 
 
 end
