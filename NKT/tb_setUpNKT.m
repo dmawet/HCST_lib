@@ -19,7 +19,7 @@ function tb_setUpNKT(bench)
         disp('*** Connecting to NKT ... ***');
 
         % Create Nkt object using nkt_mod.py
-        bench.NKT.nktobj = py.nkt_mod_falco.Nkt('/dev/ttyNKT',115200);
+        bench.NKT.nktobj = py.nkt_mod_falco.Nkt('/dev/ttyNKT',115200);%115200%
 
         bench.NKT.CONNECTED = true;
         

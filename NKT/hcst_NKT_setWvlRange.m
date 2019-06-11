@@ -1,4 +1,4 @@
-function tb_NKT_setWvlRange(bench,lower_nm,upper_nm)
+function hcst_NKT_setWvlRange(mp,bench,lower_nm,upper_nm,si)
 %tb_NKT_setWvlRange(bench,lower,upper) Set wavelength of the NKT Varia.
 %
 %   Inputs:
@@ -9,12 +9,27 @@ function tb_NKT_setWvlRange(bench,lower_nm,upper_nm)
 %
 %   author: G. Ruane
 %   last modified: March 26, 2019
+%   modified by J Llop Apr 22,2019
 
     NKT_MIN_WVL = 400;% nm
     NKT_MAX_WVL = 900;% nm
 
     % Get the current lower and upper wavelengths  
-    [currentlower,currentupper] = tb_NKT_getWvlRange(bench);
+%     [currentlower,currentupper] = tb_NKT_getWvlRange(bench);
+    if si>1
+        lam0 = mp.sbp_centers(si-1);
+        currentlower = (lam0 - bench.info.sbp_width(si-1)/2)*1e9;
+        currentupper = (lam0 + bench.info.sbp_width(si-1)/2)*1e9;
+    else
+        if mp.Nsbp>1
+            lam0 = mp.sbp_centers(mp.Nsbp);
+            currentlower = (lam0 - bench.info.sbp_width(mp.Nsbp)/2)*1e9;
+            currentupper = (lam0 + bench.info.sbp_width(mp.Nsbp)/2)*1e9;
+        else
+            [currentlower,currentupper] = tb_NKT_getWvlRange(bench);
+        end
+    end
+    
     
 	% Check that the wavelengths make sense, if not, keep them the same
     if(or(lower_nm < NKT_MIN_WVL,lower_nm > NKT_MAX_WVL))

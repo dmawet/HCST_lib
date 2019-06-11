@@ -96,7 +96,7 @@ FPM.FBOUND = 26.5;
 % FPM.VORTEX_H0 = 6.0653;
 % FPM.VORTEX_F0 = 1.8365;
 % After putting in the Apodizer (AVC), June 5, 2019
-FPM.VORTEX_V0 = 1.3913;
+bench.FPM.VORTEX_V0 = 1.3913;
 FPM.VORTEX_H0 = 6.2098;
 FPM.VORTEX_F0 = 1.8365;
 
