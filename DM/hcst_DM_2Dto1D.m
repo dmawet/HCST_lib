@@ -14,6 +14,7 @@ function vec = hcst_DM_2Dto1D(bench,map)
 %  elements 1024+1:1024+924. All other elements in the vector must be zero
 %  or else very odd computer behavior can occur, such as rebooting.
 
+
 Nact = 952;
 NactAcross = 34;
 xs = (1:NactAcross)-(NactAcross+1)/2;
@@ -28,5 +29,6 @@ RS = sqrt(XS.^2 + YS.^2);
 
 vec = zeros(1,bench.DM.cmdLength);
 vec(1:Nact) = map(RS<NactAcross/2+0.5);
+
 
 end

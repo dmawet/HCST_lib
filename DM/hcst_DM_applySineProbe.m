@@ -32,7 +32,7 @@ function [diffCmds2D,fullcmds1D] = hcst_DM_applySineProbe( bench, DM, w, ang, ps
     imagesc(diffCmds2D)
     axis image
     %
-    diffCmds2D = falco_fit_dm_surf(DM.dm1,diffCmds2D);
+    diffCmds2D = falco_fit_dm_surf(DM,diffCmds2D);
     map =fliplr(diffCmds2D');
 %     map = fliplr(rot90(diffCmds2D,1)); %JLlop Apr10, 2019
 %     map = flipud(diffCmds2D'); %JLlop Apr10, 2019

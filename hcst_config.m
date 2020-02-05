@@ -12,6 +12,9 @@ function bench = hcst_config()
 %        5) andor
 %        6) FW
 %        7) NKT
+%        8) FIUStages
+%        9) BS
+%        10) Femto
 %   
 %   Arguments/Outputs:
 %   bench = hcst_config()
@@ -24,15 +27,19 @@ function bench = hcst_config()
 
 %% Add the path to our libraries
 
-% addpath(genpath('/home/hcst/HCST_lib/'));
+addpath('/home/hcst/HCST_lib/');
 addpath('/home/hcst/HCST_lib/Andor/');
 addpath('/home/hcst/HCST_lib/DM/');
 addpath('/home/hcst/HCST_lib/DM/utils/');
 addpath('/home/hcst/HCST_lib/FPM/');
 addpath('/home/hcst/HCST_lib/FW/');
-addpath('/home/hcst/HCST_lib/NKT/');
+addpath('/home/hcst/HCST_lib/LPQWP/');
+addpath('/home/hcst/HCST_lib/BS/');
+addpath('/home/hcst/HCST_lib/FIU/');
+addpath('/home/hcst/NKT/');
 addpath(genpath('/home/hcst/HCST_lib/LS/'));
 addpath(genpath('/home/hcst/HCST_lib/TTM/'));
+addpath('/home/hcst/HCST_lib/Femto/');
 
 
 %% Create the FPM substruct
@@ -96,9 +103,9 @@ FPM.FBOUND = 26.5;
 % FPM.VORTEX_H0 = 6.0653;
 % FPM.VORTEX_F0 = 1.8365;
 % After putting in the Apodizer (AVC), June 5, 2019
-FPM.VORTEX_V0 = 1.3913;
-FPM.VORTEX_H0 = 6.2098;
-FPM.VORTEX_F0 = 1.8365;
+FPM.VORTEX_V0 = 4.2993;
+FPM.VORTEX_H0 = 7.0938;
+FPM.VORTEX_F0 = 1.7115;
 
 
 FPM.vortexCharge = -8;
@@ -112,6 +119,34 @@ FPM.ZERNIKE_V0 = 22;
 FPM.ZERNIKE_H0 = 3.3725;
 
 FPM.CONNECTED = false;
+%% Create the LPQWP substruct
+
+% NOTE: all zaber positions are in [mm]
+
+% Default position for the FPM axes
+% If an axis has not been homed prior to call to hcst_setUpFPM, that axis
+%   will be moved to this position
+% LPQWP.User_V0 = 1.5;
+% LPQWP.User_H0 = 7.304999;
+% LPQWP.User_F0 = 5.000099;
+
+% Upper bounds for the motion in each axis
+% LPQWP.VBOUND = 26.5;
+% LPQWP.HBOUND = 8;   %DO NOT CHANGE UNLESS YOU'RE SURE THERE ARE NO COLLISIONS
+% LPQWP.FBOUND = 26.5;
+
+% Axes positions for the center of the Vortex
+% LPQWP.posLP1 = 0;
+% LPQWP.posQWP1 = 63.8000;%207.7802;
+% LPQWP.posLP2 = 113;%41.601;
+% LPQWP.posQWP2 = 201.5854;%54.9427;
+% New method to cross polarization:
+LPQWP.posLP1 = 0;
+LPQWP.posQWP1 = 175.2293;%207.7802;
+LPQWP.posLP2 = 197.3000;%41.601;
+LPQWP.posQWP2 = 95.6300;%54.9427;
+
+LPQWP.CONNECTED = false;
 
 %% Create the LS substruct
 
@@ -140,8 +175,8 @@ LS.HBOUND = 50.8;
 % LS.CENTER_V0 = 8.0600;
 % LS.CENTER_H0 = 45.9600;
 % Updated by J. Llop 2018Dec03
-LS.CENTER_V0 = 10.2214;
-LS.CENTER_H0 = 48.1625;
+LS.CENTER_V0 = 10.8714;
+LS.CENTER_H0 = 47.1375;
 
 LS.CONNECTED = false;
 
@@ -184,8 +219,8 @@ DM.NactAcrossBeam = 30;
 
 % After removing first plate
 DM.angDM = 0;
-DM.xc = 17.5;   % x-center of DM in actuator widths
-DM.yc = 17.5;   % y-center of DM in actuator widths
+DM.xc = 17.2223;   % x-center of DM in actuator widths
+DM.yc = 17.7856;   % y-center of DM in actuator widths
 %% Create Andor Neo sub-struct
 
 andor.CONNECTED = false;
@@ -209,10 +244,15 @@ andor.default_pixelEncodingIndex = int32(2);% Set to 16 bit
 % andor.FocusRow = 989;
 % andor.FocusCol = 1989;
 % andor.FocusRow = 671;
-% After putting in the Apodizer (AVC), June 5, 2019
-andor.FocusCol = 2037;
-andor.FocusRow = 696;
+% % After putting in the Apodizer (AVC), June 5, 2019
+% andor.FocusCol = 1686;
+% andor.FocusRow = 1002;
+% Reconfiguring the imaging part - Oct 29, 2019
+andor.FocusCol = 1804;
+andor.FocusRow = 860;
 
+andor.PupCol = 1.6480e+03;
+andor.PupRow = 841;
 %% Filter wheel 
 
 FW.CONNECTED = false;
@@ -223,8 +263,35 @@ FW.defaultPos = 1;
 NKT.CONNECTED = false;
 NKT.numTries = 10;
 NKT.delay = 1;
-info.NKT_lib_PATH = '/home/hcst/HCST_lib/NKT/';
+info.NKT_lib_PATH = '/home/hcst/NKT/';
 
+%% FIU 
+FIUstages.CONNECTED = false; 
+FIUstages.CENTER_V0 = 9.2118;
+FIUstages.CENTER_H0 = -0.0112;
+FIUstages.CENTER_F0 = -1.1860;
+FIUstages.favoriteAngSep2FIUpos_6 = [7.5250   90.0000    0.0114]; %[Ang Sep, rot for DM speckle,H pos for FIU stage]
+FIUstages.favoriteAngSep2FIUpos_3 = [4.0000   90.5000    0.0007];
+%% Beam splitter
+BS.User_H0 = 0;
+BS.CONNECTED = false;
+BS.BOUND = 25.4;
+
+%% Femto and Labjack
+Femto.CONNECTED = false;
+Femto.V = 0;
+Femto.waitTimeAfterGainChange = 0.2;
+Femto.gainStep = 9.97;
+Femto.averageNumReads=10;
+Femto.noise_arr = [...
+6.2166e-05,... 
+3.4937e-05,... 
+6.1044e-05,... 
+8.916e-05,... 
+0.00026561,... 
+0.00080495,... 
+0.0031011];
+Femto.V0_peak = 6.702e-09;
 %% Calibrations
 
 % andor.pixelPerLamOverD = 5.75;
@@ -234,8 +301,10 @@ info.lambda0 = 775e-9;
 
 % andor.pixelPerLamOverD = 4.7/780e-9*info.lambda0;
 % andor.numPixperCycle = 4.7/780e-9*info.lambda0;
-andor.pixelPerLamOverD = 4.8111/775e-9*info.lambda0;
-andor.numPixperCycle = 4.8111/775e-9*info.lambda0;
+% andor.pixelPerLamOverD = 4.8111/775e-9*info.lambda0; %AVC
+% andor.numPixperCycle = 4.8111/775e-9*info.lambda0;
+andor.pixelPerLamOverD = (4.45+0.075)/775e-9*info.lambda0;
+andor.numPixperCycle = (4.45+0.075)/775e-9*info.lambda0;
 
 
 %% Back up and data storage info 
@@ -251,12 +320,12 @@ end
 
 info.benchBackUpDir = benchBackUpDir;
 
-info.path2darks = [info.HCST_DATA_DIR,'darks/2019Mar22/'];
-info.path2darksND = [info.HCST_DATA_DIR,'darksND/2019Mar22/'];
+info.path2darks = [info.HCST_DATA_DIR,'darks/2019Nov21/'];
+info.path2darksND = [info.HCST_DATA_DIR,'darksND/2019Nov21/'];
 
 %% Create bench object
 
-bench = Bench(FPM, LS, TTM, DM, andor, FW, NKT, info );
+bench = Bench(FPM, LPQWP, LS, TTM, DM, andor, FW, NKT, FIUstages, BS, Femto, info );
 
 
 end

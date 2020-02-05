@@ -46,7 +46,7 @@ class FW102C(object):
     isOpen   = False
     devInfo  = None
 
-    def __init__(self, port='/dev/ttyUSB5'):
+    def __init__(self, port='/dev/ttyFW'):
         try:
             self._fw = serial.Serial(port=port, baudrate=115200,
                                   bytesize=8, parity='N', stopbits=1,
@@ -159,7 +159,7 @@ class FW102C(object):
 
 # Class test, when called directly
 if __name__ == "__main__":
-    fwl = FW102C(port='/dev/ttyUSB5')
+    fwl = FW102C(port='/dev/ttyFW')
     if not fwl.isOpen:
 	   print "FWL INIT FAILED"
 	   sys.exit(2)

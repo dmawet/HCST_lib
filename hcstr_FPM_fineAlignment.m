@@ -9,16 +9,16 @@ else
     mask = 1;
     tint = 1e-1;
     % path2startingMap = [bench.info.HCST_DATA_DIR,'zygo_flat/2019Mar08/'];
-    path2startingMap = [bench.info.HCST_DATA_DIR,'is_results/2019Apr24/'];
-    flatmapFile4SN = getLastMATfile(path2startingMap);
-    load(flatmapFile4SN);% load DM commands to cmds
-    data = cmds;
-    err_code = BMCSendData(bench.DM.dm, data);
-    if(err_code~=0)
-        eString = BMCGetErrorString(err_code);
-        error(eString);
-    end
-
+%     path2startingMap = [bench.info.HCST_DATA_DIR,'is_results/2019Apr24/'];
+%     flatmapFile4SN = getLastMATfile(path2startingMap);
+%     load(flatmapFile4SN);% load DM commands to cmds
+%     data = cmds;
+%     err_code = BMCSendData(bench.DM.dm, data);
+%     if(err_code~=0)
+%         eString = BMCGetErrorString(err_code);
+%         error(eString);
+%     end
+    hcst_DM_flattenDM(bench, true );% sets the DM to flatvec
 end
 
 % cropsize = 128;
@@ -36,7 +36,7 @@ hcst_andor_setExposureTime(bench,tint);
 % vPosList = 0.10:0.01:0.30;
 % hPosList = -0.30:0.05:0.0;
 % vPosList = -0.001:0.0005:0.001;
-vPosList = -0.001:0.0005:0.001;
+vPosList = -0.005:0.0025:0.005;
 hPosList = vPosList;
 % vPosList = 0;
 % vPosList = 5.705;

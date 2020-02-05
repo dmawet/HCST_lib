@@ -4,6 +4,9 @@ function cmds = hcst_DM_apply2Dmap( bench, map, scale )
 
     flatvec = bench.DM.flatvec;
     
+%     map = rot90(map',2);
+    map = rot90(map,1);
+    
     data = scale*hcst_DM_2Dto1D(bench,map);
     
     cmds = data+flatvec;
