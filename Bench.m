@@ -12,14 +12,18 @@ classdef Bench < handle
         FW
         NKT
         FIUstages
-        BS
+        BSzaber
+        Analyzerzaber
+        FEUzaber
+        cameraZaber
         Femto
+        FS
         info
     end
     
     methods
         
-        function Bench = Bench(FPM, LPQWP, LS, TTM, DM, andor, FW, NKT, FIUstages, BS, Femto, info)
+        function Bench = Bench(FPM, LPQWP, LS, TTM, DM, andor, FW, NKT, FIUstages, BSzaber, Analyzerzaber, FEUzaber,cameraZaber, Femto,FS, info)
             %BENCH Construct an instance of this class
             Bench.FPM = FPM;
             Bench.LPQWP = LPQWP;
@@ -30,15 +34,19 @@ classdef Bench < handle
             Bench.FW = FW;
             Bench.NKT = NKT;
             Bench.FIUstages = FIUstages;
-            Bench.BS = BS;
+            Bench.BSzaber = BSzaber;
+            Bench.Analyzerzaber = Analyzerzaber;
+            Bench.FEUzaber = FEUzaber;
+            Bench.cameraZaber = cameraZaber;
             Bench.Femto = Femto;
+            Bench.FS = FS;
             Bench.info = info;
         end
         
         function isConnected(bench)
             fields = fieldnames(bench);
             for idx = 1:numel(fields)
-                if(any(strcmp({'FPM','LS','TTM','DM','andor','FW','NKT','FIUstages','BS'},fields{idx})))
+                if(any(strcmp({'FPM','LS','TTM','DM','andor','FW','NKT','FIUstages','BSzaber','Analyzerzaber','FEUzaber','cameraZaber','FS'},fields{idx})))
                     fprintf("%s \t %s\n", string(fields{idx}), string(bench.(fields{idx}).CONNECTED))
                 end
             end

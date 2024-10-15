@@ -18,14 +18,29 @@ else
     if(bench.FPM.CONNECTED)
        hcst_cleanUpFPM(bench);
     end
+    if(bench.FS.CONNECTED)
+       hcst_cleanUpFS(bench);
+    end
     if(bench.LPQWP.CONNECTED)
        hcst_cleanUpLPQWP(bench);
     end
+    % LS and Analyzer
     if(bench.LS.CONNECTED)
        hcst_cleanUpLS(bench);
     end
-    if(bench.BS.CONNECTED)
-       hcst_cleanUpBS(bench);
+    if(bench.Analyzerzaber.CONNECTED)
+       hcst_cleanUpAnalyzerzaber(bench);
+    end
+    %
+    if(bench.FEUzaber.CONNECTED)
+       hcst_cleanUpFEUzaber(bench);
+    end
+    if(bench.cameraZaber.CONNECTED)
+       hcst_cleanUpCameraZaber(bench);
+    end
+    
+    if(bench.BSzaber.CONNECTED)
+       hcst_cleanUpBSzaber(bench);
     end
     if nkt
         if(bench.NKT.CONNECTED)

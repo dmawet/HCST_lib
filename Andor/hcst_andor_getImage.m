@@ -1,4 +1,4 @@
-function im = hcst_andor_getImage(bench)
+function im = hcst_andor_getImage(bench,varargin)
 %hcst_andor_getImage Returns image from the the Andor Neo camera
 %
 %   - Returns a single image from the Andor Neo camera 
@@ -13,7 +13,15 @@ function im = hcst_andor_getImage(bench)
 %
 %   Outputs
 %       'im' - double array - The image
+    flagSaveIm = false;
+    label = '';
+    if(nargin>1)
+        flagSaveIm = varargin{1};
+        if(nargin>2)
+            label = varargin{2};
+        end
 
+    end
 
     BufferSize = bench.andor.imSizeBytes;
     AOIHeight = bench.andor.AOIHeight;
@@ -101,5 +109,13 @@ function im = hcst_andor_getImage(bench)
         hcst_andor_flushBuffers(bench)
     end
     
+    if flagSaveIm
+        outdir = [bench.info.HCST_DATA_DIR,'andor_images/',datestr(now,'yyyymmmdd'),'/'];
+        if ~exist(outdir, 'dir')
+            mkdir(outdir)
+        end
+        flnm = [outdir,'andor_im_',label,datestr(now,'yyyymmddHHMMSS')];
+        hcst_andor_fitswrite(bench, im, flnm, false);
+    end
 end
 

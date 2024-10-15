@@ -15,6 +15,36 @@ function dark = hcst_andor_loadDark(bench,flnm)
 %   Outputs:
 %       'dark' - double array - cropped dark frame.
 
+    if ~isfile(flnm) && bench.NKT.CONNECTED
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         resPos = hcst_FEUzaber_move(bench,bench.FEUzaber.posIn);
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        centcol = bench.andor.centcol;
+        centrow = bench.andor.centrow;
+        cropsize = bench.andor.AOIHeight;
+        disp(['Taking darks: tint = ',num2str(bench.andor.tint),' sec']);
+        hcst_andor_resetSubwindow(bench);
+        pause(1)
+        tb_NKT_setEmission(bench,false);
+        
+        %Take dark
+        % Take three burner images
+        for imnum = 1:3
+            hcst_andor_getImage(bench);
+        end
+        darkcube = zeros(bench.andor.AOIHeight,bench.andor.AOIWidth,5);
+        for imnum = 1:5
+            darkcube(:,:,imnum) = hcst_andor_getImage(bench);
+        end
+        dark = median(darkcube,3);
+        
+        % Save dark
+        hcst_andor_fitswrite(bench,dark,flnm,false)
+        hcst_andor_setSubwindow(bench,centrow,centcol,cropsize);
+        tb_NKT_setEmission(bench,true);
+        pause(1)
+    end
+ 
     dark = fitsread(flnm);
     [rows,cols] = size(dark);
     isNotFullFrame = or(bench.andor.AOIHeight~= rows,...

@@ -11,6 +11,18 @@ function hcst_andor_toggleContinuousMode(bench,onoff)
 
 andor_handle = bench.andor.andor_handle;
 
+% first get continuous mode status
+featurePtr = libpointer('voidPtr',int32(['CycleMode',0]));
+queryPtr = libpointer('voidPtr',int32(10));
+err = calllib('lib', 'AT_GetEnumIndex', andor_handle, featurePtr, queryPtr);
+
+if(err~=0)
+    disp('Failed to get the cycle mode.');
+    error(['Andor lib ERROR:',num2str(err),' AT_GetEnumIndex']);
+end
+query = get(queryPtr);
+bench.andor.continuous = query.Value;
+
 if(and(bench.andor.continuous, onoff))
     disp('Andor Neo was already in continuous mode.');
 elseif(and(~bench.andor.continuous, ~onoff))

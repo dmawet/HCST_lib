@@ -1,6 +1,6 @@
 % Prepares bench to run speckle nulling 
-
-function hcst_setUpBench4EFC(flagDM,flagNKT)
+% flagNKT: for the Supercontinuum Whitelight Source NKT VARIA+EXTREME
+function hcst_setUpBench4EFC(flagDM,flagNKT,flagLS)
 if(~exist('bench','var'))
     addpath('/home/hcst/HCST_lib')
 	bench = hcst_config();
@@ -17,13 +17,14 @@ end
 if(~bench.LPQWP.CONNECTED)
     hcst_setUpLPQWP(bench);
 end
-
-if(~bench.LS.CONNECTED)
-    hcst_setUpLS(bench);
+if flagLS
+    if(~bench.LS.CONNECTED)
+       hcst_setUpLS(bench);
+    end
 end
-if(~bench.BS.CONNECTED)
-    hcst_setUpBS(bench);
-end
+%if(~bench.BS.CONNECTED)
+%    hcst_setUpBS(bench);
+%end
 
 if flagNKT
     if(~bench.NKT.CONNECTED)

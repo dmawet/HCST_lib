@@ -1,4 +1,4 @@
-function hcst_andor_setSubwindow(bench, centerrow, centercol, framesize)
+function hcst_andor_setSubwindow(bench, centerrow, centercol, framesize,varargin)
 %hcst_andor_setSubwindow Changes the subwindow of the Andor Neo camera. Assumes the subwindow is a square with an even number of pixels. 
 %
 %   - Crops the Andor Neo image to a frame size of 'framesize' centered at
@@ -14,7 +14,11 @@ function hcst_andor_setSubwindow(bench, centerrow, centercol, framesize)
 %           of the pixel where the subwindow will be centered (starting
 %           index is 1)
 %       'framesize' - The size of the sub-window in pixels 
+    verbose = true;
 
+    if(nargin>4)
+        verbose = varargin{1};
+    end
 
     andor_handle = bench.andor.andor_handle;
     
@@ -68,11 +72,12 @@ function hcst_andor_setSubwindow(bench, centerrow, centercol, framesize)
     hcst_andor_getImageFormatting(bench);
     bench.andor.imSizeBytes = hcst_andor_getImageSizeBytes(bench);
     hcst_andor_createBufferPtrs(bench)
-    
-    disp('Andor Neo Camera sub-window changed:');
-    disp(['     image size (bytes) = ',num2str(bench.andor.imSizeBytes)]);
-    disp(['     AOIHeight = ',num2str(bench.andor.AOIHeight)]);
-    disp(['     AOIWidth  = ',num2str(bench.andor.AOIWidth)]);
-    disp(['     AOIStride = ',num2str(bench.andor.AOIStride)]);
+    if verbose
+        disp('Andor Neo Camera sub-window changed:');
+        disp(['     image size (bytes) = ',num2str(bench.andor.imSizeBytes)]);
+        disp(['     AOIHeight = ',num2str(bench.andor.AOIHeight)]);
+        disp(['     AOIWidth  = ',num2str(bench.andor.AOIWidth)]);
+        disp(['     AOIStride = ',num2str(bench.andor.AOIStride)]);
+    end
 end
 

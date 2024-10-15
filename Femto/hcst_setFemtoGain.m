@@ -28,5 +28,5 @@ py.labjack.ljm.eWriteNames(bench.Femto.LJ.handle, numFrames, names, gain_pin_lis
 G = 10^gainscale;
 bench.Femto.gain = G;
 % clear gain_pin_dec_setting gain_pin_bin_setting gainscale names numFrames gain_pin_list
-
+disp(['Changed to gain setting: ', num2str(gainscale)])
 end

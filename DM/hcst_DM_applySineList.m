@@ -33,6 +33,10 @@ function [fullcmds1D,diffCmds2D] =  hcst_DM_applySineList( bench, spatFreq_rs, s
     end
     diffCmds2D = ripples;% Output 2D commands added to current map
     
+    
+%     ripples = (ripples);
+    ripples = flipud(ripples');
+    
 	data = hcst_DM_2Dto1D(bench,ripples);
 
 	cmds = data+flatvec;

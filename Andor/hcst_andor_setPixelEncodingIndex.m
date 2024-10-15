@@ -22,10 +22,15 @@ function hcst_andor_setPixelEncodingIndex(bench,pei)
     andor_handle = bench.andor.andor_handle;
 
     pixelEncodingFeaturePtr = libpointer('voidPtr',int32(['PixelEncoding',0]));
-    
+
     % Set bitdepth with AT_SetEnumIndex(AT_H Hndl, AT_WC* Feature, int Index)
     err = calllib('lib', 'AT_SetEnumIndex', andor_handle, pixelEncodingFeaturePtr, ...
                                       int32(pei));
+
+    simplePreAmpGainControlFeaturePtr = libpointer('voidPtr',int32(['SimplePreAmpGainControl',0]));
+    err = calllib('lib', 'AT_SetEnumIndex', andor_handle, simplePreAmpGainControlFeaturePtr, ...
+                                      int32(pei));     
+
     if(err~=0)
         disp('Failed to change pixelEncodingIndex!');
         error(['HCST_lib Andor lib ERROR:',num2str(err),' AT_SetEnumIndex']);
