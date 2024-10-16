@@ -44,12 +44,20 @@ end
 if pos(1) > bench.FPM.VBOUND
     pos(1) = bench.FPM.VBOUND;
 end
-if pos(2) > bench.FPM.HBOUND
-    pos(2) = bench.FPM.HBOUND;
+if pos(2) > bench.FPM.HBOUND_upper
+    pos(2) = bench.FPM.HBOUND_upper;
+end
+if pos(2) < bench.FPM.HBOUND_lower
+    pos(2) = bench.FPM.HBOUND_lower;
 end
 if pos(3) > bench.FPM.FBOUND
     pos(3) = bench.FPM.FBOUND;
 end
+
+% if pos(3) < 20
+%     pos(3) = 20;
+%     disp('FPM focus has a bound for TT mount! Remove it to proceed with coronagraph')
+% end
 
 %% move each axis in order
 % Use blocking (true) to ensure move is complete before continuing script

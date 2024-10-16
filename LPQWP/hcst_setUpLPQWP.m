@@ -92,5 +92,11 @@ bench.LPQWP.axQWP2 = axQWP2;
 % Save backup bench object
 hcst_backUpBench(bench)
 
+%% To HOME
+% bench.LPQWP.axLP1.home(true)
+% bench.LPQWP.axQWP1.home(true)
+% bench.LPQWP.axLP2.home(true)
+% bench.LPQWP.axQWP2.home(true)
+
 end
 

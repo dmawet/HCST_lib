@@ -24,7 +24,7 @@ function resPos = hcst_FW_setPos(bench,pos)
     if(curPos ~= pos)
     
         if(and(~isnan(pos), pos>=1 || pos<=6))
-            bench.FW.pyObj.command(['pos=',num2str(round(pos))]);
+             bench.FW.pyObj.command(['pos=',num2str(round(pos))]);
             disp(['Filter wheel moved to position ',num2str(pos)]);
         else
             error('Invalid filter wheel position.');
