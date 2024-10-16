@@ -1,4 +1,11 @@
 *.pyc
 *.fits
 *.png
-
+*/.ipynb_checkpoints/*
+*/.idea/*
+*.m~
+*/libat*
+*/*.h
+*.zip
+*.mat
+*.fig
