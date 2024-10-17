@@ -20,7 +20,7 @@ function hcst_setUpFW(bench)
 
     import fw102c.*
 
-    bench.FW.pyObj = py.fw102c.FW102C();
+    bench.FW.pyObj = py.fw102c_py3.FW102C();
 
     % Confirm the FW is connected
     if(bench.FW.pyObj.isOpen)

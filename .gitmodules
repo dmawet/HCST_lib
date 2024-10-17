@@ -1,0 +1,3 @@
+[submodule "CAMZ/pyKDC101"]
+	path = CAMZ/pyKDC101
+	url = https://github.com/sfr348/pyKDC101
