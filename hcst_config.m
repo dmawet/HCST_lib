@@ -44,6 +44,7 @@ addpath('/home/hcst/NKT/');
 addpath(genpath('/home/hcst/HCST_lib/LS/'));
 addpath(genpath('/home/hcst/HCST_lib/TTM/'));
 addpath('/home/hcst/HCST_lib/Femto/');
+addpath('/home/hcst/HCST_lib/CAMZ/pyKDC101/src/pyKDC101/');
 
 
 %% Create the FPM substruct
@@ -438,6 +439,9 @@ FS.F2 = 15; %14.9850;
 
 FS.CONNECTED = false;
 
+%% CAMZ struct (scicam focus stage)
+CAMZ.serialNumber = '27268827';
+
 %% Calibrations
 
 % andor.pixelPerLamOverD = 5.75;
@@ -485,7 +489,7 @@ info.path2darksND = [info.HCST_DATA_DIR,'darks/2023Jun12/'];%[info.HCST_DATA_DIR
 
 %% Create bench object
 
-bench = Bench(FPM, LPQWP, LS, TTM, DM, andor, FW, NKT, FIUstages, BSzaber,Analyzerzaber,FEUzaber,cameraZaber, Femto,FS, info );
+bench = Bench(FPM, LPQWP, LS, TTM, DM, andor, FW, NKT, FIUstages, BSzaber,Analyzerzaber,FEUzaber,cameraZaber, Femto,FS, CAMZ, info );
 
 
 end
