@@ -44,7 +44,10 @@ addpath('/home/hcst/NKT/');
 addpath(genpath('/home/hcst/HCST_lib/LS/'));
 addpath(genpath('/home/hcst/HCST_lib/TTM/'));
 addpath('/home/hcst/HCST_lib/Femto/');
+addpath('/home/hcst/HCST_lib/CAMZ/');
 addpath('/home/hcst/HCST_lib/CAMZ/pyKDC101/src/pyKDC101/');
+addpath('/home/hcst/HCST_lib/ORCA/');
+addpath('/home/hcst/HCST_lib/ORCA/dcamsdk4/samples/python/');
 
 
 %% Create the FPM substruct
@@ -250,6 +253,11 @@ DM.angDM = 0;
 % DM.yc = 21.3626;   % y-center of DM in actuator widths
 DM.xc = 18.;   % x-center of DM in actuator widths
 DM.yc = 18.;   % y-center of DM in actuator widths
+
+%% Create Orca Quest sub-struct
+orca.CONNECTED = false;
+orca.iDevice = 0;
+
 %% Create Andor Neo sub-struct
 
 andor.CONNECTED = false;
@@ -440,6 +448,7 @@ FS.F2 = 15; %14.9850;
 FS.CONNECTED = false;
 
 %% CAMZ struct (scicam focus stage)
+CAMZ.CONNECTED = false;
 CAMZ.serialNumber = '27268827';
 
 %% Calibrations
@@ -489,7 +498,7 @@ info.path2darksND = [info.HCST_DATA_DIR,'darks/2023Jun12/'];%[info.HCST_DATA_DIR
 
 %% Create bench object
 
-bench = Bench(FPM, LPQWP, LS, TTM, DM, andor, FW, NKT, FIUstages, BSzaber,Analyzerzaber,FEUzaber,cameraZaber, Femto,FS, CAMZ, info );
+bench = Bench(FPM, LPQWP, LS, TTM, DM, orca, andor, FW, NKT, FIUstages, BSzaber,Analyzerzaber,FEUzaber,cameraZaber, Femto,FS, CAMZ, info );
 
 
 end

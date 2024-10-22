@@ -6,9 +6,9 @@ function hcst_backUpBench(bench)
     
 %     savedbenchstruct = bench;
     
-   savedbenchshtruct = Bench(bench.FPM, bench.LPQWP, bench.LS, bench.TTM, bench.DM, ...
+   savedbenchshtruct = Bench(bench.FPM, bench.LPQWP, bench.LS, bench.TTM, bench.DM,bench.orca, ...
        bench.andor, bench.FW, bench.NKT, bench.FIUstages, bench.BSzaber,bench.Analyzerzaber, bench.FEUzaber, ...
-       bench.cameraZaber,bench.Femto,bench.FS, bench.info );
+       bench.cameraZaber,bench.Femto,bench.FS, bench.CAMZ, bench.info );
 
     if isprop( bench, 'FEUzaber') 
 %         savedbenchstruct.FEUzaber = [];
