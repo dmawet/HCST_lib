@@ -1,6 +1,7 @@
 *.pyc
 *.fits
 *.png
+*/*/.ipynb_checkpoints/*
 */.ipynb_checkpoints/*
 */.idea/*
 *.m~
@@ -9,3 +10,4 @@
 *.zip
 *.mat
 *.fig
+*.asv
