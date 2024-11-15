@@ -258,6 +258,16 @@ DM.yc = 18.;   % y-center of DM in actuator widths
 orca.CONNECTED = false;
 orca.iDevice = 0;
 
+% Image acquisition defaults:
+orca.numCoadds = 1;
+orca.max_dropped_frames = 15;
+orca.default_tint = 1e-3; % seconds
+
+% Frame parameters
+orca.default_framesize = 300;
+orca.subwindow_shift = 'center'; % center or lefttop | center: center is fixed, frame size adjusted
+
+
 %% Create Andor Neo sub-struct
 
 andor.CONNECTED = false;

@@ -13,10 +13,11 @@ function tint = hcst_orca_getExposureTime(bench)
 %       'tint' - The exposure time in seconds 
 
 
-    tint = bench.orca.pyObj.prop_getvalue(DCAM_IDPROP.EXPOSURETIME);
+    tint = bench.orca.pyObj.prop_getvalue(bench.orca.dcamapi4.DCAM_IDPROP.EXPOSURETIME);
 
     if(tint==false)
-        error(['HCST_lib ORCA ERROR:',bench.orca.pyObj.lasterr()]);
+        disp(bench.orca.pyObj.lasterr())
+        error(['HCST_lib ORCA ERROR:']);
     end
     
 end

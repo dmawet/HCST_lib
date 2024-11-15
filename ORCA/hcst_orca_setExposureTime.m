@@ -15,7 +15,8 @@ function hcst_orca_setExposureTime(bench, tint)
     new_tint = bench.orca.pyObj.prop_setgetvalue(bench.orca.dcamapi4.DCAM_IDPROP.EXPOSURETIME, tint);
 
     if(new_tint==false)
-        error(['HCST_lib ORCA ERROR:',bench.orca.pyObj.lasterr()]);
+        disp(bench.orca.pyObj.lasterr())
+        error(['HCST_lib ORCA ERROR:']);
     end
 
     

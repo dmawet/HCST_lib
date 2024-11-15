@@ -29,7 +29,9 @@ function hcst_orca_setSubwindowFullframe(bench)
     end 
 
     
-%     hcst_orca_getImageFormatting(bench);
+    hcst_orca_getImageFormatting(bench);
+
+    bench.orca.subarr_onoff = false;
 %     bench.orca.imSizeBytes = hcst_orca_getImageSizeBytes(bench);
 %     if verbose
 %         disp('orca Camera sub-window changed:');

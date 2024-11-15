@@ -220,6 +220,8 @@ def show_live_captured_images(dcamcon: Dcamcon):
         framecount_till_firetrigger = firetrigger_cycle
     
     timeout_happened = 0
+    print(f'source: {triggersource}*******************')
+    print(f'mode: {trigger_mode} *******************')
 
     global cv_window_status
     global signaled_sigint
