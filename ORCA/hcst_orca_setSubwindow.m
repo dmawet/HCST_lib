@@ -44,7 +44,8 @@ function hcst_orca_setSubwindow(bench, centerrow, centercol, framesize)
     end
 
     if(bench.orca.AOIHeight~=bench.orca.AOIWidth)
-        error('HCST currently only supports square, even sub-windows.')
+%         error('HCST currently only supports square, even sub-windows.')
+        disp('Subwindow is not square.')
     elseif(mod(bench.orca.AOIHeight,4)~=0)
         error('HCST currently only supports sub-windows that are a factor of 4.');
     elseif(bench.orca.AOImin>bench.orca.AOIHeight || bench.orca.AOImax_v<(bench.orca.AOIHeight + centerrow)|| bench.orca.AOImax_h<(bench.orca.AOIWidth + centercol))
@@ -61,21 +62,22 @@ function hcst_orca_setSubwindow(bench, centerrow, centercol, framesize)
     end 
 
 
-    aoi_h = bench.orca.pyObj.prop_setgetvalue(DCAM_IDPROP.SUBARRAYHSIZE, bench.orca.AOIWidth);
+    aoi_h = bench.orca.pyObj.prop_setgetvalue(bench.orca.dcamapi4.DCAM_IDPROP.SUBARRAYHSIZE, uint16(bench.orca.framesize_hor));
+    
     if aoi_h == false
         disp(bench.orca.pyObj.lasterr())
         error(['HCST_lib ORCA ERROR:']);
     else
-        bench.orca.AOIWidth = aoi_h;
+%         bench.orca.AOIWidth = aoi_h;
         disp(['AOI width set to ', num2str(aoi_h)])
     end
 
-    aoi_v = bench.orca.pyObj.prop_setgetvalue(DCAM_IDPROP.SUBARRAYVSIZE, bench.orca.AOIHeight);
+    aoi_v = bench.orca.pyObj.prop_setgetvalue(bench.orca.dcamapi4.DCAM_IDPROP.SUBARRAYVSIZE, uint16(bench.orca.framesize_ver));
     if aoi_v == false
         disp(bench.orca.pyObj.lasterr())
         error(['HCST_lib ORCA ERROR:']);
     else
-        bench.orca.AOIHeight = aoi_v;
+%         bench.orca.AOIHeight = aoi_v;
         disp(['AOI height set to ', num2str(aoi_v)])
     end
 
@@ -214,24 +216,32 @@ end
 function shift_subwindow_topleft(bench, centerrow, centercol, framesize)
     % Note AOI left and top always have to be multiples of 100, not sure
     % why
-    bench.orca.AOILeft = floor((centercol - framesize/2 - 1)/4)*4;
-    bench.orca.AOITop = floor((centerrow - framesize/2 - 1)/4)*4;
+    bench.orca.AOILeft = floor((centercol - framesize/2)/4)*4;
+    bench.orca.AOITop = floor((centerrow - framesize/2)/4)*4;
 	
     bench.orca.aoi_centcol = bench.orca.AOILeft + framesize/2; % TODO: Update based on AOI calcs
 	bench.orca.aoi_centrow = bench.orca.AOITop + framesize/2;
 
     bench.orca.centcol = centercol; 
 	bench.orca.centrow = centerrow;
-    
+
+    bench.orca.framesize_hor = ceil((framesize + (centercol - framesize/2 - bench.orca.AOILeft))/4)*4;
+    bench.orca.framesize_ver = ceil((framesize + (centerrow - framesize/2 - bench.orca.AOITop))/4)*4;
+
     % TODO: fix for binning
     bench.orca.crop_col = (centercol - framesize/2 - bench.orca.AOILeft) / bench.orca.binning;
     bench.orca.crop_row = (centerrow - framesize/2 - bench.orca.AOITop) / bench.orca.binning;
     
 
-    if bench.orca.centcol ~= centercol || bench.orca.centrow ~= centerrow
+    if bench.orca.centcol ~= bench.orca.aoi_centcol || bench.orca.centrow ~= bench.orca.aoi_centrow 
         disp('**Shifting center row and column to abide by ORCAs rules**')
         disp(['AOI hardare center Row shifted from ', num2str(centerrow), ' to ', num2str(bench.orca.aoi_centrow )])
         disp(['AOI hardare center Col shifted from ', num2str(centercol), ' to ', num2str(bench.orca.aoi_centcol)])
+
+        disp(['AOI hardare frame width shifted from ', num2str(framesize), ' to ', num2str(bench.orca.framesize_hor )])
+        disp(['AOI hardare frame height shifted from ', num2str(framesize), ' to ', num2str(bench.orca.framesize_ver)])
+
+        bench.orca.crop_software = true;
     end
 end
 

@@ -262,11 +262,16 @@ orca.iDevice = 0;
 orca.numCoadds = 1;
 orca.max_dropped_frames = 15;
 orca.default_tint = 1e-3; % seconds
+orca.continuous = false;
+
 
 % Frame parameters
 orca.default_framesize = 300;
-orca.subwindow_shift = 'center'; % center or lefttop | center: center is fixed, frame size adjusted
+orca.subwindow_shift = 'topleft'; % center or lefttop | center: center is fixed, frame size adjusted
+orca.crop_software = false;
 
+orca.default_pixelEncodingIndex = int32(2);% Set to 16 bit
+orca.pixel_size = 4.6; % um
 
 %% Create Andor Neo sub-struct
 
@@ -483,6 +488,9 @@ info.lambda0 = 775e-9;
 % Dec 06
 andor.pixelPerLamOverD = (8.7)/775e-9*info.lambda0;
 andor.numPixperCycle = (8.7)/775e-9*info.lambda0;
+
+orca.pixelPerLamOverD = (6.5/orca.pixel_size)*(8.7)/775e-9*info.lambda0;
+orca.numPixperCycle = (6.5/orca.pixel_size)*(8.7)/775e-9*info.lambda0;
 
 %% UEYE Camera
 UEYE.camera_id = 0;

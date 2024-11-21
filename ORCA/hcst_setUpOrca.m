@@ -82,6 +82,14 @@ function hcst_setUpOrca(bench)
     bench.orca.AOImax_h = propattr_hsize.valuemax; %min([propattr_hsize.valuemax, propattr_vsize.valuemax]); 
     bench.orca.AOImax_v = propattr_vsize.valuemax; 
 
+
+    bench.orca.AOIWidth0 = propattr_hsize.valuemax;
+    bench.orca.AOIHeight0 = propattr_vsize.valuemax;
+
+    bench.andor.centcol0 = bench.orca.AOIWidth0 / 2;
+    bench.andor.centrow0 = bench.orca.AOIHeight0 / 2;
+
+
     % Set subwindow to full image
     hcst_orca_setSubwindowFullframe(bench)
 
